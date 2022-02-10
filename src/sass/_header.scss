@@ -1,0 +1,113 @@
+.myNavBar {
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  // background: linear-gradient(-45deg, #1cbcd1, #ca118c);
+  background: #fff;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  .myNavBar__left {
+    .myNavBar__logo {
+      width: 50px;
+    }
+    .myNavBar__title {
+      .nav-item {
+        padding-left: 20px;
+        .nav-link {
+          color: #000;
+          // text-shadow: 0 0 3px #000, 2px 2px 7px #9be1ff, -2px -2px 7px #9be1ff;
+          font-weight: 500;
+          &:hover {
+            color: #ffdc00;
+            transition: all 0.2s;
+          }
+          &.active {
+            color: #ffdc00;
+            transition: all 0.2s;
+          }
+        }
+      }
+    }
+  }
+  .myNavBar__right {
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 40px;
+    .myNavBar__login {
+      .myNavBar__login--cover {
+        
+        .MuiButtonBase-root.MuiIconButton-root.MuiIconButton-colorInherit {
+          outline: none !important;
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+
+    .dropdown {
+      .dropdown-toggle {
+        width: 50px;
+        text-decoration: none;
+        &::after {
+          color: #ffdc00;
+          // margin-left: 8px;
+        }
+        .myNavBar__styleText {
+          color: #000;
+
+          // text-shadow: 0 0 3px #000, 2px 2px 7px #9be1ff, -2px -2px 7px #9be1ff;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+      .dropdown-menu {
+        height: 300px;
+        overflow: hidden;
+        overflow-y: scroll;
+      }
+    }
+  }
+}
+.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
+  transform: translate(50px, 40px) !important;
+  .myNavBar__infoUser {
+    text-decoration: none !important;
+    color: #000;
+    
+  }
+}
+@include responsive("extra-large") {
+}
+@include responsive("large") {
+  .myNavBar {
+    .myNavBar__left{
+      padding: 0;
+      .myNavBar__title{
+        margin-right:55px;
+      }
+    }
+    .myNavBar__right{
+      .dropdown{
+        display:none;
+      }
+    }
+
+
+  }
+}
+
+// @include responsive("medium") {
+//   .myNavBar {
+//     .myNavBar__left{
+//       .myNavBar__title{
+//         display:none;
+//       }
+//     }
+
+
+//   }
+// }

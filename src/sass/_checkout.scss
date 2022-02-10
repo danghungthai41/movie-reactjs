@@ -1,0 +1,225 @@
+.checkout {
+  .checkout__cover {
+    margin: 0 auto;
+    display: flex;
+    .checkOutLeft {
+      width: 73%;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+      .checkOutLeft__title {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        color: #000;
+        .checkOutLeft__navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 0;
+          padding: 13px 30px;
+          .checkOutLeft__item {
+            list-style: none;
+            &:not(:nth-child(3)) {
+              padding-top: 0px;
+            }
+          }
+        }
+      }
+      .checkOutLeft__infoCine {
+        display: flex;
+        padding: 10px;
+        .checkOutLeft__text{
+          p{
+            color: #4a4a4a4a;
+          }
+        }
+      }
+
+      .checkOutLeft__SeatMap {
+        margin-top: 50px;
+        margin: auto 0;
+        .checkOutLeft__screen {
+          width: 60%;
+          margin: 0 auto;
+        }
+        .checkOutLeft__SeatMap--cover {
+          justify-content: center;
+          align-items: center;
+          width: 95%;
+          margin: 0 auto;
+          .checkOutLeft__seatItem {
+            margin: 8px;
+            border-radius: 4px;
+            width: 25px;
+            height: 25px;
+            padding: 0;
+            color: white;
+            outline: none;
+          }
+        }
+      }
+    }
+    .checkOutRight {
+      width: 27%;
+      // position: fixed;
+      z-index: 1;
+      right: 0;
+      //   background-color: white;
+      box-shadow: 0 0 13px rgba(74, 74, 74, 0.29);
+
+      color: #000;
+      min-height: 100vh;
+      .checkOutRight__cover {
+        padding: 20px;
+        .title {
+          text-align: center;
+          border-bottom: 1px dashed #d6d6d69c;
+          @include styleText(#8bc541, $fs-6 + 11, $fw-3);
+          margin: 0;
+          padding-bottom: 10px;
+        }
+
+        .checOutRight__infoMovie {
+          // background: linear-gradient(
+          //   to right,
+          //   rgba(194, 116, 187, 0.7),
+          //   rgba(108, 217, 224, 0.7)
+          // );
+          border-bottom: 1px dashed #d6d6d69c;
+
+          border-radius: 10px;
+          margin-bottom: 20px;
+          padding: 20px;
+          display: flex;
+          color: #4a4a4a4a;
+          img {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            margin-right: 10px;
+          }
+          p:first-child{
+           
+            @include styleText($color-black-0, $fs-5, $fw-3)
+          }
+          p:last-child{
+            font-size: $fs-2 + 1;
+          }
+
+        }
+        .checkOutRight__infoCinema {
+          p{
+            color: $color-red-0;
+          }
+          span{
+            color: #000;
+          }
+          // background: linear-gradient(
+          //   to right,
+          //   rgba(194, 116, 187, 0.7),
+          //   rgba(108, 217, 224, 0.7)
+          // );
+          border-bottom: 1px dashed #d6d6d69c;
+
+          padding: 20px;
+          border-radius: 10px;
+          display: flex;
+          margin-bottom: 20px;
+          img {
+            border-radius: 10px;
+            margin-right: 10px;
+            width: 70px;
+            height: 70px;
+          }
+        }
+        .buttonStyle {
+          background: linear-gradient(
+            95deg,
+            #73e611 0%,
+            #119e00 59%
+          ) !important;
+          padding: 3px 7px;
+          margin-right: 5px;
+        }
+        .buttonStyle:not(:first-child) {
+          padding: 20px;
+        }
+      }
+    }
+  }
+}
+// .gheChuaDat {
+//   width: 50px;
+//   height: 50px;
+//   border: 1px solid #fff;
+// }
+// .gheDangDat {
+//   width: 50px;
+//   height: 50px;
+//   border: 1px solid #fff;
+// }
+// .gheDaDat {
+//   width: 50px;
+//   height: 50px;
+//   border: 1px solid #fff;
+// }
+.thuong {
+  background: linear-gradient(45deg, #000000 0%, #1e1f1e 61%);
+  box-shadow: 2px 2px #56535359;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  border: 1px solid #56535359;
+}
+.vip {
+  background: linear-gradient(45deg, #d35f26 0%, rgb(236, 233, 27) 61%);
+  box-shadow: 2px 2px #56535359;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  border: 1px solid #56535359;
+}
+.isBooked {
+  box-shadow: 2px 2px #56535359;
+  width: 35px;
+  height: 35px;
+  background: linear-gradient(45deg, #b62828 0, #ff000c 61%) !important;
+  border-radius: 8px;
+  border: 1px solid #56535359;
+}
+.isChose {
+  box-shadow: 2px 2px #56535359;
+  background: linear-gradient(45deg,#119e00 0%, #73e611 61%) !important;
+  outline: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  border: 1px solid #56535359;
+}
+
+.animationTextCinema {
+  position: relative;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  overflow: hidden;
+  background: linear-gradient(90deg, rgb(100, 173, 3), #fff, rgb(235, 91, 8));
+  background-repeat: no-repeat;
+  background-size: 80%;
+  white-space: nowrap;
+  animation: animate 5s linear infinite;
+  background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+@keyframes animate {
+  0% {
+    background-position: -500%;
+  }
+  100% {
+    background-position: 500%;
+  }
+}
+
+@include responsive("extra-large") {
+
+
+}

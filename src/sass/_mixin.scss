@@ -1,0 +1,150 @@
+@mixin styleText($color, $fs, $fw) {
+  color: $color;
+  font-size: $fs;
+  font-weight: $fw;
+}
+@mixin buttonStyle(
+  $color,
+  $bg-color,
+  $border,
+  $fs,
+  $fw,
+  $pd-y,
+  $pd-x,
+  $bd-radius
+) {
+  color: $color;
+  background: $bg-color;
+  border: 1px solid $border;
+  font-size: $fs;
+  font-weight: $fw;
+  padding: $pd-y $pd-x;
+  cursor: pointer;
+  border-radius: $bd-radius;
+}
+@mixin titleStyle($color, $bg-color, $fs, $fw, $height, $line-height, $delay) {
+  color: $color;
+  background: $bg-color;
+  font-size: $fs;
+  font-weight: $fw;
+  height: $height;
+  line-height: $line-height;
+  transition: all $delay;
+}
+
+@mixin styleTextTitle() {
+  .nav-tabs {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: none;
+    height: 75px;
+    .nav-item {
+      border: none;
+      color: #000;
+      font-size: 20px;
+      font-weight: normal;
+      display: inline;
+      background-color: transparent;
+      margin-right: 20px;
+
+      &:hover {
+        font-size: 27px;
+        color: #ffdc00;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+      }
+      &.active {
+        color: #ffdc00;
+        font-size: 27px;
+        font-weight: normal;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+        background: transparent;
+      }
+    }
+  }
+}
+
+// @include styleTextTitle(#000, 24px,500 , 27px, red, 27px, 500)
+@mixin hoverButton(
+  $color-hover,
+  $bg-color-hover,
+  $border-hover,
+  $bd-radius-hover
+) {
+  color: $color-hover;
+  background-color: $bg-color-hover;
+  border: 1px solid $border-hover;
+  cursor: pointer;
+  border-radius: $bd-radius-hover;
+}
+@mixin dropDown($max-height) {
+  max-height: $max-height;
+  overflow-y: scroll;
+  position: absolute;
+}
+@mixin buttonAge($bg-color, $color, $fs, $fw, $pd-y, $pd-x, $bd-radius) {
+  background: $bg-color;
+  @include styleText($color, $fs, $fw);
+  padding: $pd-y $pd-x;
+  border-radius: $bd-radius;
+}
+@mixin responsive($screen) {
+  @if map-has-key($map: $breakpoints, $key: $screen) {
+    $value: map-get(
+      $map: $breakpoints,
+      $key: $screen,
+    );
+    @media screen and (max-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "`{$screen`} don't exist in variable!";
+  }
+}
+.scheduleMovie__button {
+  @include buttonStyle(
+    $color-gray-0,
+    $color-gray-6,
+    $color-gray-7,
+    $fs-2,
+    $fw-2,
+    $pd-0,
+    $pd-1,
+    $border-radius-1
+  );
+}
+
+.buttonTime {
+  margin-bottom: 10px;
+  margin-right: 5px;
+  text-decoration: none;
+
+  @include buttonStyle(
+    $color-gray-0,
+    $color-gray-6,
+    $color-gray-7,
+    $fs-2,
+    $fw-2,
+    $pd-0,
+    $pd-1,
+    $border-radius-1
+  );
+  text-align: center;
+  span {
+    @include styleText($color-green-0, $fs-4, $fw-3 - 100);
+  }
+  &:hover {
+    text-decoration: none;
+    color: $color-gray-0;
+
+    span {
+      color: $color-red-0;
+      transition: all 0.5s;
+    }
+  }
+}

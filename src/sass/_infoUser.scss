@@ -1,0 +1,36 @@
+.infoUser {
+  padding: 90px 0 40px 0;
+  .infoUser__cover {
+    width: 70%;
+    margin: 0 auto;
+    .infoUser__top {
+      position: relative;
+      border-radius: 10px !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      height: 320px;
+      margin-bottom: 120px;
+      .infoUser__item {
+        position: absolute;
+        bottom: -90px;
+        left: 42%;
+        h3 {
+          color: #000;
+          text-align: center;
+        }
+      }
+    }
+    hr{
+      height: 2px;
+      background: #444950;
+    }
+    .infoUser__bottom{
+      // padding-top: 120px;
+      padding: 15px 0;
+      .infoUser__table{
+        
+      }
+    }
+  }
+}
