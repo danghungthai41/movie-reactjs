@@ -1,12 +1,12 @@
+import { InfoRoomTicket } from "../../_core/models/infoRoomTicket";
 import {
   FETCH_TICKET_ROOM,
   PUSH_SELECTED_SEAT,
   TICKET_BOOKED,
-  BOOKING_SUCCESS
+  BOOKING_SUCCESS,
 } from "../constants";
-// import Swal from 'sweetalert2';
 const initialState = {
-  ticketRoomList: [],
+  ticketRoomList: new InfoRoomTicket(),
   selectedLstSeat: [],
   ticketBooked: [],
 };
@@ -29,7 +29,6 @@ const reducer = (state = initialState, { payload, type }) => {
         cloneSelectedLstSeat.push(payload);
       }
 
-
       // state.selectedLstSeat = cloneSelectedLstSeat;
       // if (state.selectedLstSeat.length >= 10) {
       //   Swal.fire({
@@ -42,14 +41,14 @@ const reducer = (state = initialState, { payload, type }) => {
     // return { ...state };
     case TICKET_BOOKED:
       const cloneTicketBooked = [...state.ticketBooked];
-      payload.map((item) => {
-        cloneTicketBooked.push(item);
-      });
+      payload.map((item) => cloneTicketBooked.push(item));
       return { ...state, ticketBooked: cloneTicketBooked };
 
-    case BOOKING_SUCCESS:  
-    state.selectedLstSeat = payload;
-    return {...state};
+    case BOOKING_SUCCESS:
+      state.selectedLstSeat = payload;
+      return { ...state };
+
+    
     default:
       return state;
   }

@@ -14,7 +14,11 @@ import CheckOut from "../CheckOut";
 import moment from "moment";
 import _ from "lodash";
 import Swal from "sweetalert2";
-export default function CheckOutLeft({danhSachGhe, thongTinPhim, onSucess}) {
+import { IoCloseOutline } from "react-icons/io5";
+
+export default function CheckOutLeft({
+  ticketRoomList: { danhSachGhe, thongTinPhim },
+}) {
   const [minutes, setMinutes] = React.useState();
   const [second, setSecond] = React.useState();
   const dispatch = useDispatch();
@@ -63,25 +67,27 @@ export default function CheckOutLeft({danhSachGhe, thongTinPhim, onSucess}) {
     }
   }
   const renderLstSeatMap = () => {
-    return danhSachGhe?.map((item, index) => {
-      let classVip = item.loaiGhe === "Vip" ? "vip" : "thuong";
-      let isBooking = item.daDat ? "isBooked" : "";
-      let classGheDD = "";
-      let indexGheDD = selectedLstSeat?.findIndex((gheDD) => {
-        return gheDD.tenGhe === item.tenGhe;
-      });
+    return danhSachGhe?.map((ghe, index) => {
+      let classVip = ghe.loaiGhe === "Vip" ? "gheVip" : "";
+      let classDaDat = ghe.daDat ? "gheDaDat" : "";
+      let classDangDat = "";
+      let indexGheDD = selectedLstSeat?.findIndex(
+        (gheDD) => gheDD.tenGhe === ghe.tenGhe
+      );
       if (indexGheDD !== -1) {
-        classGheDD = "isChose";
+        classDangDat = "gheDangDat";
       }
       return (
         <React.Fragment>
           <button
             onClick={() => {
-              dispatch(createAction(PUSH_SELECTED_SEAT, item));
+              dispatch(createAction(PUSH_SELECTED_SEAT, ghe));
             }}
-            className={`checkOutLeft__seatItem ${classVip} ${isBooking} ${classGheDD}`}
-            disabled={item.daDat}
-          ></button>
+            className={`checkOutLeft__seatItem ghe ${classVip} ${classDaDat} ${classDangDat}`}
+            disabled={ghe.daDat}
+          >
+            {ghe.daDat ? <IoCloseOutline /> : ghe.stt}
+          </button>
           {(index + 1) % 16 === 0 && <br />}
         </React.Fragment>
       );

@@ -68,6 +68,7 @@ class App extends Component {
           {this.renderAdminRouter(adminRouter)}
           {this.renderMainRouter(mainRouter)}
         </Switch>
+        {/* <CheckOut/> */}
       </BrowserRouter>
     );
   }

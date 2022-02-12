@@ -1,11 +1,5 @@
 import React from "react";
 
-// class LstGhe {
-//   selectedLstSeat=[];
-//   abc (){
-//   }
-  
-// }
 export default function SeatItem(props) {
   const { gheItem, danhSachGhe } = props;
   const checkLoaiGhe = () => {

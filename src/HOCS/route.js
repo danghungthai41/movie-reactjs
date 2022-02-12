@@ -11,6 +11,7 @@ const renderRoute = (condition, message) => {
         {...props}
         render={(propsComponent) => {
           if (condition) {
+            
             return (
               <Layout>
                 <ScrollToTop/>

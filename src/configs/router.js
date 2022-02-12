@@ -39,11 +39,6 @@ const mainRouter = [
     component: DashBoard,
   },
   {
-    path: "/adduser",
-    exact: false,
-    component: User,
-  },
-  {
     path: "/",
     exact: true,
     component: Home,
@@ -51,14 +46,14 @@ const mainRouter = [
 ];
 const loginRouter = [
   {
+    path: "/info",
+    exact: true,
+    component: InfoUser,
+  },
+  {
     path: "/checkout/:maLichChieu",
     axact: false,
     component: CheckOut,
-  },
-  {
-    path: "/info",
-    exact: false,
-    component: InfoUser,
   },
 ];
 

@@ -5,15 +5,17 @@ import {
   FETCH_TICKET_ROOM,
   TICKET_BOOKED,
   BOOKING_SUCCESS,
+  PUSH_SELECTED_SEAT,
 } from "../constants";
 
 export const fetchTicketRoom = (maLichChieu) => async (dispatch) => {
   try {
-    const res = await request({
+    const { data } = await request({
       url: `https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`,
       method: "GET",
     });
-    dispatch(createAction(FETCH_TICKET_ROOM, res.data));
+
+    dispatch(createAction(FETCH_TICKET_ROOM, data));
   } catch (err) {
     console.log(err.reponse?.data);
   }
@@ -32,9 +34,16 @@ export const bookingTicketAction =
         },
       });
       lstTicketBooked.push(infoTicket);
-      // localStorage.setItem("infoTicket", lstTicketBooked);
-      console.log(infoTicket)
-      await dispatch(fetchTicketRoom(infoTicket?.maLichChieu));
+      if (localStorage.getItem("infoTicket")) {
+        const lstTicketBooked = JSON.parse(localStorage.getItem("infoTicket"));
+        infoTicket.danhSachVe.map((ve) => lstTicketBooked.push(ve));
+        localStorage.setItem("infoTicket", JSON.stringify(lstTicketBooked));
+      } else {
+        localStorage.setItem("infoTicket", JSON.stringify(lstTicketBooked));
+      }
+      dispatch(createAction(BOOKING_SUCCESS, []));
+      await dispatch(fetchTicketRoom(infoTicket.maLichChieu));
+
     } catch (err) {
       console.log(err.reponse?.data);
     }

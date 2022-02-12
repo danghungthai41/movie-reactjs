@@ -6,25 +6,21 @@ import createAction from "../../Redux/action";
 import { fetchTicketRoom } from "../../Redux/action/booking";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../Component/Footer";
+import { InfoRoomTicket } from "../../_core/models/infoRoomTicket";
 
 function CheckOut(props) {
   const maLichChieu = props.match.params.maLichChieu;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchTicketRoom(maLichChieu));
-  }, [maLichChieu,dispatch]);
+  }, [maLichChieu]);
   const ticketRoomList = useSelector((state) => state.booking.ticketRoomList);
   const { danhSachGhe, thongTinPhim } = ticketRoomList;
-  const handleBookingSucess = (values) => {
-
-
-
-  };
-
   return (
     <div className="checkout text-white">
       <div className="checkout__cover row">
-        <CheckOutLeft danhSachGhe={danhSachGhe} thongTinPhim={thongTinPhim} onSuccess = {handleBookingSucess} />
+      {/* danhSachGhe={danhSachGhe} thongTinPhim={thongTinPhim}  */}
+        <CheckOutLeft ticketRoomList={ticketRoomList}/>
         <CheckOutRight thongTinPhim={thongTinPhim} />
       </div>
     </div>

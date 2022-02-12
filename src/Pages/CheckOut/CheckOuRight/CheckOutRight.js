@@ -4,10 +4,15 @@ import img from "../../../Theme/icons";
 import { useDispatch, useSelector } from "react-redux";
 import SeatItem from "../CheckOutLeft/SeatItem";
 import { InfoBookingTicket } from "../../../_core/models/InfoBookingTicket";
-import { bookingTicketAction } from "../../../Redux/action/booking";
+import {
+  bookingTicketAction,
+  fetchTicketRoom,
+} from "../../../Redux/action/booking";
 import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 export default function CheckOutRight(props) {
+  const history = useHistory();
   const { thongTinPhim } = props;
   const dispatch = useDispatch();
   let selectedLstSeat = useSelector((state) => state.booking.selectedLstSeat);
@@ -19,6 +24,7 @@ export default function CheckOutRight(props) {
     infoBookingTicket.tenCumRap = thongTinPhim?.tenCumRap;
     infoBookingTicket.diaChi = thongTinPhim?.diaChi;
     infoBookingTicket.taiKhoanNguoiDung = localStorage.getItem("userLogin");
+    infoBookingTicket.timeBooking = new Date();
     Swal.fire({
       title: "Bạn chắc chắn muốn đặt ghế?",
       icon: "success",
@@ -27,24 +33,24 @@ export default function CheckOutRight(props) {
       confirmButtonText: "Đồng ý",
       cancelButtonText: "Hủy bỏ",
     }).then((res) => {
-      res.isConfirmed && dispatch(bookingTicketAction(infoBookingTicket));
+      if (res.isConfirmed) {
+        dispatch(bookingTicketAction(infoBookingTicket));
+        Swal.fire({
+          icon: "success",
+          title: "Đặt Vé Thành Công",
+          buttons: true,
+          showCancelButton: true,
+          confirmButtonText: "Tiếp tục đặt vé",
+          cancelButtonText: "Thông tin vé",
+        }).then((response) => {
+          console.log(response.isConfirmed);
+          if (response.isConfirmed) return;
+          history.push("/info");
+        });
+      }
     });
-
-    // if (localStorage.getItem("infoTicket")) {
-    //   const ticketBooked = JSON.parse(
-    //     localStorage.getItem("infoTicket")
-    //   );
-    //   infoBookingTicket.danhSachVe.map((item) => {
-    //     ticketBooked.push(item);
-    //   });
-    //   localStorage.setItem(
-    //     "infoTicket",
-    //     JSON.stringify(infoBookingTicket)
-    //   );
-    // } else {
-    //   localStorage.setItem("infoTicket", JSON.stringify(infoBookingTicket));
-    // }
   };
+
   // var totalSeconds = 15;
   // React.useEffect(() => {
   //   setInterval(setTime, 1000);

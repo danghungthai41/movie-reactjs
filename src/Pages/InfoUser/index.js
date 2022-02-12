@@ -5,17 +5,9 @@ import img from "../../Theme/icons";
 import { useDispatch, useSelector } from "react-redux";
 import File from "./upload";
 import { InfoBookingTicket } from "../../_core/models/InfoBookingTicket";
+import Ticket from "../../Component/Ticket/Ticket";
 export default function InfoUser() {
-  const dispatch = useDispatch();
-  // const ticketBooked = useSelector((state) => state.booking.ticketBooked);
-  // const taiKhoan = localStorage.getItem("taiKhoan");
-  // useEffect(()=>{
-    //     dispatch(fetchInfoAccount(taiKhoan))
-    // },[taiKhoan])
-    const data = JSON.parse(localStorage.getItem("user"));
-    const ticketBooked = JSON.parse(localStorage.getItem("infoTicket"))
-   
-
+  const ticketBooked = JSON.parse(localStorage.getItem("infoTicket"));
   return (
     <div className="infoUser">
       <div className="infoUser__cover">
@@ -32,27 +24,27 @@ export default function InfoUser() {
         <div className="infoUser__bottom">
           <div className="infoUser__table">
             <div className="infoUser__user">
-              <p>Your Name: {data.hoTen}</p>
+              {/* <p>Your Name: {data.hoTen}</p>
               <p>Your Username: {data.taiKhoan}</p>
               <p>Your Email: {data.email}</p>
-              <p>Your Phone Number: {data.soDT}</p>
+              <p>Your Phone Number: {data.soDT}</p> */}
+              <p>Your Name: </p>
+              <p>Your Username: </p>
+              <p>Your Email: </p>
+              <p>Your Phone Number: </p>
             </div>
             <button className="buttonStyle">Cập Nhật</button>
           </div>
         </div>
         <hr />
-        <div className="infoUser__ticket text-dark" style={{height: 500}}>
-          {ticketBooked?.map((item) => {
-            return (
-              <div key={item.stt}>
-                
-
-                {/* <p>{item.stt}</p>
-                <p>{item.giaVe}</p>
-                <p>{item.loaiGhe}</p> */}
-              </div>
-            );
-          })}
+        <div className="infoUser__ticket text-dark" style={{ height: 500 }}>
+          {ticketBooked ? (
+            ticketBooked.map((ticket, index) => (
+              <Ticket ticket={ticket} key={index} />
+            ))
+          ) : (
+            <p>Chưa Có Vé Nào Được Đặt</p>
+          )}
         </div>
       </div>
     </div>

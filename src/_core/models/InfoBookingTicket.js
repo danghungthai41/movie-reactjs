@@ -4,7 +4,8 @@ export class InfoBookingTicket {
     taiKhoanNguoiDung = "";
     diaChitenPhim = "";
     tenCumRap = "";
-    diaChi = ""
+    diaChi = "";
+    timeBooking= null
     constructor(){
     }
 }
