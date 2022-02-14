@@ -13,6 +13,10 @@ function CheckOut(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchTicketRoom(maLichChieu));
+
+
+    //Setup Booking Realtime, connecting with ASPNET SinalR
+
   }, [maLichChieu]);
   const ticketRoomList = useSelector((state) => state.booking.ticketRoomList);
   const { danhSachGhe, thongTinPhim } = ticketRoomList;

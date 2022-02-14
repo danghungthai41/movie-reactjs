@@ -14,7 +14,7 @@ import CheckOut from "../CheckOut";
 import moment from "moment";
 import _ from "lodash";
 import Swal from "sweetalert2";
-import { IoCloseOutline } from "react-icons/io5";
+import { IoCloseOutline , IoLockClosed} from "react-icons/io5";
 
 export default function CheckOutLeft({
   ticketRoomList: { danhSachGhe, thongTinPhim },
@@ -23,7 +23,7 @@ export default function CheckOutLeft({
   const [second, setSecond] = React.useState();
   const dispatch = useDispatch();
 
-  let selectedLstSeat = useSelector((state) => state.booking.selectedLstSeat);
+  let { selectedLstSeat, lockedSeat } = useSelector((state) => state.booking);
   let specialLstSeat = [];
 
   for (let i = 1, k = 14; i < danhSachGhe?.length; i += 16, k += 16) {
@@ -71,11 +71,19 @@ export default function CheckOutLeft({
       let classVip = ghe.loaiGhe === "Vip" ? "gheVip" : "";
       let classDaDat = ghe.daDat ? "gheDaDat" : "";
       let classDangDat = "";
+      let classLockedSeat = "";
+
       let indexGheDD = selectedLstSeat?.findIndex(
         (gheDD) => gheDD.tenGhe === ghe.tenGhe
       );
       if (indexGheDD !== -1) {
         classDangDat = "gheDangDat";
+      }
+      let indexLockedSeat = lockedSeat?.findIndex(
+        (seat) => seat.maGhe === ghe.maGhe
+      );
+      if (indexLockedSeat !== -1) {
+        classLockedSeat = "gheKhachDat";
       }
       return (
         <React.Fragment>
@@ -83,10 +91,10 @@ export default function CheckOutLeft({
             onClick={() => {
               dispatch(createAction(PUSH_SELECTED_SEAT, ghe));
             }}
-            className={`checkOutLeft__seatItem ghe ${classVip} ${classDaDat} ${classDangDat}`}
-            disabled={ghe.daDat}
+            className={`checkOutLeft__seatItem ghe ${classVip} ${classDaDat} ${classDangDat} ${classLockedSeat}`}
+            disabled={ghe.daDat || classLockedSeat !== ""}
           >
-            {ghe.daDat ? <IoCloseOutline /> : ghe.stt}
+            {ghe.daDat ? <IoCloseOutline /> : classLockedSeat !== "" ? <IoLockClosed/> : ghe.stt}
           </button>
           {(index + 1) % 16 === 0 && <br />}
         </React.Fragment>

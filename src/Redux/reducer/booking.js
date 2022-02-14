@@ -9,6 +9,7 @@ const initialState = {
   ticketRoomList: new InfoRoomTicket(),
   selectedLstSeat: [],
   ticketBooked: [],
+  lockedSeat: [{ maGhe: 106701 }, { maGhe: 106702 }, { maGhe: 106703 }],
 };
 
 const reducer = (state = initialState, { payload, type }) => {
@@ -48,7 +49,6 @@ const reducer = (state = initialState, { payload, type }) => {
       state.selectedLstSeat = payload;
       return { ...state };
 
-    
     default:
       return state;
   }
