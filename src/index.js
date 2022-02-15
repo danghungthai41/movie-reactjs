@@ -8,23 +8,24 @@ import store from "./Redux";
 import "./sass/index.scss";
 import * as signalR from "@aspnet/signalr";
 
-export const connection = new signalR.HubConnectionBuilder()
-  .withUrl(`https://movieapi.cyberlearn.vn/DatVeHub`)
-  .configureLogging(signalR.LogLevel.Infomation)
-  .build();
+// export const connection = new signalR.HubConnectionBuilder()
+//   .withUrl(`https://movieapi.cyberlearn.vn/DatVeHub`)
+//   .configureLogging(signalR.LogLevel.Infomation)
+//   .build();
 
-connection
-  .start()
-  .then(() => {
-    ReactDOM.render(
-      <Provider store={store}>
-        <App />
-      </Provider>,
-      document.getElementById("root")
-    );
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// connection
+//   .start()
+//   .then(() => {
+
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 
 reportWebVitals();

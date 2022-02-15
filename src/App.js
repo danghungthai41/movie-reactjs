@@ -11,7 +11,6 @@ import { AdminRoute, LoginRoute, PublicRoute } from "./HOCS/route";
 import CheckOut from "./Pages/CheckOut/CheckOut";
 import Home from "./Pages/Home";
 import SignIn from "./Pages/SignIn";
-import InfoUser from "./Pages/InfoUser";
 import Loader from "./Component/Loading/index";
 import SignUp from "./Pages/SignUp";
 import Detail from "./Pages/Detail";

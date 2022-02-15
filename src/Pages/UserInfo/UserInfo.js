@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
-import { fetchInfoAccount } from "../../Redux/action/credential";
 import img from "../../Theme/icons";
 import { useDispatch, useSelector } from "react-redux";
 import File from "./upload";
 import { InfoBookingTicket } from "../../_core/models/InfoBookingTicket";
 import Ticket from "../../Component/Ticket/Ticket";
-export default function InfoUser() {
+import { fetchInfoAccount } from "../../Redux/action/credential";
+import { Box, Button, Modal } from "@material-ui/core";
+import ModalUpdate from "../../Component/Modal/ModalUpdate";
+export default function UserInfo() {
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
   const ticketBooked = JSON.parse(localStorage.getItem("infoTicket"));
+  const {
+    userInfo: { email, hoTen, taiKhoan, soDT, thongTinDatVe },
+  } = useSelector((state) => state.credential);
+
+  useEffect(() => {
+    dispatch(fetchInfoAccount());
+  }, []);
+ 
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <div className="infoUser">
       <div className="infoUser__cover">
@@ -28,18 +43,22 @@ export default function InfoUser() {
               <p>Your Username: {data.taiKhoan}</p>
               <p>Your Email: {data.email}</p>
               <p>Your Phone Number: {data.soDT}</p> */}
-              <p>Your Name: </p>
-              <p>Your Username: </p>
-              <p>Your Email: </p>
-              <p>Your Phone Number: </p>
+              <p>Your Name: {hoTen} </p>
+              <p>Your Username: {taiKhoan}</p>
+              <p>Your Email: {email}</p>
+              <p>Your Phone Number: {soDT}</p>
             </div>
-            <button className="buttonStyle">Cập Nhật</button>
+            {/* <button className="buttonStyle">Cập Nhật</button> */}
+            <Button className="buttonStyle" onClick={handleOpen}>Cập Nhật</Button>
+              <ModalUpdate handleClose={handleClose} open={open}/>
           </div>
         </div>
         <hr />
-        <div className="infoUser__ticket text-dark" style={{ height: 500 }}>
-          {ticketBooked ? (
-            ticketBooked.map((ticket, index) => (
+
+        <h1>LỊCH SỬ ĐẶT VÉ KHÁCH HÀNG</h1>
+        <div className="infoUser__ticket text-dark">
+          {thongTinDatVe ? (
+            thongTinDatVe.map((ticket, index) => (
               <Ticket ticket={ticket} key={index} />
             ))
           ) : (

@@ -20,7 +20,6 @@ export const fetchTicketRoom = (maLichChieu) => async (dispatch) => {
     console.log(err.reponse?.data);
   }
 };
-let lstTicketBooked = [];
 export const bookingTicketAction =
   (infoTicket = new InfoBookingTicket()) =>
   async (dispatch) => {
@@ -33,14 +32,7 @@ export const bookingTicketAction =
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      lstTicketBooked.push(infoTicket);
-      if (localStorage.getItem("infoTicket")) {
-        const lstTicketBooked = JSON.parse(localStorage.getItem("infoTicket"));
-        infoTicket.danhSachVe.map((ve) => lstTicketBooked.push(ve));
-        localStorage.setItem("infoTicket", JSON.stringify(lstTicketBooked));
-      } else {
-        localStorage.setItem("infoTicket", JSON.stringify(lstTicketBooked));
-      }
+     
       dispatch(createAction(BOOKING_SUCCESS, []));
       await dispatch(fetchTicketRoom(infoTicket.maLichChieu));
 

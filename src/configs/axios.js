@@ -3,7 +3,7 @@ const request = async (configs) => {
   const token = localStorage.getItem("token");
   if (token) {
     configs.header = {
-      Authorization: "Bearer " + token,
+      Authorization: `Bearer ${token}`,
     };
   }
   try {

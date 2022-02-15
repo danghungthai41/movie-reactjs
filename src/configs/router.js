@@ -5,7 +5,7 @@ import SignUp from "../Pages/SignUp";
 import User from "../Pages/User";
 import DashBoard from "../Pages/DashBoard/DashBoard";
 import CheckOut from "../Pages/CheckOut/CheckOut";
-import InfoUser from "../Pages/InfoUser";
+import UserInfo from "../Pages/UserInfo/UserInfo";
 
 const mainRouter = [
   {
@@ -24,19 +24,9 @@ const mainRouter = [
     component: Detail,
   },
   {
-    path: "/info",
-    exact: false,
-    component: InfoUser,
-  },
-  {
     path: "/home",
     exact: false,
     component: Home,
-  },
-  {
-    path: "/dashboard",
-    exact: false,
-    component: DashBoard,
   },
   {
     path: "/",
@@ -48,7 +38,7 @@ const loginRouter = [
   {
     path: "/info",
     exact: true,
-    component: InfoUser,
+    component: UserInfo,
   },
   {
     path: "/checkout/:maLichChieu",

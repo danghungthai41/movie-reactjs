@@ -15,11 +15,11 @@ function CheckOut(props) {
     dispatch(fetchTicketRoom(maLichChieu));
 
 
-    //Setup Booking Realtime, connecting with ASPNET SinalR
+    //Setup Booking Realtime, connecting with ASPNET SignalR
 
   }, [maLichChieu]);
   const ticketRoomList = useSelector((state) => state.booking.ticketRoomList);
-  const { danhSachGhe, thongTinPhim } = ticketRoomList;
+  const { thongTinPhim } = ticketRoomList;
   return (
     <div className="checkout text-white">
       <div className="checkout__cover row">

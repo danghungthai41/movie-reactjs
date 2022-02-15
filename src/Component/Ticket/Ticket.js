@@ -2,22 +2,34 @@ import React from "react";
 import img from "../../Theme/icons";
 
 const Ticket = ({
-  ticket: { danhSachVe, maLichChieu, tenPhim, timeBooking, tenCumRap },
+  ticket: {
+    danhSachGhe,
+    maLichChieu,
+    tenPhim,
+    timeBooking,
+    tenCumRap,
+    ngayDat,
+    hinhAnh,
+  },
 }) => {
   return (
-    <div className="ticket">
+    <div className="ticket text-center">
       <img src={img.ticket} alt="" />
-      <div className="ticket__content">
+      <div className="ticket__content row">
         <div className="ticket__info">
           <p>Ticket Code: {maLichChieu} </p>
           <p>Movie: {tenPhim} </p>
-          <p>Booking Date: {new Date(timeBooking).toLocaleDateString()} </p>
+          <p>Booking Date: {new Date(ngayDat).toLocaleDateString()} </p>
           <p>Seats:</p>
-          {danhSachVe?.map((ve) => (
+          {danhSachGhe?.map((ve) => (
             <p key={ve.maGhe}>
-              {tenCumRap} || Seat No {ve.tenGhe}
+              {ve.tenHeThongRap} || Seat No {ve.tenGhe}
             </p>
           ))}
+        </div>
+
+        <div>
+          <img src={hinhAnh} style={{width: "250px", height: "300px"}} alt="" />
         </div>
       </div>
     </div>
