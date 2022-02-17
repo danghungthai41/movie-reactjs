@@ -7,13 +7,8 @@ import { Provider } from "react-redux";
 import store from "./Redux";
 import "./sass/index.scss";
 import * as signalR from "@aspnet/signalr";
+import 'antd/dist/antd.css';
 
-// export const connection = new signalR.HubConnectionBuilder()
-//   .withUrl(`https://movieapi.cyberlearn.vn/DatVeHub`)
-//   .configureLogging(signalR.LogLevel.Infomation)
-//   .build();
-
-// connection
 //   .start()
 //   .then(() => {
 

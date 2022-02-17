@@ -1,11 +1,16 @@
 import React, { Component } from "react";
-import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Route,
+  Switch,
+} from "react-router-dom";
 import "./App.css";
 import { connect } from "react-redux";
 import createAction from "./Redux/action";
 import { SET_TOKEN } from "./Redux/constants";
 import RouteMain from "./Templates/Main";
-import RouteAdmin from "./Templates/Admin";
+import RouteAdmin from "./Templates/AdminTemplate/AdminTemplate";
 import { loginRouter, mainRouter, adminRouter } from "./configs/router";
 import { AdminRoute, LoginRoute, PublicRoute } from "./HOCS/route";
 import CheckOut from "./Pages/CheckOut/CheckOut";
@@ -14,7 +19,13 @@ import SignIn from "./Pages/SignIn";
 import Loader from "./Component/Loading/index";
 import SignUp from "./Pages/SignUp";
 import Detail from "./Pages/Detail";
-import DashBoard from "./Pages/DashBoard/DashBoard";
+import DashBoard from "./Pages/Admin/DashBoard/DashBoard";
+import Layout from "./HOCS/layout";
+import AdminTemplate from "./Templates/AdminTemplate/AdminTemplate";
+import Users from "./Pages/Admin/Users/Users";
+import Films from "./Pages/Admin/Films/Films";
+import ShowTimeAdmin from "./Pages/Admin/ShowTimeAdmin.jsx/ShowTimeAdmin";
+import AddNew from "./Pages/Admin/AddNew/AddNew";
 
 class App extends Component {
   renderMainRouter = (listRouter) => {
@@ -61,14 +72,42 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <Router>
         <Switch>
           {this.renderLoginRouter(loginRouter)}
-          {this.renderAdminRouter(adminRouter)}
-          {this.renderMainRouter(mainRouter)}
+          <Route path="/dashboard/users" exact>
+            <AdminTemplate>
+              <Users />
+            </AdminTemplate>
+          </Route>
+
+          <Route path="/dashboard/addnew" exact>
+            <AdminTemplate>
+              <AddNew />
+            </AdminTemplate>
+          </Route>
+
+          <Route path="/dashboard/films" exact>
+            <AdminTemplate>
+              <Films />
+            </AdminTemplate>
+          </Route>
+
+          <Route path="/dashboard/showtimeadmin" exact>
+            <AdminTemplate>
+              <ShowTimeAdmin />
+            </AdminTemplate>
+          </Route>
+
+          <Route path="/dashboard" exact>
+            <AdminTemplate>
+              <DashBoard />
+            </AdminTemplate>
+          </Route>
+          <Layout>{this.renderMainRouter(mainRouter)}</Layout>
         </Switch>
         {/* <CheckOut/> */}
-      </BrowserRouter>
+      </Router>
     );
   }
   componentDidMount() {

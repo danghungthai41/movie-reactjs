@@ -82,6 +82,7 @@ import dos from "../Assets/img/img_partners/dos.jpeg";
 import visa from "../Assets/img/img_partners/visa.png";
 import cover from "../Assets/img/img_inforuser/cover.jpeg";
 import ticket from "../Assets/img/ticket.png";
+import defaultFilm from "../Assets/img/dummyDataa/defaultFilm.jpeg";
 export default {
   logo,
   bhd,
@@ -166,5 +167,6 @@ export default {
   dos,
   visa,
   cover,
-  ticket
+  ticket,
+  defaultFilm
 };

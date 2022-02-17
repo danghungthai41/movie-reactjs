@@ -37,7 +37,6 @@
     padding-left: 40px;
     .myNavBar__login {
       .myNavBar__login--cover {
-        
         .MuiButtonBase-root.MuiIconButton-root.MuiIconButton-colorInherit {
           outline: none !important;
           &:hover {
@@ -77,37 +76,35 @@
   .myNavBar__infoUser {
     text-decoration: none !important;
     color: #000;
-    
   }
 }
-@include responsive("extra-large") {
-}
-@include responsive("large") {
+
+@media screen and (max-width: 768px) {
   .myNavBar {
-    .myNavBar__left{
-      padding: 0;
-      .myNavBar__title{
-        margin-right:55px;
+    display: flex;
+    .myNavBar__left {
+      width: 50%;
+      .myNavBar__title {
+        display: none;
       }
     }
-    .myNavBar__right{
-      .dropdown{
-        display:none;
-      }
+    .myNavBar__right {
+      width: 50%;
     }
-
-
   }
 }
-
-// @include responsive("medium") {
-//   .myNavBar {
-//     .myNavBar__left{
-//       .myNavBar__title{
-//         display:none;
-//       }
-//     }
-
-
-//   }
-// }
+@media screen and (max-width: 1000px) {
+  .myNavBar {
+    .myNavBar__right {
+      justify-content: flex-end;
+      .myNavBar__login {
+        .myNavBar__name {
+          display: none;
+        }
+      }
+      .dropdown {
+        display: none;
+      }
+    }
+  }
+}

@@ -12,17 +12,15 @@ export default function UserInfo() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const ticketBooked = JSON.parse(localStorage.getItem("infoTicket"));
-  const {
-    userInfo: { email, hoTen, taiKhoan, soDT, thongTinDatVe },
-  } = useSelector((state) => state.credential);
-
+  const { userInfo } = useSelector((state) => state.credential);
+  // const { email, hoTen, taiKhoan, soDT, thongTinDatVe } = userInfo;
   useEffect(() => {
     dispatch(fetchInfoAccount());
   }, []);
- 
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  console.log("a", userInfo)
   return (
     <div className="infoUser">
       <div className="infoUser__cover">
@@ -43,22 +41,24 @@ export default function UserInfo() {
               <p>Your Username: {data.taiKhoan}</p>
               <p>Your Email: {data.email}</p>
               <p>Your Phone Number: {data.soDT}</p> */}
-              <p>Your Name: {hoTen} </p>
-              <p>Your Username: {taiKhoan}</p>
-              <p>Your Email: {email}</p>
-              <p>Your Phone Number: {soDT}</p>
+              <p>Your Name: {userInfo.hoTen} </p>
+              <p>Your Username: {userInfo.taiKhoan}</p>
+              <p>Your Email: {userInfo.email}</p>
+              <p>Your Phone Number: {userInfo.soDT}</p>
             </div>
             {/* <button className="buttonStyle">Cập Nhật</button> */}
-            <Button className="buttonStyle" onClick={handleOpen}>Cập Nhật</Button>
-              <ModalUpdate handleClose={handleClose} open={open}/>
+            <Button className="buttonStyle" onClick={handleOpen}>
+              Cập Nhật
+            </Button>
+            <ModalUpdate handleClose={handleClose} open={open} userInfo={userInfo} />
           </div>
         </div>
         <hr />
 
         <h1>LỊCH SỬ ĐẶT VÉ KHÁCH HÀNG</h1>
         <div className="infoUser__ticket text-dark">
-          {thongTinDatVe ? (
-            thongTinDatVe.map((ticket, index) => (
+          {userInfo.thongTinDatVe ? (
+            userInfo.thongTinDatVe.map((ticket, index) => (
               <Ticket ticket={ticket} key={index} />
             ))
           ) : (

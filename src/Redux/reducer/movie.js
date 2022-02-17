@@ -26,15 +26,7 @@ const reducer = (state = initialState, { type, payload }) => {
       state.selectedMovie = payload;
       return {...state};
 
-      // payload?.map((item) => {
-      //   if (!item.danhSachPhim) {
-        
-      //     state.selectedMovie = payload;
-      //     return {...state};
-      //   }
-      //   state.selectedMovie = item.danhSachPhim[0];
-      //   return {...state};
-      // });
+    
 
     default:
       return state;

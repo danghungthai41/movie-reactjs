@@ -1,9 +1,10 @@
-export class User {
-  userInfo;
+export class UserInfo {
   taiKhoan = "";
   matKhau = "";
-  hoTen = "";
   email = "";
-  soDT = "";
+  soDt = "";
+  hoTen = "";
   thongTinDatVe = [];
 }
+
+

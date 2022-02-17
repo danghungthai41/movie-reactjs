@@ -207,7 +207,7 @@ export default function Header() {
                     <NavLink to="/dashboard">Trang Quản Trị</NavLink>
                   </MenuItem>
                 </Menu>
-                <span>{localStorage.getItem("account")}</span>
+                <span className="myNavBar__name">{localStorage.getItem("account")}</span>
               </div>
             ) : (
               <>

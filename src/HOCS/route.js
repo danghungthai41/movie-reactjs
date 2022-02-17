@@ -13,10 +13,10 @@ const renderRoute = (condition, message) => {
           if (condition) {
             
             return (
-              <Layout>
+              <>
                 <ScrollToTop/>
                 <Component {...propsComponent} />
-              </Layout>
+              </>
             );
           }
           Swal.fire({
@@ -36,7 +36,7 @@ export const LoginRoute = renderRoute(
   "Bạn vui lòng đăng nhập"
 );
 export const AdminRoute = renderRoute(
-  localStorage.getItem("userLogin") === "QuanTri",
+  localStorage.getItem("userLogin") == "QuanTri",
   "Bạn không có quyền truy cập"
 );
 
