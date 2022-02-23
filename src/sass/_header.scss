@@ -6,6 +6,10 @@
   position: fixed;
   width: 100%;
   z-index: 10;
+  max-height: 100px;
+  &.navbar {
+    padding: 0 !important;
+  }
   .myNavBar__left {
     .myNavBar__logo {
       width: 50px;

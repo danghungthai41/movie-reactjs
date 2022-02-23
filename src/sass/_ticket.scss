@@ -1,0 +1,44 @@
+.ticket {
+  border: 1px solid #4a4a4a4a;
+  // padding: 50px;
+  padding: 10px 10px 10px 10px;
+//   margin-bottom:15px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #eed475, #f1820b);
+  width: 80%;
+  margin: auto;
+  .ticket__content {
+    display: flex;
+    img {
+      width: 30%;
+      height: 200px;
+      border-radius: 8px;
+      margin-right: 10px;
+      object-fit: cover;
+    }
+    .ticket__info {
+      width: 70%;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      font-size: 14px;
+      padding: 15px;
+      height: 200px;
+      .ticket__text {
+        button{
+            background: #eed475;
+            border-radius: 8px;
+            color: #000;
+            border: 1px dashed #000;
+        }
+      }
+    }
+  }
+}
+.ticket__text {
+    font-weight: 600;
+    font-size: 16px;
+    color: #4a4a4a73; 
+    span {
+      font-style: italic;
+      color: #000;
+    }
+  }

@@ -1,0 +1,36 @@
+.header-mobile {
+  max-height: 75px;
+  position: fixed;
+  width: 100%;
+  z-index: 10000;
+  padding: 5px 10px 0 10px;
+  background-color: rgba(255, 255, 255, 0.795);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+  .header-mobile-contain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    .header-mobile-icon {
+      font-size: 40px;
+      z-index: 100;
+      cursor: pointer;
+      // position: absolute;
+      right: 10px;
+    }
+    img {
+      width: 40px;
+    }
+  }
+  .header-nav {
+    position: absolute;
+    width: 200px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    position: fixed;
+  }
+}

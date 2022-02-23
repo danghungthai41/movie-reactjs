@@ -13,10 +13,10 @@ const renderRoute = (condition, message) => {
           if (condition) {
             
             return (
-              <>
+              <Layout>
                 <ScrollToTop/>
                 <Component {...propsComponent} />
-              </>
+              </Layout>
             );
           }
           Swal.fire({

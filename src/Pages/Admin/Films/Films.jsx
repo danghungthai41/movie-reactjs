@@ -1,5 +1,5 @@
 import { Table } from "antd";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "antd";
 import { AudioOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,10 +13,20 @@ export default function Films() {
   const dispatch = useDispatch();
   const onSearch = (value) => console.log(value);
   const { movieList } = useSelector((state) => state.movie);
+  const [searchMovie, setSearchMovie] = useState("");
+  const [newMovieList, setNewMovieList] = useState();
 
   useEffect(() => {
     dispatch(fetchMovieList);
   }, []);
+
+  useEffect(() => {
+    const filterData = movieList.filter((movie) =>
+      movie.tenPhim.toLowerCase().includes(searchMovie.toLowerCase())
+    );
+    setNewMovieList(filterData);
+    // console.log(filterData);
+  }, [searchMovie, movieList]);
 
   const onChange = (pagination, filters, sorter, extra) => {
     // console.log("params", pagination, filters, sorter, extra);
@@ -80,7 +90,7 @@ export default function Films() {
       dataIndex: "hanhDong",
       render: (text, desc) => (
         <>
-          <NavLink to="" style={{color: "#fb4226"}}> 
+          <NavLink to="" style={{ color: "#fb4226" }}>
             <IoTrashOutline />
           </NavLink>
           <NavLink to="">
@@ -90,7 +100,7 @@ export default function Films() {
       ),
     },
   ];
-  const data = movieList;
+  const data = newMovieList;
 
   return (
     <div>
@@ -98,8 +108,9 @@ export default function Films() {
       <Search
         className="mb-3"
         placeholder="Search Films"
-        onSearch={onSearch}
+        // onSearch={onSearch}
         enterButton
+        onChange={(e) => setSearchMovie(e.target.value)}
       />
       <Table columns={columns} dataSource={data} onChange={onChange} />
     </div>

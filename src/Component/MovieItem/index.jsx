@@ -39,7 +39,7 @@ const MovieItem = (props) => {
   };
   return (
     // <div className="col-3">
-    <div>
+    <div >
       <div class="card">
         <div class="card__button">
           <div class="card__img">

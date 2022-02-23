@@ -26,6 +26,7 @@ import Users from "./Pages/Admin/Users/Users";
 import Films from "./Pages/Admin/Films/Films";
 import ShowTimeAdmin from "./Pages/Admin/ShowTimeAdmin.jsx/ShowTimeAdmin";
 import AddNew from "./Pages/Admin/AddNew/AddNew";
+import UserInfo from "./Pages/UserInfo/UserInfo";
 
 class App extends Component {
   renderMainRouter = (listRouter) => {
@@ -75,6 +76,7 @@ class App extends Component {
       <Router>
         <Switch>
           {this.renderLoginRouter(loginRouter)}
+        
           <Route path="/dashboard/users" exact>
             <AdminTemplate>
               <Users />

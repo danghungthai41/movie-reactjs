@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
     text-align: left;
-    padding-top: 75px;
+    padding-top: 66px;
     
     .slick-slider.slick-initialized{
         overflow: hidden;
@@ -86,9 +86,8 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         background: $color-white-0;
         position: absolute;
-        max-width: 977px;
         height: 80px;
-        width: 100%;
+        width: 68%;
         transform: translateX(22%);
         bottom: -40px;
         border-radius: 4px;
@@ -189,3 +188,9 @@
 
     }
 }
+
+@media screen and (max-width: 768px) {
+    .carousel{
+        // padding-top: 0 !important;
+    }
+  }

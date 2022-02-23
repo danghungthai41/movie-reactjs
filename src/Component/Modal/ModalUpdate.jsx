@@ -21,19 +21,19 @@ const ModalUpdate = ({ open, handleClose, userInfo }) => {
     pt: 2,
     px: 4,
     pb: 3,
+    borderRadius: 10,
+    textAlign: "center",
   };
   const [account, setAccount] = useState(new UserInfo());
   useEffect(() => {
     setAccount(userInfo);
-    console.log({userInfo})
   }, [userInfo]);
 
-  console.log({account})
   const handleChange = (e) => {
     const { name, value } = e.target;
     setAccount({ ...account, [name]: value });
   };
-
+console.log("account",account)
   return (
     <Modal
       open={open}
@@ -41,8 +41,10 @@ const ModalUpdate = ({ open, handleClose, userInfo }) => {
       aria-labelledby="parent-modal-title"
       aria-describedby="parent-modal-description"
     >
-      <Box sx={{ ...style, width: 400 }}>
-        <Typography>Thông Tin Tài Khoản</Typography>
+      <Box sx={{ ...style, width: 600 }}>
+        <Typography noWrap variant="h4" gutterBottom="true">
+          Thông Tin Tài Khoản
+        </Typography>
         <form>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={12}>
@@ -60,8 +62,47 @@ const ModalUpdate = ({ open, handleClose, userInfo }) => {
               <TextField
                 variant="outlined"
                 fullWidth
+                name="matKhau"
+                label="Mật Khẩu"
+                autoComplete="off"
+                value={account.matKhau}
+                onChange={handleChange}
+                disabled
+                type="password"
+              />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                name="hoTen"
+                label="Họ Tên"
+                autoComplete="off"
+                value={account.hoTen}
+                onChange={handleChange}
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={12}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                name="email"
+                label="Email"
+                autoComplete="off"
+                value={account.email}
+                onChange={handleChange}
+                disabled
+                type="password"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={12}>
+              <TextField
+                variant="outlined"
+                fullWidth
                 name="soDT"
-                label="Phone Number"
+                label="Số Điện Thoại"
                 autoComplete="off"
                 value={account.soDT}
                 onChange={handleChange}

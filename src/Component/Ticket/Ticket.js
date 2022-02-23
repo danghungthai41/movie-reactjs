@@ -1,10 +1,24 @@
-import React from "react";
+import { Box, Button, Modal } from "@material-ui/core";
+import React, { useState } from "react";
 import img from "../../Theme/icons";
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 1200,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  maxHeight: 600,
+  pt: 2,
+  px: 4,
+  pb: 3,
+};
 const Ticket = ({
   ticket: {
     danhSachGhe,
-    maLichChieu,
+    maVe,
     tenPhim,
     timeBooking,
     tenCumRap,
@@ -12,24 +26,45 @@ const Ticket = ({
     hinhAnh,
   },
 }) => {
-  return (
-    <div className="ticket text-center">
-      <img src={img.ticket} alt="" />
-      <div className="ticket__content row">
-        <div className="ticket__info">
-          <p>Ticket Code: {maLichChieu} </p>
-          <p>Movie: {tenPhim} </p>
-          <p>Booking Date: {new Date(ngayDat).toLocaleDateString()} </p>
-          <p>Seats:</p>
-          {danhSachGhe?.map((ve) => (
-            <p key={ve.maGhe}>
-              {ve.tenHeThongRap} || Seat No {ve.tenGhe}
-            </p>
-          ))}
-        </div>
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-        <div>
-          <img src={hinhAnh} style={{width: "250px", height: "300px"}} alt="" />
+  return (
+    <div className="ticket">
+      <div className="ticket__content">
+        <img src={hinhAnh} alt="" />{" "}
+        <div className="ticket__info">
+          {/* <p>Ticket Code:  </p>
+          <p>Movie: {tenPhim} </p>
+          <p>Booking Date:  </p>
+          <p>Seats:</p> */}
+          <p className="ticket__text">
+            Ticket Code: <span>{maVe} </span>{" "}
+          </p>
+          <p className="ticket__text">
+            Movie: <span>{tenPhim} </span>
+          </p>
+          <p className="ticket__text">
+            Booking Date: <span> {new Date(ngayDat).toLocaleDateString()}</span>{" "}
+          </p>
+          <p className="ticket__text">
+            Reserved Seats: <button onClick={handleOpen}>Read Detail</button>
+          </p>
+
+          <Modal open={open} onClose={handleClose}>
+            <Box sx={{ ...style, width: 400 }}>
+              {danhSachGhe.map((gheDaDat) => (
+                <div>
+                  <p>
+                    <span>
+                      {gheDaDat.tenHeThongRap} || {gheDaDat.tenGhe}{" "}
+                    </span>
+                  </p>
+                </div>
+              ))}
+            </Box>
+          </Modal>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 .infoUser {
-  padding: 90px 0 40px 0;
+  padding: 80px 0 40px 0;
   .infoUser__cover {
     width: 70%;
     margin: 0 auto;
@@ -14,7 +14,8 @@
       .infoUser__item {
         position: absolute;
         bottom: -90px;
-        left: 42%;
+        left: 40%;
+        // transform: translate(240%,50%);
         h3 {
           color: #000;
           text-align: center;
@@ -22,15 +23,14 @@
       }
     }
     hr{
-      height: 2px;
-      background: #444950;
+     border: 1px dashed #4a4a4a4a;
     }
     .infoUser__bottom{
       // padding-top: 120px;
       padding: 15px 0;
-      .infoUser__table{
-        
-      }
+      
+
+    
     }
   }
 }
