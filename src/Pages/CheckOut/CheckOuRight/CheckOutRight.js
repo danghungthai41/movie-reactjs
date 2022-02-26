@@ -43,7 +43,6 @@ export default function CheckOutRight(props) {
           confirmButtonText: "Tiếp tục đặt vé",
           cancelButtonText: "Thông tin vé",
         }).then((response) => {
-          console.log(response.isConfirmed);
           if (response.isConfirmed) return;
           history.push("/info");
         });

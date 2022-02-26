@@ -20,7 +20,6 @@ export default function UserInfo() {
   useEffect(() => {
     dispatch(fetchInfoAccount());
   }, []);
-  console.log(userInfo.thongTinDatVe);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (

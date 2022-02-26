@@ -32,5 +32,31 @@
     left: 0;
     z-index: 10;
     position: fixed;
+    &.display-menu{
+      animation: mo 0.5s;
+    }
+    &.hidden-menu{
+      animation: dong 0.5s;
+
+    }
+  }
+}
+
+
+@keyframes mo {
+  from {
+    left: -500px;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes dong {
+  from {
+    left: 0;
+  }
+  to {
+    left: -500px;
   }
 }

@@ -9,17 +9,16 @@ import { fetchBookingMovie } from "../../Redux/action/cinema";
 import Loader from "../Loading";
 import { NavLink } from "react-router-dom";
 import moment from "moment";
-export default function Carousel() {
+ function Carousel() {
   const dispatch = useDispatch();
   const movieList = useSelector((state) => state.movie.movieList);
   const codeCinemaList = useSelector(
     (state) => state.cinema.infoBookingMovie.lichChieu
   );
-  const newCodeCinemaList = new Set(codeCinemaList);
-  // const openingDay = useSelector((state)=>state.cinema.infoBookingMovie.lichChieu);
   const lstCumRap = [
     ...new Set(codeCinemaList?.map((item) => item.thongTinRap.tenCumRap)),
   ];
+  
 
   const [movieName, setMovieName] = useState("");
   const [cinema, setCinema] = useState("");
@@ -27,10 +26,11 @@ export default function Carousel() {
   const [timeOnScreen, setTimeOnScreen] = useState("");
   const [onButton, setOnButton] = useState(false);
   const [codeMovie, setCodeMovie] = useState("");
+  
   const filterData = codeCinemaList?.filter((item) => {
     return item.thongTinRap.tenCumRap === cinema && item;
   });
-  const ngaychieu = [
+  const ngayChieu = [
     ...new Set(
       filterData?.map((item) =>
         moment(item.ngayChieuGioChieu).format("DD/MM/YYYY")
@@ -52,15 +52,10 @@ export default function Carousel() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    // speed: 2000,
-
     autoplaySpeed: 3000,
   };
   useEffect(() => {
     dispatch(fetchMovieList);
-  }, []);
-  useEffect(() => {
-    dispatch(fetchBookingMovie());
   }, []);
 
   return (
@@ -110,7 +105,6 @@ export default function Carousel() {
                       setTimeOnScreen("");
                       setOnButton(false);
                       setCodeMovie(movie.maPhim);
-                      // alert(movie.maPhim)
                     }}
                     key={movie.maPhim}
                   >
@@ -176,7 +170,7 @@ export default function Carousel() {
                 aria-labelledby="dropdownMenuLink"
               >
                 {cinema ? (
-                  ngaychieu?.map((item) => {
+                  ngayChieu?.map((item) => {
                     return (
                       <li
                         className="dropdown-item"
@@ -205,17 +199,6 @@ export default function Carousel() {
                     Vui lòng chọn phim và rạp
                   </p>
                 )}
-                {/* {codeCinemaList.map((item) => {
-                  return (
-                    <li
-                      className="dropdown-item"
-                      href="#"
-                      key={item.maLichChieu}
-                    >
-                      {new Date(item.ngayChieuGioChieu).toLocaleDateString()}
-                    </li>
-                  );
-                })} */}
               </ul>
             </div>
           </div>
@@ -238,21 +221,14 @@ export default function Carousel() {
                   gioChieu?.map((item, index) => {
                     return (
                       <li
-                        key={index}
                         className="dropdown-item"
                         href="#"
                         key={item.maLichChieu}
                         onClick={() => {
-                          // setTimeOnScreen(
-                          //   new Date(
-                          //     item.ngayChieuGioChieu
-                          //   ).toLocaleTimeString()
-                          // );
                           setTimeOnScreen(item);
                           setOnButton(true);
                         }}
                       >
-                        {/* {new Date(item.ngayChieuGioChieu).toLocaleTimeString()} */}
                         {item}
                       </li>
                     );
@@ -267,8 +243,6 @@ export default function Carousel() {
           </div>
           <div className="myCarousel__item">
             <div className="myCarousel__dropdown">
-              {/* timeOnScreen */}
-              {/* myCarousel__button */}
               <NavLink to={`/checkout/${selectedItem?.length > 0 && selectedItem[0]?.maLichChieu}`}>
                 <button
                   disabled={!onButton}
@@ -289,3 +263,5 @@ export default function Carousel() {
     </section>
   );
 }
+export default React.memo(Carousel)
+

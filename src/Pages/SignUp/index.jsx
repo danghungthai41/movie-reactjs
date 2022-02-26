@@ -19,6 +19,7 @@ import { withStyles } from "@material-ui/core";
 import Header from "../../Component/Header";
 import { ADD_USER } from "../../Redux/constants";
 import Layout from "../../HOCS/layout";
+import Swal from "sweetalert2";
 
 function Copyright() {
   return (
@@ -79,16 +80,18 @@ class SignUp extends Component {
   handleOnSubmit = async (event) => {
     event.preventDefault();
     try {
-      const res = await request({
+      await request({
         url: "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
         method: "POST",
         data: this.state.form,
       });
-      this.props.dispatch(createAction(ADD_USER, this.state.form))
-      // console.log("This.state.form",this.state.form)
-      // localStorage.setItem("user", this.state.form);
-      alert("Đăng Ký Thành Công");
-      console.log(res);
+      this.props.dispatch(createAction(ADD_USER, this.state.form));
+
+      Swal.fire({
+        icon: "success",
+        title: "Đăng Ký Thành Công",
+      });
+      this.props.history.push("/signin");
     } catch (err) {
       console.log(err.response.data);
     }

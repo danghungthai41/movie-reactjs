@@ -7,11 +7,11 @@ import {
   FETCH_INFO_SHOWTIME,
   FETCH_SHOWTIME_BY_MOVIE,
 } from "../constants";
-import {BASE_URL} from "../../configs/baseUrl";
+import { BASE_URL } from "../../configs/baseUrl";
 export const fetchBookingMovie = (maPhim) => async (dispatch) => {
   try {
     const res = await request({
-      url: `https://movie0706.cybersoft.edu.vn/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`,
       method: "GET",
     });
     dispatch(createAction(FETCH_BOOKING_MOVIE, res.data));
@@ -34,7 +34,7 @@ export const fetchCinemaList = async (dispatch) => {
 export const fetchCinemaByCode = (maHeThongRap) => async (dispatch) => {
   try {
     const res = await request({
-      url: `https://movie0706.cybersoft.edu.vn/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP09`,
+      url: `https://movie0706.cybersoft.edu.vn/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP03`,
       method: "GET",
     });
 
@@ -46,7 +46,7 @@ export const fetchCinemaByCode = (maHeThongRap) => async (dispatch) => {
 export const fetchShowTimeByMovie = (maPhim) => async (dispatch) => {
   try {
     const res = await request({
-      url: `https://movie0706.cybersoft.edu.vn/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`,
       method: "GET",
     });
     dispatch(createAction(FETCH_SHOWTIME_BY_MOVIE, res.data.heThongRapChieu));
@@ -57,12 +57,11 @@ export const fetchShowTimeByMovie = (maPhim) => async (dispatch) => {
 export const fetchInfoShowTime = async (dispatch) => {
   try {
     const res = await request({
-      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP09`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP03`,
       method: "GET",
     });
-    dispatch(createAction(FETCH_INFO_SHOWTIME, res.data))
+    dispatch(createAction(FETCH_INFO_SHOWTIME, res.data));
   } catch (err) {
     console.log(err.reponse?.data);
   }
-
 };

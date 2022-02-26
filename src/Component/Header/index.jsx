@@ -71,7 +71,7 @@ export default function Header() {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  
+
   const token = useSelector((state) => state.credential.token);
   // const hoTen = localStorage.getItem("hoTen");
   const dispatch = useDispatch();
@@ -82,15 +82,14 @@ export default function Header() {
     setAnchorEl(e.currentTarget);
   };
   // const [isMobile, setIsMobile] = useState();
-const isMobile = useWindowSize();
-console.log(isMobile);
+  const isMobile = useWindowSize();
 
   const [viewLocation, setViewLocation] = useState("Hồ Chí Minh");
 
   return (
     <>
-      {isMobile < 768 ? (
-        <HeaderMobile />
+      {isMobile.width < 768 ? (
+        <HeaderMobile  />
       ) : (
         <nav
           className="myNavBar navbar navbar-expand-md"
@@ -195,30 +194,31 @@ console.log(isMobile);
                           Thông tin cá nhân
                         </NavLink>{" "}
                       </MenuItem>
-                      <MenuItem
-                        onClick={() => {
-                          // setAnchorEl(null);
-                          localStorage.removeItem("token");
-                          localStorage.removeItem("userLogin");
-                          dispatch({ type: SET_TOKEN, payload: "" });
-                          dispatch({ type: ADD_USER, payload: "" });
-                          Swal.fire({
-                            title: "Are you sure?",
-                            text: "You will not be able to recover this imaginary file!",
-                            icon: "warning",
-                            showCancelButton: true,
-                            confirmButtonText: "Yes, delete it!",
-                            cancelButtonText: "No, keep it",
-                          });
-                        }}
-                      >
-                        Đăng xuất
-                      </MenuItem>
                       {localStorage.getItem("userLogin") === "QuanTri" && (
                         <MenuItem>
                           <NavLink to="/dashboard">Trang Quản Trị</NavLink>
                         </MenuItem>
                       )}
+                      <MenuItem
+                        onClick={() => {
+                          Swal.fire({
+                            icon: "warning",
+                            title: "Bạn chắc chắn muốn đăng xuất",
+                            showCancelButton: true,
+                            confirmButtonText: "Đăng Xuất",
+                            cancelButtonText: "Hủy Bỏ",
+                          }).then((res) => {
+                            if (res.isConfirmed) {
+                              localStorage.removeItem("token");
+                              localStorage.removeItem("userLogin");
+                              dispatch({ type: SET_TOKEN, payload: "" });
+                              dispatch({ type: ADD_USER, payload: "" });
+                            }
+                          });
+                        }}
+                      >
+                        Đăng xuất
+                      </MenuItem>
                     </Menu>
                     <span className="myNavBar__name">
                       {localStorage.getItem("account")}

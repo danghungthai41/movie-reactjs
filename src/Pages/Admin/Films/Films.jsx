@@ -25,11 +25,9 @@ export default function Films() {
       movie.tenPhim.toLowerCase().includes(searchMovie.toLowerCase())
     );
     setNewMovieList(filterData);
-    // console.log(filterData);
   }, [searchMovie, movieList]);
 
   const onChange = (pagination, filters, sorter, extra) => {
-    // console.log("params", pagination, filters, sorter, extra);
   };
 
   const columns = [
@@ -43,7 +41,6 @@ export default function Films() {
       title: "Hình Ảnh",
       dataIndex: "hinhAnh",
       render: (text, film) => {
-        console.log(film.hinhAnh === false);
         return (
           <>
             <img

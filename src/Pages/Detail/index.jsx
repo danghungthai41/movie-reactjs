@@ -12,7 +12,6 @@ export default function Detail(props) {
   const movieDetail = useSelector((state) => state.movie.movieDetail);
 
   const id = props.match.params.movieCode;
-  console.log("movieDetail", movieDetail);
   useEffect(() => {
     dispatch(fetchMovieDetail(id));
 

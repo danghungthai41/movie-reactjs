@@ -5,4 +5,6 @@ export default function ScrollToTop() {
     window.scroll(0, 0);
   }, []);
   return null;
+
 }
+

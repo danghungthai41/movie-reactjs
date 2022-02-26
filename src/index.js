@@ -7,15 +7,8 @@ import { Provider } from "react-redux";
 import store from "./Redux";
 import "./sass/index.scss";
 import * as signalR from "@aspnet/signalr";
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
 
-//   .start()
-//   .then(() => {
-
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
 ReactDOM.render(
   <Provider store={store}>
     <App />

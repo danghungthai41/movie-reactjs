@@ -103,7 +103,6 @@ class SignIn extends Component {
     this.setState({
       account: { ...this.state.account, [name]: value },
     });
-    console.log(this.state.account);
   };
   render() {
     return (

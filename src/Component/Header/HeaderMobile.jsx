@@ -6,7 +6,7 @@ import {
   IoHome,
   IoPersonOutline,
   IoPersonCircleSharp,
-  IoReturnDownBackSharp
+  IoReturnDownBackSharp,
 } from "react-icons/io5";
 import { Paper, MenuList, MenuItem } from "@material-ui/core";
 
@@ -17,7 +17,7 @@ const HeaderMobile = () => {
   };
 
   return (
-    <nav className="header-mobile">
+    <nav className="header-mobile ">
       <div className="header-mobile-contain">
         <img src={img.logo} style={{ width: "50px" }} alt="" />
 
@@ -30,7 +30,9 @@ const HeaderMobile = () => {
         </div>
       </div>
       {openMenu && (
-        <div className="header-nav">
+        <div
+          className={`header-nav ${openMenu ? "display-menu" : "hidden-menu"}`}
+        >
           <Paper
             sx={{
               height: "100%",
@@ -39,7 +41,6 @@ const HeaderMobile = () => {
             variant="outlined"
           >
             <MenuList>
-            
               <MenuItem>
                 <IoHome />
                 <span>TRANG CHỦ</span>

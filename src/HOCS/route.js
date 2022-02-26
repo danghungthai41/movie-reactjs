@@ -3,6 +3,7 @@ import { Redirect, Route } from "react-router-dom";
 import Layout from "./layout";
 import ScrollToTop from "../Component/ScrollToTop";
 import Swal from "sweetalert2";
+import UseScrollBrowser from "../Component/ScrollBrowser/UseScrollBrowser";
 
 const renderRoute = (condition, message) => {
   return ({ Component, redirectRoute, ...props }) => {
@@ -16,6 +17,7 @@ const renderRoute = (condition, message) => {
               <Layout>
                 <ScrollToTop/>
                 <Component {...propsComponent} />
+                <UseScrollBrowser/>
               </Layout>
             );
           }

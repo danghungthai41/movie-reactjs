@@ -33,7 +33,6 @@ const ModalUpdate = ({ open, handleClose, userInfo }) => {
     const { name, value } = e.target;
     setAccount({ ...account, [name]: value });
   };
-console.log("account",account)
   return (
     <Modal
       open={open}
@@ -43,7 +42,7 @@ console.log("account",account)
     >
       <Box sx={{ ...style, width: 600 }}>
         <Typography noWrap variant="h4" gutterBottom="true">
-          Thông Tin Tài Khoản
+          Cập Nhật Thông Tin Tài Khoản
         </Typography>
         <form>
           <Grid container spacing={3}>

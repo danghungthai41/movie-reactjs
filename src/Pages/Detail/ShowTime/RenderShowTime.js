@@ -60,8 +60,7 @@ export default function RenderShowTime() {
           onClick={() => {
             setView(item.maHeThongRap);
             setActiveNavDay(filterLstDay[0]);
-            console.log("activeNavDay", activeNavDay);
-            console.log("filterLstDay[0]", filterLstDay[0]);
+       
           }}
         >
           <img className="movieDetailLeft__img" src={item.logo} alt="Logo" />
@@ -174,33 +173,10 @@ export default function RenderShowTime() {
         </div>
         {renderShowTimeByMovie()}
 
-        {/* {getDay().map((item, index) => { 
-                console.log("item", item);
-               return index < 9 ? (
-                 <li
-                   className="nav-link"
-                   onClick={() => {
-                     setViewShowtime(false);
-                     setView(item.day);
-                      console.log("item", item);
-                   }}
-                 >
-                   {new Date(item.day).getDay() + 1 === 1 ? (
-                     <span>Chủ Nhật</span>
-                   ) : (
-                     <span>Thứ {new Date(item.day).getDay() + 1}</span>
-                   )}
-                   <p>{new Date(item.day).getDate()}</p>
-                 </li>
-               ) : (
-                 ""
-               );
-             })} */}
+      
       </div>
 
-      {/* {viewShowtime ? renderShowTimeByMovie() : renderShowTimeByDay()} */}
-      {/* </div> */}
-      {/* </div> */}
+     
     </div>
   );
 }
