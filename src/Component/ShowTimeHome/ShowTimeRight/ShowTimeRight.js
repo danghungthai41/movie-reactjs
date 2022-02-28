@@ -19,5 +19,5 @@ export default function ShowTimeRight(props) {
           return <ShowTimeRightItem item={item} key={item.maPhim} />;
         });
   };
-  return <div className="showTimeRight col-6">{renderShowTimeRight()}</div>;
+  return <div className="showTimeRight col-5">{renderShowTimeRight()}</div>;
 }

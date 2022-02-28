@@ -75,5 +75,5 @@ export default function ShowTimeLeft(props) {
       );
     });
   };
-  return <ul className="showTimeLeft col-1">{renderCinemaList()}</ul>;
+  return <ul className="showTimeLeft col-2">{renderCinemaList()}</ul>;
 }

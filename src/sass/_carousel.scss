@@ -113,13 +113,13 @@
                 }
             }
             .myCarousel__item {
-                width: calc(70% / 4);
+                width: 50%;
                 height: 100%;
                 display: flex;
                 align-items: center;
                 position: relative;
                 &.movie {
-                    width: 30%;
+                    width: 50%;
                 }
                 .myCarousel__dropdown {
                     width: 100%;
@@ -189,8 +189,35 @@
     }
 }
 
+@media screen and (max-width: 992px) {
+    .myCarousel__booking{
+        .myCarousel__item{
+            width:50% !important;
+        }
+    }
+    .myCarousel{
+        height: 450px !important;
+        img{
+            height: 450px !important;
+            object-fit: cover;
+        }
+    }
+  }
+
+
 @media screen and (max-width: 768px) {
+  
+    .myCarousel{
+        height: 300px !important;
+        img{
+            height: 300px !important;
+        }
+    }
+  }
+
+  @media screen and (max-width: 375px) {
+  
     .carousel{
-        // padding-top: 0 !important;
+        display: none;
     }
   }

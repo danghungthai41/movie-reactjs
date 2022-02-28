@@ -9,7 +9,9 @@ import ShowTimeRight from "./ShowTimeRight/ShowTimeRight";
 import { PUSH_SELECTED_MOVIE } from "../../Redux/constants";
 import createAction from "../../Redux/action";
 import img from "../../Theme/icons";
-const ShowTimeHome = () => {
+import ShowTimeHomeMobile from "./ShowTimeHomeMobile/ShowTimeHomeMobile";
+const ShowTimeHome = ({ isMobile }) => {
+  console.log({ isMobile });
   const dispatch = useDispatch();
   const infoShowTime = useSelector((state) => state.cinema.infoShowTime);
   const { TabPane } = Tabs;
@@ -22,51 +24,38 @@ const ShowTimeHome = () => {
 
   useEffect(() => {
     dispatch(fetchInfoShowTime);
-    
-    // dispatch(createAction(PUSH_SELECTED_MOVIE, dsPhim));
   }, []);
-  const fetchMaCumRap = (maCumRap) => {
-    return maCumRap;
-  };
 
-  // const renderLstLogo = () => {
-  //   return infoShowTime?.map((sysCinema, index) => {
-  //     return (
-  //       <TabPane
-  //         tab={<img style={{ width: 50 }} src={sysCinema.logo} />}
-  //         key={index}
-  //         className=""
-  //       >
-
-  //       </TabPane>
-  //     );
-  //   });
-  // };
   return (
-    <section className="showTimeHome" >
+    <section className="showTimeHome">
       <img
         src={img.backNews}
         className="w-100"
         style={{ height: "110px" }}
         alt=""
       />
-      <div className="showTimeHome__cover row" id="cumRap"
->
-        <ShowTimeLeft
-          infoShowTime={infoShowTime}
-          setActive={setActive}
-          setView={setView}
-          view={view}
-          fetchMaCumRap={fetchMaCumRap}
-        />
 
-        <ShowTimeMid
-          view={view}
-          infoShowTime={infoShowTime}
-          active={active}
-          setActive={setActive}
-        />
-        <ShowTimeRight dsPhim={dsPhim} />
+      <div className="showTimeHome__cover " id="cumRap">
+        {isMobile.width > 992 ? (
+          <>
+            <ShowTimeLeft
+              infoShowTime={infoShowTime}
+              setActive={setActive}
+              setView={setView}
+              view={view}
+            />
+
+            <ShowTimeMid
+              view={view}
+              infoShowTime={infoShowTime}
+              active={active}
+              setActive={setActive}
+            />
+            <ShowTimeRight dsPhim={dsPhim} />
+          </>
+        ) : (
+          <ShowTimeHomeMobile infoShowTime={infoShowTime} />
+        )}
       </div>
     </section>
   );

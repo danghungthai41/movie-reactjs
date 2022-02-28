@@ -5,7 +5,6 @@ const UseScrollBrowser = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleScroll = () => {
-    console.log(window.pageYOffset > 250);
     if (window.pageYOffset > 250) {
       setIsVisible(true);
     } else {
@@ -30,7 +29,7 @@ const UseScrollBrowser = () => {
       id="scrollToTop"
       onClick={scrollToTop}
     >
-      <IoArrowUpSharp style={{fontSize: 20, fontWeight: 700}}/>
+      <IoArrowUpSharp style={{ fontSize: 20, fontWeight: 700 }} />
     </button>
   );
 };

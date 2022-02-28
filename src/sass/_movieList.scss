@@ -149,7 +149,7 @@
             }
             .buttonStyle {
               z-index: 1;
-              width:100%;
+              width: 100%;
             }
           }
         }
@@ -157,6 +157,15 @@
           opacity: 0;
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .movieList {
+    padding: 0;
+    .movieList__cover {
+      padding: 0;
     }
   }
 }

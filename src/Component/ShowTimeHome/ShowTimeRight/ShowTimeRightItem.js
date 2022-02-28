@@ -7,27 +7,29 @@ import { calEndTimeMove } from "../../../Pages/Detail/ShowTime/RenderShowTime";
 
 // import
 export default function ShowTimeRightItem(props) {
-
   const { item } = props;
-  const [showView, setShowView] = useState(true);
+  const [showView, setShowView] = useState(false);
   const handleClick = () => {
     setShowView(!showView);
   };
   return (
     <div className="showTimeRight__item text-white">
       <div className="showTimeRight__top d-flex f-end" onClick={handleClick}>
-        <img style={{ width: 50 }} src={item.hinhAnh} alt />
-        <div className="showTimeRight__info">
-          <p>
-            <span>C18</span>
-            {item.tenPhim}
-          </p>
-          <p>100 phút - TIX 9.2 - IMDb 0</p>
+        <div className="d-flex">
+          <img style={{ width: 50 }} src={item.hinhAnh} alt />
+          <div className="showTimeRight__info">
+            <p>
+              <span>C18</span>
+              {item.tenPhim}
+            </p>
+            <p>100 phút - TIX 9.2 - IMDb 0</p>
+          </div>
         </div>
+
         {showView ? (
-          <ExpandLessIcon onClick={handleClick} style={{ color: "#000" }} />
-        ) : (
           <ExpandMoreIcon onClick={handleClick} style={{ color: "#000" }} />
+          ) : (
+          <ExpandLessIcon onClick={handleClick} style={{ color: "#000" }} />
         )}
       </div>
       <div className="showTimeRight__bottom">
