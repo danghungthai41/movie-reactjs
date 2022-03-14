@@ -66,6 +66,7 @@
       // }
       .showTimeRight__item {
         padding: 10px;
+        color: #fff;
         .showTimeRight__top {
           display: flex;
           justify-content: space-between;
@@ -82,6 +83,7 @@
             // transform: translate(13rem, 2rem);
           }
           .showTimeRight__info {
+          
             p:first-child {
               color: $color-black-0;
               margin-bottom: 5px;
@@ -109,7 +111,6 @@
           .hiddenShowTime {
             display: none;
             opacity: 0;
-            transition: visibility 0s, opacity 0.5s linear;
           }
           h3 {
             font-size: 16px;
@@ -117,6 +118,8 @@
             font-weight: $fw-4;
           }
           .showTimeRight__time {
+            display: flex;
+            flex-wrap: wrap;
             padding-bottom: 10px;
             border-bottom: 1px solid $color-gray-1;
           }
@@ -205,35 +208,97 @@
   }
 }
 
+
 @media screen and (max-width: 992px) {
   .showTimeHome {
     display: block;
     .showTimeHome__cover {
       width: 80%;
       height: auto;
-      .showTimeLeft__logo {
-        width: 100%;
+      .showTimeHome-mobile {
         display: flex;
-        flex-wrap: wrap;
-        -webkit-box-pack: justify;
-        justify-content: space-between;
-        .showTimeLeft__logo-item {
-          padding: 10px;
-          height: auto;
-          border: 1px solid #4a4a4a4a;
-          position: relative;
-          border-radius: 10px;
-          opacity: 0.5;
-          img {
-            width: 50px;
+        flex-direction: column;
+        .showTimeLeft__logo {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          -webkit-box-pack: justify;
+          justify-content: space-between;
+          .showTimeLeft__logo-item {
+            padding: 10px;
+            margin-top: 10px;
+            height: auto;
+            border: 1px solid #4a4a4a4a;
+            position: relative;
+            border-radius: 10px;
+            opacity: 0.5;
+            img {
+              width: 50px;
+            }
 
+            &.active {
+              box-shadow: #b1b1a4 0px 5px 12px 4px;
+              background: #fff;
+              opacity: 1;
+            }
           }
-         
-          &.active {
-            box-shadow: #b1b1a4 0px 5px 12px 4px;
-            background: #fff;
-            opacity: 1;
+        }
+        .showTimeHome-accordian {
+          margin-top: 15px;
+          img {
+            height: 70px;
+            width: 70px;
+            border-radius: 5px;
           }
+          .showTimeMid__theater {
+            margin-left: 8px;
+            width: 100%;
+            p:last-child {
+              cursor: pointer;
+            }
+          }
+          .MuiAccordionDetails-root{
+            display: flex !important;
+            flex-wrap: wrap !important;
+            .showTimeRight__item {
+              padding-left: 15px;
+              .showTimeRight__top {
+                img{
+                  width: 50px;
+                  height: 50px;
+                }
+                .showTimeRight__info{
+                  p:first-child {
+                    color: $color-black-0;
+                    margin-bottom: 5px;
+                    padding-top: 8px;
+                    font-weight: 600;
+                    span {
+                      @include buttonAge(
+                        $color-red-0,
+                        $color-white-0,
+                        $fs-0,
+                        $fw-normal,
+                        $pd-0 - 3,
+                        $pd-0 - 2,
+                        $border-radius-0
+                      );
+                      margin-right: 5px;
+                    }
+                  }
+                }
+              }
+              .showTimeRight__bottom {
+                .showTimeRight__time {
+                  margin-top:5px;
+                  display: flex;
+                  flex-wrap: wrap;
+
+                }
+              }
+            }
+          }
+          
         }
       }
     }

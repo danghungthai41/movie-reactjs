@@ -128,10 +128,10 @@
     $color-gray-0,
     $color-gray-6,
     $color-gray-7,
-    $fs-2,
+    $fs-2 ,
     $fw-2,
     $pd-0,
-    $pd-1,
+    $pd-0,
     $border-radius-1
   );
   text-align: center;
@@ -147,4 +147,17 @@
       transition: all 0.5s;
     }
   }
+}
+
+.flex {
+  display: flex;
+}
+.justify-center{
+  justify-content: center;
+}
+.justify-between{
+  justify-content: space-between;
+}
+.align-center{
+  align-items: center;
 }

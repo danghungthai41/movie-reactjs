@@ -83,6 +83,7 @@ import visa from "../Assets/img/img_partners/visa.png";
 import cover from "../Assets/img/img_inforuser/cover.jpeg";
 import ticket from "../Assets/img/ticket.png";
 import defaultFilm from "../Assets/img/dummyDataa/defaultFilm.jpeg";
+import dummyImgMovie from "../Assets/img/img_movie/bi-mat-cua-gio.png"
 export default {
   logo,
   bhd,
@@ -168,5 +169,6 @@ export default {
   visa,
   cover,
   ticket,
-  defaultFilm
+  defaultFilm,
+  dummyImgMovie
 };

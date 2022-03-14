@@ -64,7 +64,7 @@ class SignUp extends Component {
         hoTen: "",
         email: "",
         soDt: "",
-        maNhom: "GP06",
+        maNhom: "GP09",
         maLoaiNguoiDung: "",
       },
     };

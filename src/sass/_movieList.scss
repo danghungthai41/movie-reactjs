@@ -1,171 +1,54 @@
 .movieList {
   padding-top: 30px;
-  .slick-arrow,
-  .slick-prev {
+  .swiper-slide {
+    display: inline-block !important;
+
+  }
+  .slick-arrow {
+    position: absolute;
+
     &::before {
       color: #000;
-      font-size: 40px;
-      position: absolute;
-      left: -22px;
-      top: -23px;
+      font-size: 37px;
+      line-height: 0 !important;
+    }
+  }
+  .slick-prev {
+    position: absolute;
+    &::before {
+      color: #000;
+      font-size: 37px;
+      line-height: 0 !important;
+    }
+  }
+  .slick-arrow,
+  .slick-next {
+    position: absolute;
+    &::before {
+      color: #000;
+      font-size: 37px;
+      line-height: 0 !important;
+     
     }
   }
   .movieList__cover {
     padding-top: 50px;
-    width: 70%;
+    // padding-left: 16px;
+    width: 80%;
     margin: 0 auto;
     @include styleTextTitle();
-    .card {
-      // max-width: 320px;
-      // box-shadow: 0 5px 12px 4px rgb(233 236 240 / 57%);
-      width: 230px;
-      height: 315px;
-      position: relative;
-      border: none;
-      cursor: pointer;
-      margin-bottom: 30px;
-      background-color: transparent;
-
-      .card__img {
-        // box-shadow: 0 5px 12px 4px #fff;
-
-        img {
-          border-radius: 4px;
-          width: 230px;
-          height: 315px;
-        }
-      }
-      .card__item {
-        position: relative;
-
-        .card__detail {
-          color: white;
-          position: absolute;
-          bottom: 0;
-          width: 100%;
-          background-color: rgba(0, 0, 0, 0.568);
-          border-radius: 4px;
-          p:first-child {
-            height: 40px;
-            @include styleText($color-white-0, $fs-3, $fw-2);
-            margin-bottom: 10px;
-            .card__age {
-              background: $color-red-0;
-              width: 13px;
-              height: 13px;
-              border-radius: 4px;
-              color: white !important;
-              padding: 0 3px;
-              margin-right: 8px;
-            }
-          }
-          p:last-child {
-            @include styleText($color-white-0, $fs-2, $fw-0);
-          }
-        }
-      }
-      .card__button {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        opacity: 0;
-        bottom: 0;
-        z-index: 10;
-
-        .card__img {
-          margin-bottom: 10px;
-          position: relative;
-          .buttonStyle {
-            padding: 13px 0px;
-            // width: 50%;
-            position: absolute;
-            bottom: 7px;
-            box-shadow: none;
-            // transform: translate(50%);
-          }
-          .card__overlay {
-            width: 230px;
-            background: linear-gradient(0deg, #000, transparent);
-            height: 315px;
-            top: 0;
-            border-radius: 4px;
-            position: absolute;
-          }
-
-          .card__play {
-            // background: url(../../img/img_movie/play.png) no-repeat;
-            top: 34%;
-            left: 40%;
-            font-size: 46px;
-            opacity: 1;
-            /* border-radius: 50%; */
-            /* transform: translateX(113%); */
-            position: absolute;
-            color: #fff;
-
-            img {
-              transform: translate(39px, -4px);
-
-              width: 50px;
-              height: 50px;
-              //    box-shadow: #f8f8f6 0px 5px 12px 4px;
-              box-shadow: #f3f3ed 0px 5px 12px 4px;
-              border-radius: 50%;
-            }
-            // &:hover{
-            //     box-shadow: #f8f8f6 0px 5px 12px 4px;
-
-            // }
-          }
-        }
-      }
-      &:hover {
-        overflow: hidden;
-
-        .card__button {
-          opacity: 1;
-          .card__img {
-            width: 230px;
-            height: 315px;
-
-            transform: scale(1.05);
-            transition: all 0.6s;
-            .card__overlay {
-              z-index: 0;
-            }
-            .card__play {
-              z-index: 1;
-              transition: all 0.4s;
-
-              &:hover {
-                opacity: 0.8;
-
-                img {
-                  border-radius: 50%;
-                  box-shadow: #f3f3ed 0px 5px 12px 4px;
-                  transition: all 0.3s;
-                }
-              }
-            }
-            .buttonStyle {
-              z-index: 1;
-              width: 100%;
-            }
-          }
-        }
-        .card__item {
-          opacity: 0;
-        }
-      }
-    }
   }
 }
-
 @media screen and (max-width: 992px) {
   .movieList {
     padding: 0;
     .movieList__cover {
       padding: 0;
     }
+  }
+}
+.movieList {
+  .swiper-wrapper {
+    display: block !important;
   }
 }

@@ -17,16 +17,13 @@ export default function Detail(props) {
 
     //Dispatch để lấy data
     dispatch(fetchShowTimeByMovie(id))
-  }, []);
+  }, [id, dispatch]);
 
   return (
-    // <div className="test" style={{ backgroundImage: `url(${bgImg})`,height: 1000 }}>
-    /* <MovieDetail movieDetail = {movieDetail}/> */
-    <div className="movieDetail">
+    <div className="movieDetail" style={{background: `url(${img.bgImg})`}} >
       <MovieDetail movieDetail={movieDetail} />
       <ShowTime />
     </div>
-    //  </div>
 
     //   <>
     //   <div className="modal" id="trailerDetail">

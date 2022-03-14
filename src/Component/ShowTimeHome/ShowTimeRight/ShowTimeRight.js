@@ -7,8 +7,7 @@ export default function ShowTimeRight(props) {
   const selectedMovie = useSelector((state) => state.movie.selectedMovie);
 
   const renderShowTimeRight = () => {
-    return selectedMovie
-      ? selectedMovie.danhSachPhim
+    return selectedMovie ?  selectedMovie.danhSachPhim
         ? selectedMovie.danhSachPhim?.map((item) => {
             return <ShowTimeRightItem item={item} />;
           })
@@ -21,3 +20,4 @@ export default function ShowTimeRight(props) {
   };
   return <div className="showTimeRight col-5">{renderShowTimeRight()}</div>;
 }
+

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import img from "../../../Theme/icons";
 import moment from "moment";
 export function pad(val) {
   var valString = val + "";
@@ -17,9 +16,11 @@ export const calEndTimeMove = (time) => {
 };
 export default function RenderShowTime() {
   const [view, setView] = useState("BHDStar");
-  const showTimeByMovieList = useSelector(
-    (state) => state.cinema.showTimeByMovieList
+  const { showTimeByMovieList, cinemaList } = useSelector(
+    (state) => state.cinema
   );
+
+  console.log({ showTimeByMovieList });
   const lstNavDay = showTimeByMovieList?.find(
     (item) => item.maHeThongRap === view
   );
@@ -51,20 +52,22 @@ export default function RenderShowTime() {
   const [activeNavDay, setActiveNavDay] = useState(filterLstDay[0]);
 
   const renderCinemaList = () => {
-    return showTimeByMovieList?.map((item, index) => {
+    return cinemaList?.map((item, index) => {
       return (
         <li
           key={index}
-          className={item.maHeThongRap === view ? "movieDetailLeft__item active": "movieDetailLeft__item"}
-          
+          className={
+            item.maHeThongRap === view
+              ? "movieDetailLeft__item active"
+              : "movieDetailLeft__item"
+          }
           onClick={() => {
             setView(item.maHeThongRap);
             setActiveNavDay(filterLstDay[0]);
-       
           }}
         >
           <img className="movieDetailLeft__img" src={item.logo} alt="Logo" />
-          <p>{item.tenHeThongRap}</p>
+          <p className="movieDetailLeft__name">{item.tenHeThongRap.toUpperCase()}</p>
         </li>
       );
     });
@@ -83,8 +86,11 @@ export default function RenderShowTime() {
         return "Thứ Năm";
       case 5:
         return "Thứ Sáu";
-      default:
+      case 6:
         return "Thứ Bảy";
+
+      default:
+        return "";
     }
   };
 
@@ -92,6 +98,7 @@ export default function RenderShowTime() {
     if (filterLstDay) {
       return filterLstDay?.map((item, index) => {
         const date = new Date(item);
+        console.log({ date });
         return (
           index < 12 && (
             <li
@@ -105,7 +112,9 @@ export default function RenderShowTime() {
               }}
             >
               <p>{changeDate(date.getDay())}</p>
-              {date.toLocaleDateString("en-GB")}
+              {date.toLocaleDateString("en-GB") === "Invalid Date"
+                ? "VUI LÒNG CHỌN RẠP KHÁC"
+                : date.toLocaleDateString("en-GB")}
             </li>
           )
         );
@@ -129,7 +138,7 @@ export default function RenderShowTime() {
                     </p>
                   </div>
                   <div className="movieDetailRight__bottom row">
-                    {lichChieu.lichChieuPhim.map((phim, index) => {
+                    {lichChieu.lichChieuPhim.slice(0, 12).map((phim, index) => {
                       return (
                         index < 9 && (
                           <NavLink
@@ -152,7 +161,9 @@ export default function RenderShowTime() {
             );
           })
         ) : (
-          <p>Không có lịch chiếu phim</p>
+          <div>
+            <p>Không có lịch chiếu phim</p>
+          </div>
         )}
       </div>
     );
@@ -172,11 +183,7 @@ export default function RenderShowTime() {
           <ul className="movieDetailRight__navDay">{renderNavDay()} </ul>
         </div>
         {renderShowTimeByMovie()}
-
-      
       </div>
-
-     
     </div>
   );
 }

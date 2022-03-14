@@ -1,78 +1,641 @@
-.banner {
-    padding: 120px 0 80px 0;
-    background-size: contain;
-    width: 100%;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    .banner__content {
-        .left {
-            .lagre {
-                color: rgb(73, 57, 57);
-                font-weight: 700;
-                font-size: xx-large;
-            }
-            .medium {
-                color: #fff;
-                font-size: medium;
-            }
-            .textApp {
-                padding-top: 10px;
-                color: #fff;
-                a {
-                    text-decoration: none;
-                    color: #fff;
-                    border-bottom: 1px solid #fff;
-                }
-            }
-            .btnApp {
-                background-color: #fb4226;
-                padding: 10px 20px;
-                color: #fff;
-                font-size: medium;
-                font-weight: 700;
-                border: none;
-                border-radius: 4px;
-            }
+.app__download {
+  background-size: contain;
+  padding: 120px 0 80px 0;
+
+  &__container {
+    max-width: 940px;
+
+    .left {
+      padding-top: 60px;
+
+      .textLeft {
+        color: #fff;
+        font-weight: 700;
+        font-size: 33px;
+        margin-bottom: 10px;
+      }
+
+      .textSmallerLeft {
+        color: #fff;
+        font-weight: 500;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .btn {
+        background-color: #fb4226;
+        padding: 10px 20px;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        border: none;
+        border-radius: 4px;
+        &:focus {
+          box-shadow: none;
         }
-        .right {
-            position: relative;
-            // overflow: hidden;
-            .img-phone {
-                width:100%;
-                padding: 0 28%;
-            }
-            .mobileCarousel {
-                position: absolute;
-                top: 9px;
-                left: 30.1%;
-                width: 225px;
-                height: 95.5%;
-                text-align: center;
-                border-radius: 25px;
-                overflow: hidden;
-                
-                .item {
-                    .img-item {
-                        width: 100%;
-                        height: 100%;
-                        display: inline-block;
-                    }
-                }
-            }
-            .owl-nav{
-                display: none;
-            }
-            
+
+        &__link {
+          text-decoration: none;
+          color: #fff;
         }
+      }
+
+      .textAppUnder {
+        color: #fff;
+        padding-top: 10px;
+
+        .tag {
+          color: #fff;
+          border-bottom: 1px solid #fff;
+          text-decoration: none;
+        }
+      }
     }
+
+    .right {
+      margin-top: -80px;
+      position: relative;
+      padding: 0;
+      .img__responsive {
+        padding: 0 28%;
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      #sliderScreen {
+        position: absolute;
+        padding: 1.5% 29.3% 0 29.3%;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+      .slick-slider {
+        position: relative;
+
+        display: block;
+        box-sizing: border-box;
+
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        -webkit-touch-callout: none;
+        -khtml-user-select: none;
+        -ms-touch-action: pan-y;
+        touch-action: pan-y;
+        -webkit-tap-highlight-color: transparent;
+        &:hover {
+          cursor: grab;
+        }
+      }
+
+      .carousel {
+        position: absolute;
+        top: 10px;
+        left: 138px;
+        width: 195px;
+        .carousel-inner {
+          border-radius: 20px;
+          .carousel-item {
+            position: relative;
+            img {
+              height: auto;
+              width: 100%;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-@media screen and (max-width:992px){
-    .banner__content{
-        .left{
-            text-align: center;
+@media (max-width: 993px) {
+  .textLeft,
+  .textSmallerLeft,
+  .textAppUnder {
+    text-align: center !important;
+  }
+
+  .textLeft {
+    font-size: 30px !important;
+  }
+
+  .textSmallerLeft {
+    font-size: 13px !important;
+  }
+
+  .btn_container {
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .app__download {
+    &__container {
+      .left {
+        padding-top: 0px;
+        margin-top: -51px;
+      }
+      .right {
+        margin-top: 0;
+        .carousel {
+          width: 387px;
+          position: absolute;
+          top: 15px !important;
+          left: 29.5% !important;
+          align-items: center;
+          .carousel-inner {
+            border-radius: 40px;
+          }
         }
+      }
     }
+  }
+}
+
+@media (max-width: 949px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 375px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 909px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 365px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 887px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 355px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 865px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 345px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 839px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 335px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 818px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 325px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 794px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 315px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 770px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 310px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 300px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 740px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 297px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 728px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 293px !important;
+      }
+    }
+  }
+}
+@media (max-width: 718px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 286px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 705px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 282px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 690px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 276px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 679px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 270px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 664px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 266px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 655px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 262px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 647px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 258px !important;
+        .carousel-inner {
+          border-radius: 20px !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 635px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 250px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 620px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 245px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 608px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 240px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 596px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 235px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 585px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 230px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 225px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 220px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  #sliderScreen {
+    top: -5px !important;
+  }
+  .app__download {
+    &__container {
+      .carousel {
+        width: 215px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 222px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 527px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 205px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 515px) {
+  .app__download {
+    &__container {
+      .carousel {
+        top: 12px !important;
+        width: 205px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .app__download {
+    &__container {
+      max-width: 82% !important;
+
+      .carousel {
+        width: 163px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 490px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 159px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 155px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 467px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 180px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 457px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 144px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  #sliderScreen {
+    top: -5px !important;
+  }
+  .app__download {
+    &__container {
+      .carousel {
+        width: 141px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 426px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 165px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 160px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 405px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 155px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 390px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 121px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .app__download {
+    &__container {
+      .right {
+        .carousel {
+          width: 121px !important;
+          top: 12px !important;
+          .carousel-inner {
+            border-radius: 10px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 115px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 368px) {
+  #sliderScreen {
+    top: -5px !important;
+  }
+  .app__download {
+    &__container {
+      .carousel {
+        width: 143px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 365px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 140px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 361px) {
+  #sliderScreen {
+    top: -7px !important;
+  }
+  .app__download {
+    &__container {
+      .carousel {
+        width: 100px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 355px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 136px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 345px) {
+  .app__download {
+    &__container {
+      .carousel {
+        width: 133px !important;
+      }
+    }
+  }
 }

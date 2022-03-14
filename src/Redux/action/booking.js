@@ -25,17 +25,16 @@ export const bookingTicketAction =
   async (dispatch) => {
     try {
       request({
-        url: "https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
+        url: "http://movieapi.cyberlearn.vn//api/QuanLyDatVe/DatVe",
         method: "POST",
         data: infoTicket,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-     
+
       dispatch(createAction(BOOKING_SUCCESS, []));
       await dispatch(fetchTicketRoom(infoTicket.maLichChieu));
-
     } catch (err) {
       console.log(err.reponse?.data);
     }

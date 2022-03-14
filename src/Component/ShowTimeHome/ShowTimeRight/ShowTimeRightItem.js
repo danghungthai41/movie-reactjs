@@ -22,7 +22,7 @@ export default function ShowTimeRightItem(props) {
               <span>C18</span>
               {item.tenPhim}
             </p>
-            <p>100 phút - TIX 9.2 - IMDb 0</p>
+            <p>100 phút - TIX 9.2 - IMDb 10</p>
           </div>
         </div>
 
@@ -36,7 +36,7 @@ export default function ShowTimeRightItem(props) {
         <div className={showView ? "" : "hiddenShowTime"}>
           <h3>2D Digital</h3>
           <div className="showTimeRight__time row">
-            {item.lstLichChieuTheoPhim?.slice(0, 12).map((cal) => {
+            {item.lstLichChieuTheoPhim?.slice(0, 6).map((cal) => {
               return (
                 <NavLink
                   to={`/checkout/${cal.maLichChieu}`}

@@ -104,7 +104,7 @@ const BookingMobile = () => {
             </TextField>
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <InputLabel htmlFor="my-input">Rạp</InputLabel>
             <TextField
               fullWidth
@@ -134,7 +134,7 @@ const BookingMobile = () => {
               )}
             </TextField>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <InputLabel htmlFor="my-input">Ngày Xem</InputLabel>
             <TextField
               fullWidth
@@ -163,7 +163,7 @@ const BookingMobile = () => {
               )}
             </TextField>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <InputLabel htmlFor="my-input">Suất Chiếu</InputLabel>
             <TextField
               fullWidth

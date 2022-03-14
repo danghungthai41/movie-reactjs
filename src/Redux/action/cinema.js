@@ -22,11 +22,11 @@ export const fetchBookingMovie = (maPhim) => async (dispatch) => {
 
 export const fetchCinemaList = async (dispatch) => {
   try {
-    const res = await request({
+    const {data} = await request({
       url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap`,
       method: "GET",
     });
-    dispatch(createAction(FETCH_CINEMA_LIST, res.data));
+    dispatch(createAction(FETCH_CINEMA_LIST, data));
   } catch (err) {
     console.log(err.response?.data);
   }
@@ -34,7 +34,7 @@ export const fetchCinemaList = async (dispatch) => {
 export const fetchCinemaByCode = (maHeThongRap) => async (dispatch) => {
   try {
     const res = await request({
-      url: `https://movie0706.cybersoft.edu.vn/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP03`,
+      url: `https://movie0706.cybersoft.edu.vn/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP09`,
       method: "GET",
     });
 
@@ -57,7 +57,7 @@ export const fetchShowTimeByMovie = (maPhim) => async (dispatch) => {
 export const fetchInfoShowTime = async (dispatch) => {
   try {
     const res = await request({
-      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP03`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP09`,
       method: "GET",
     });
     dispatch(createAction(FETCH_INFO_SHOWTIME, res.data));

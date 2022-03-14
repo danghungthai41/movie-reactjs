@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import { HashLink } from "react-router-hash-link";
 import HeaderMobile from "./HeaderMobile";
 import useWindowSize from "../../HOCS/useWindowSize";
+import createAction from "../../Redux/action";
 
 export default function Header() {
   const provinceList = [
@@ -89,11 +90,10 @@ export default function Header() {
   return (
     <>
       {isMobile.width < 768 ? (
-        <HeaderMobile  />
+        <HeaderMobile dispatch={dispatch} token={token}/>
       ) : (
         <nav
           className="myNavBar navbar navbar-expand-md"
-          // style={{  }}
         >
           <div className="col-md-10 col-lg-8">
             <div className="myNavBar__left navbar">
@@ -102,11 +102,8 @@ export default function Header() {
               </NavLink>
               <ul className="nav myNavBar__title" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">
-                  {/* <a className="nav-link">
-              <HashLink to="/home/#lichChieu">Lịch Chiếu</HashLink>
-            </a> */}
                   <HashLink
-                    to="/home/#lichChieu"
+                    to="/#lichChieu"
                     className="nav-link"
                     scroll={(el) =>
                       el.scrollIntoView({ behavior: "auto", block: "end" })
@@ -121,7 +118,7 @@ export default function Header() {
             </a> */}
 
                   <HashLink
-                    to="/home/#cumRap"
+                    to="/#cumRap"
                     className="nav-link"
                     scroll={(el) =>
                       el.scrollIntoView({ behavior: "auto", block: "end" })
@@ -133,7 +130,7 @@ export default function Header() {
 
                 <li className="nav-item" role="presentation">
                   <HashLink
-                    to="/home/#tinTuc"
+                    to="/#tinTuc"
                     className="nav-link"
                     scroll={(el) =>
                       el.scrollIntoView({ behavior: "auto", block: "end" })
@@ -145,7 +142,7 @@ export default function Header() {
 
                 <li className="nav-item" role="presentation">
                   <HashLink
-                    to="/home/#ungDung"
+                    to="/#ungDung"
                     className="nav-link"
                     scroll={(el) =>
                       el.scrollIntoView({ behavior: "auto", block: "end" })
@@ -157,13 +154,12 @@ export default function Header() {
               </ul>
             </div>
           </div>
-          <div className="col-md-2 col-lg-4">
+          <div className="col-md-2 col-lg-4 p-0">
             <div className="myNavBar__right">
               <div className="myNavBar__login">
                 {token ? (
                   <div className="myNavBar__login--cover">
                     <IconButton
-                      // className={classes.menuButton}
                       onClick={handleMenu}
                       color="inherit"
                     >
@@ -211,8 +207,8 @@ export default function Header() {
                             if (res.isConfirmed) {
                               localStorage.removeItem("token");
                               localStorage.removeItem("userLogin");
-                              dispatch({ type: SET_TOKEN, payload: "" });
-                              dispatch({ type: ADD_USER, payload: "" });
+                              dispatch(createAction(SET_TOKEN, ""));
+                              dispatch(createAction(ADD_USER, ""));
                             }
                           });
                         }}

@@ -14,18 +14,17 @@ import CheckOut from "../CheckOut";
 import moment from "moment";
 import _ from "lodash";
 import Swal from "sweetalert2";
-import { IoCloseOutline , IoLockClosed} from "react-icons/io5";
+import { IoCloseOutline, IoLockClosed } from "react-icons/io5";
 
 export default function CheckOutLeft({
   ticketRoomList: { danhSachGhe, thongTinPhim },
 }) {
-  const [minutes, setMinutes] = React.useState();
-  const [second, setSecond] = React.useState();
   const dispatch = useDispatch();
 
   let { selectedLstSeat, lockedSeat } = useSelector((state) => state.booking);
-  let specialLstSeat = [];
 
+  let specialLstSeat = [];
+  //Push danhsachghe gần đầu hàng vào mảng để check điều kiện
   for (let i = 1, k = 14; i < danhSachGhe?.length; i += 16, k += 16) {
     specialLstSeat.push(+danhSachGhe[i].tenGhe);
     specialLstSeat.push(+danhSachGhe[k].tenGhe);
@@ -66,13 +65,13 @@ export default function CheckOutLeft({
       });
     }
   }
+
   const renderLstSeatMap = () => {
     return danhSachGhe?.map((ghe, index) => {
       let classVip = ghe.loaiGhe === "Vip" ? "gheVip" : "";
       let classDaDat = ghe.daDat ? "gheDaDat" : "";
       let classDangDat = "";
       let classLockedSeat = "";
-
       let indexGheDD = selectedLstSeat?.findIndex(
         (gheDD) => gheDD.tenGhe === ghe.tenGhe
       );
@@ -94,7 +93,13 @@ export default function CheckOutLeft({
             className={`checkOutLeft__seatItem ghe ${classVip} ${classDaDat} ${classDangDat} ${classLockedSeat}`}
             disabled={ghe.daDat || classLockedSeat !== ""}
           >
-            {ghe.daDat ? <IoCloseOutline /> : classLockedSeat !== "" ? <IoLockClosed/> : ghe.stt}
+            {ghe.daDat ? (
+              <IoCloseOutline />
+            ) : classLockedSeat !== "" ? (
+              <IoLockClosed />
+            ) : (
+              ghe.stt
+            )}
           </button>
           {(index + 1) % 16 === 0 && <br />}
         </React.Fragment>
@@ -131,8 +136,8 @@ export default function CheckOutLeft({
             </li>
           </ul>
         </div>
-        <div className="checkOutLeft__infoCine text-dark">
-          <div className="col-6 d-flex">
+        <div className="checkOutLeft__infoCine">
+          <div className="col-12 d-flex">
             <img
               className="mr-4"
               src={img.bhd}
@@ -153,21 +158,6 @@ export default function CheckOutLeft({
               </p>
             </div>
           </div>
-
-          <div className="col-6 text-right">
-            <p className="mb-0">Thời gian giữ ghế</p>
-            <p
-              style={{
-                color: "#d47e1d",
-                fontSize: "26px",
-                fontWeight: 600,
-                marginBottom: 0,
-              }}
-            >
-              {" "}
-              {`${minutes} :  ${second}`}
-            </p>
-          </div>
         </div>
         <div className="checkOutLeft__SeatMap">
           <div className="checkOutLeft__screen">
@@ -179,23 +169,31 @@ export default function CheckOutLeft({
             />
           </div>
 
-          <div className="checkOutLeft__SeatMap--cover text-center">
+          <div className="checkOutLeft__SeatMap--cover">
             {renderLstSeatMap()}
           </div>
         </div>
 
-        <div
-          className="row mx-5 my-2 text-dark justify-content-center align-items-center"
-          style={{ width: "95%" }}
-        >
-          <div className="thuong"></div>
-          <span className="mr-5 ml-2">Chưa Đặt</span>
-          <div className="vip"></div>
-          <span className="mr-5 ml-2">VIP</span>
-          <div className="isChose"></div>
-          <span className="mr-5 ml-2">Đang Đặt</span>
-          <div className="isBooked"></div>
-          <span className="mr-5 ml-2">Đã Đặt</span>
+        <div className="text-dark mt-3">
+          <table className="d-block text-center">
+            <thead className="flex justify-center ">
+              <tr>
+                <th className=" pr-5">
+                 <span> Ghế Chưa Đặt</span>
+                  <div className="ghe"></div>
+                </th>
+                <th className=" pr-5">
+                  Ghế Đã Đặt <div className="gheDaDat"></div>{" "}
+                </th>
+                <th className=" pr-5">
+                  Ghế Đang Đặt <div className="gheDangDat"></div>{" "}
+                </th>
+                <th className=" pr-5">
+                  Ghế VIP <div className="gheVip"></div>{" "}
+                </th>
+              </tr>
+            </thead>
+          </table>
         </div>
       </div>
     );

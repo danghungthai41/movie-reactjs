@@ -2,7 +2,7 @@ import { UserInfo } from "../../_core/models/Account";
 import { SET_TOKEN, USER_INFO } from "../constants";
 
 let initialState = {
-  token: "",
+  token: localStorage.getItem("token"),
   userInfo: new UserInfo(),
 };
 const reducer = (state = initialState, { type, payload }) => {

@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { InfoRoomTicket } from "../../_core/models/infoRoomTicket";
 import {
   FETCH_TICKET_ROOM,
@@ -27,19 +28,16 @@ const reducer = (state = initialState, { payload, type }) => {
       if (index !== -1) {
         cloneSelectedLstSeat.splice(index, 1);
       } else {
-        cloneSelectedLstSeat.push(payload);
+        if(cloneSelectedLstSeat.length >= 10){
+           Swal.fire({
+            title: "Không Được Đặt Quá 10 ghế",
+            icon: "warning"
+          })
+        } else {
+          cloneSelectedLstSeat.push(payload);
+        }
       }
-
-      // state.selectedLstSeat = cloneSelectedLstSeat;
-      // if (state.selectedLstSeat.length >= 10) {
-      //   Swal.fire({
-      //     title: "Không được đặt quá 10 ghế",
-      //     icon: "warning",
-      //   });
-
-      // }
       return { ...state, selectedLstSeat: cloneSelectedLstSeat };
-    // return { ...state };
     case TICKET_BOOKED:
       const cloneTicketBooked = [...state.ticketBooked];
       payload.map((item) => cloneTicketBooked.push(item));

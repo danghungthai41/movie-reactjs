@@ -6,7 +6,6 @@ import {
   Switch,
   useHistory,
 } from "react-router-dom";
-import "./App.css";
 import createAction from "./Redux/action";
 import { SET_TOKEN } from "./Redux/constants";
 import { loginRouter, mainRouter, adminRouter } from "./configs/router";
@@ -18,31 +17,17 @@ import Users from "./Pages/Admin/Users/Users";
 import Films from "./Pages/Admin/Films/Films";
 import ShowTimeAdmin from "./Pages/Admin/ShowTimeAdmin.jsx/ShowTimeAdmin";
 import AddNew from "./Pages/Admin/AddNew/AddNew";
-import { IoHome } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import useWindowSize from "./HOCS/useWindowSize";
-import UseScrollBrowser from "./Component/ScrollBrowser/UseScrollBrowser";
+import CheckOut from "./Pages/CheckOut/CheckOut";
 
-const history = useHistory;
+export const history = useHistory;
 const App = () => {
   const dispatch = useDispatch();
-  // const isScroll = UseScrollBrowser();
-  const [isScrollClass, setIsScrollClass] = useState("hidden-scroll");
-  const scrollToTop = useCallback(()=> {
-    window.scrollTo({ top: 0, behavior: "smooth" });
- },[])
   useEffect(() => {
     if (localStorage.getItem("token")) {
       dispatch(createAction(SET_TOKEN, localStorage.getItem("token")));
     }
   }, []);
-  // (() => {
-  //   if (isScroll > 20) {
-  //     setIsScrollClass("display-scroll");
-  //   } else {
-  //     setIsScrollClass("hidden-scroll");
-  //   }
-  // })();
 
   const renderMainRouter = (listRouter) => {
     if (listRouter && listRouter.length > 0) {
@@ -87,10 +72,10 @@ const App = () => {
   };
   return (
     <Router>
-    
       <Switch>
         {renderLoginRouter(loginRouter)}
-
+        <Route path="/checkout/:maLichChieu" exact component={CheckOut}/>
+ 
         <Route path="/dashboard/users" exact>
           <AdminTemplate>
             <Users />

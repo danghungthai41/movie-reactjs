@@ -45,11 +45,7 @@ const loginRouter = [
     exact: "true",
     component: UserInfo,
   },
-  {
-    path: "/checkout/:maLichChieu",
-    axact: false,
-    component: CheckOut,
-  },
+
 ];
 
 const adminRouter = [

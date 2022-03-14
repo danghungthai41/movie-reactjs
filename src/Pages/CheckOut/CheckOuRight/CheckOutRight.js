@@ -123,13 +123,13 @@ export default function CheckOutRight(props) {
               })}
             </p>
           </div>
-          {/* <div className="checkOutRight__infoPay">
-            <p className="m-0">Email</p>
-            <input type="text" />
-            <p className="m-0">Phone</p>
-            <input type="text" />
-            <p className="m-0">Hình Thức Thanh Toán</p>
-
+          <div className="checkOutRight__infoPay">
+            <p className="m-1">Email</p>
+            <input className="input mb-2" type="text" />
+            <p className="m-1">Phone</p>
+            <input className="input mb-3" type="text" />
+            <p className="">Hình Thức Thanh Toán</p>
+              
             <div style={{ color: "#4a4a4a" }}>
               <input type="radio" id="zalo" name="name" value="zalo" checked />
               <img
@@ -160,9 +160,9 @@ export default function CheckOutRight(props) {
               />
               <label for="atm">Thẻ ATM nội địa</label>
             </div>
-          </div> */}
+          </div>
 
-          <div className="checkOutRight__showBill text-dark">
+          {/* <div className="checkOutRight__showBill text-dark">
             <p>
               Tổng tiền:{" "}
               {selectedLstSeat
@@ -172,16 +172,15 @@ export default function CheckOutRight(props) {
                 .toLocaleString()}{" "}
               VNĐ
             </p>
-          </div>
-
-          <button
-            className="buttonStyle w-100"
-            onClick={createInfoTicket}
-            disabled={selectedLstSeat.length === 0}
-          >
-            Đặt Ghế
-          </button>
+          </div> */}
         </div>
+        <button
+          className="buttonStyle w-100"
+          onClick={createInfoTicket}
+          disabled={selectedLstSeat.length === 0}
+        >
+          Đặt Ghế
+        </button>
       </div>
     );
   };

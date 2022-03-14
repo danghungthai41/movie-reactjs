@@ -4,18 +4,25 @@ import {
   IoMenuSharp,
   IoClose,
   IoHome,
-  IoPersonOutline,
   IoPersonCircleSharp,
-  IoReturnDownBackSharp,
+  IoNewspaperOutline,
+  IoCalendarNumberOutline,
+  IoArrowBackOutline,
+  IoMegaphoneOutline,
+  IoRibbonSharp,
+  IoArrowForwardOutline,
 } from "react-icons/io5";
 import { Paper, MenuList, MenuItem } from "@material-ui/core";
-
-const HeaderMobile = () => {
+import { NavLink } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+import Swal from "sweetalert2";
+import { ADD_USER, SET_TOKEN } from "../../Redux/constants";
+import createAction from "../../Redux/action/index";
+const HeaderMobile = ({ dispatch, token }) => {
   const [openMenu, setOpenMenu] = useState(false);
   const handleOpenMenu = () => {
     setOpenMenu(!openMenu);
   };
-
   return (
     <nav className="header-mobile ">
       <div className="header-mobile-contain">
@@ -37,30 +44,126 @@ const HeaderMobile = () => {
             sx={{
               height: "100%",
             }}
-            className="h-100"
+            className=""
             variant="outlined"
           >
             <MenuList>
+              <h4>
+                <IoPersonCircleSharp size={45} />
+                <span>{localStorage.getItem("account")}</span>
+              </h4>
+
               <MenuItem>
                 <IoHome />
-                <span>TRANG CHỦ</span>
+                <HashLink
+                  to="/#"
+                  className="nav-link"
+                  scroll={(el) =>
+                    el.scrollIntoView({ behavior: "auto", block: "end" })
+                  }
+                >
+                  TRANG CHỦ
+                </HashLink>
               </MenuItem>
-              <MenuItem>TIN TỨC</MenuItem>
-              <MenuItem>LỊCH CHIẾU</MenuItem>
-              <MenuItem>CỤM RẠP</MenuItem>
+
+              <MenuItem>
+                <IoNewspaperOutline />
+                <HashLink
+                  to="/#tinTuc"
+                  className="nav-link"
+                  scroll={(el) =>
+                    el.scrollIntoView({ behavior: "auto", block: "end" })
+                  }
+                >
+                  TIN TỨC
+                </HashLink>
+              </MenuItem>
+
+              <MenuItem>
+                <IoCalendarNumberOutline />
+                <HashLink
+                  to="/#lichChieu"
+                  className="nav-link"
+                  scroll={(el) =>
+                    el.scrollIntoView({ behavior: "auto", block: "end" })
+                  }
+                >
+                  LỊCH CHIẾU
+                </HashLink>
+              </MenuItem>
+
+              <MenuItem>
+                <IoMegaphoneOutline />
+                <HashLink
+                  to="/#cumRap"
+                  className="nav-link"
+                  scroll={(el) =>
+                    el.scrollIntoView({ behavior: "auto", block: "end" })
+                  }
+                >
+                  CỤM RẠP
+                </HashLink>
+              </MenuItem>
 
               <MenuItem>
                 <IoPersonCircleSharp />
-                <span>Trang Cá Nhân</span>
-              </MenuItem>
+                {/* <NavLink to="/info">
+                  <span>Trang Cá Nhân</span>
+                </NavLink> */}
 
-              {localStorage.getItem("userLogin") === "QuanTri" && (
-                <MenuItem>Trang Quản Trị</MenuItem>
-              )}
-              <MenuItem>
-                <IoReturnDownBackSharp />
-                <span>Đăng Xuất</span>
+                <HashLink
+                  to="/info"
+                  className="nav-link"
+                  scroll={(el) =>
+                    el.scrollIntoView({ behavior: "auto", block: "end" })
+                  }
+                >
+                  TRANG CÁ NHÂN
+                </HashLink>
               </MenuItem>
+              {localStorage.getItem("userLogin") === "QuanTri" && (
+                <>
+                  <MenuItem>
+                    <IoRibbonSharp />
+                    <HashLink to="/dashboard" className="nav-link">
+                      TRANG QUẢN TRỊ
+                    </HashLink>
+                  </MenuItem>
+                </>
+              )}
+              {token ? (
+                <MenuItem
+                  onClick={() => {
+                    setOpenMenu(false);
+                    Swal.fire({
+                      icon: "warning",
+                      title: "Bạn chắc chắn muốn đăng xuất",
+                      showCancelButton: true,
+                      confirmButtonText: "Đăng Xuất",
+                      cancelButtonText: "Hủy Bỏ",
+                    }).then((res) => {
+                      if (res.isConfirmed) {
+                        localStorage.removeItem("token");
+                        localStorage.removeItem("userLogin");
+                        dispatch(createAction(SET_TOKEN, ""));
+                        dispatch(createAction(ADD_USER, ""));
+                      } else {
+                        setOpenMenu(true);
+                      }
+                    });
+                  }}
+                >
+                  <IoArrowBackOutline />
+                  <span className="ml-3 py-2">ĐĂNG XUẤT</span>
+                </MenuItem>
+              ) : (
+                <MenuItem>
+                  <IoArrowForwardOutline />
+                  <HashLink to="/signin" className="nav-link">
+                    ĐĂNG NHẬP
+                  </HashLink>
+                </MenuItem>
+              )}
             </MenuList>
           </Paper>
         </div>

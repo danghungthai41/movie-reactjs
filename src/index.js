@@ -9,6 +9,7 @@ import "./sass/index.scss";
 import * as signalR from "@aspnet/signalr";
 import "antd/dist/antd.css";
 
+window.process = {};
 ReactDOM.render(
   <Provider store={store}>
     <App />

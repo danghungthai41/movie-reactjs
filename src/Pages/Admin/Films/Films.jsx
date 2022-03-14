@@ -17,7 +17,7 @@ export default function Films() {
   const [newMovieList, setNewMovieList] = useState();
 
   useEffect(() => {
-    dispatch(fetchMovieList);
+    dispatch(fetchMovieList("GP09"));
   }, []);
 
   useEffect(() => {

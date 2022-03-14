@@ -3,14 +3,19 @@ import request from "../../configs/axios";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchMovieList } from "../../Redux/action/movie";
 import img from "../../Theme/icons";
-import SimpleSlider from "../../HOCS/slider";
-import Slider from "react-slick";
 import { fetchBookingMovie } from "../../Redux/action/cinema";
 import Loader from "../Loading";
 import { NavLink } from "react-router-dom";
 import moment from "moment";
 import useWindowSize from "../../HOCS/useWindowSize";
-import BookingMobile from "./BookingMobile";
+import { Swiper } from "swiper/react/swiper.js";
+import { SwiperSlide } from "swiper/react/swiper-slide.js";
+
+import "swiper/swiper.scss";
+import "swiper/modules/navigation/navigation.scss";
+
+import { Navigation } from "swiper";
+
 function Carousel() {
   const dispatch = useDispatch();
   const isMobile = useWindowSize();
@@ -49,33 +54,43 @@ function Carousel() {
   const selectedItem = mergeArr?.filter(
     (item) => moment(item.ngayChieuGioChieu).format("HH:MM:SS") === timeOnScreen
   );
-  const settings = {
-    fade: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    // autoplay: true,
-    // autoplaySpeed: 3000,
-  };
+ 
   useEffect(() => {
-    dispatch(fetchMovieList);
+    dispatch(fetchMovieList("GP09"));
   }, []);
 
+  const imgArr = [
+    img.carousel2,
+    img.banner_4,
+    img.banner_5,
+    img.banner_1,
+    img.banner_2,
+    img.banner_3,
+  ];
   return (
-    // style={{background: `url(${img.poster})`}}
     <section className="carousel">
-      <Slider className="myCarousel" {...settings}>
-        {/* {movieList.map((item, index)=>{
-          return index < 6 && <img src={item.hinhAnh} alt={item.tenPhim}/>
-        })} */}
+      <Swiper
+        navigation={true}
+        modules={[Navigation]}
+        className="myCarousel"
+        loop={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+      >
+        {imgArr.map((img, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <div
+                className="carousel__banner"
+                style={{ background: `url(${img}) center center no-repeat` }}
+              ></div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
 
-        {/* <img src={img.carousel1} alt="banner_1" /> */}
-        <img src={img.carousel2} alt="banner_2" />
-        <img src={img.carousel3} alt="banner_3" />
-        <img src={img.banner_4} alt="banner_4" />
-        <img src={img.banner_5} alt="banner_5" />
-      </Slider>
       <div className="myCarousel__overlay" />
       {isMobile.width > 992 && (
         <div className="myCarousel__booking">
@@ -110,7 +125,6 @@ function Carousel() {
                         setOnButton(false);
                         setCodeMovie(movie.maPhim);
                       }}
-                      key={movie.maPhim}
                     >
                       {movie.tenPhim} (P)
                     </li>
@@ -256,7 +270,7 @@ function Carousel() {
                     disabled={!onButton}
                     className={
                       onButton
-                        ? "myCarousel__button active"
+                        ? "buttonStyle active"
                         : "myCarousel__button"
                     }
                     href="#"

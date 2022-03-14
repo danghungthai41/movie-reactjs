@@ -11,7 +11,6 @@ import createAction from "../../Redux/action";
 import img from "../../Theme/icons";
 import ShowTimeHomeMobile from "./ShowTimeHomeMobile/ShowTimeHomeMobile";
 const ShowTimeHome = ({ isMobile }) => {
-  console.log({ isMobile });
   const dispatch = useDispatch();
   const infoShowTime = useSelector((state) => state.cinema.infoShowTime);
   const { TabPane } = Tabs;
@@ -36,7 +35,7 @@ const ShowTimeHome = ({ isMobile }) => {
       />
 
       <div className="showTimeHome__cover " id="cumRap">
-        {isMobile.width > 992 ? (
+        {isMobile.width >= 992 ? (
           <>
             <ShowTimeLeft
               infoShowTime={infoShowTime}
@@ -54,7 +53,7 @@ const ShowTimeHome = ({ isMobile }) => {
             <ShowTimeRight dsPhim={dsPhim} />
           </>
         ) : (
-          <ShowTimeHomeMobile infoShowTime={infoShowTime} />
+          <ShowTimeHomeMobile infoShowTime={infoShowTime} dsPhim={dsPhim} />
         )}
       </div>
     </section>

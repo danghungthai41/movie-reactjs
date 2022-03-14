@@ -42,31 +42,42 @@ export default function AddNew() {
           <Radio.Button value="large">Large</Radio.Button>
         </Radio.Group>
       </Form.Item>
-      <Form.Item label="Input">
+      <Form.Item label="Tên Phim">
         <Input />
       </Form.Item>
     
-      <Form.Item label="Input">
+      <Form.Item label="Trailer">
         <Input />
       </Form.Item>
     
-      <Form.Item label="Input">
+      <Form.Item label="Mô Tả">
         <Input />
       </Form.Item>
     
-      <Form.Item label="Input">
+      <Form.Item label="">
         <Input />
       </Form.Item>
     
  
    
-      <Form.Item label="DatePicker">
+      <Form.Item label="Ngày Khởi Chiếu">
         <DatePicker />
       </Form.Item>
    
-      <Form.Item label="Switch" valuePropName="checked">
+      <Form.Item label="Đang Chiếu" valuePropName="checked">
         <Switch />
       </Form.Item>
+
+      <Form.Item label="Sắp Chiếu" valuePropName="checked">
+        <Switch />
+      </Form.Item>
+
+      <Form.Item label="Hot" valuePropName="checked">
+        <Switch />
+      </Form.Item>
+
+      <file/> 
+
       <Form.Item label="Button">
         <Button>Button</Button>
       </Form.Item>
