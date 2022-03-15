@@ -15,11 +15,14 @@ export default function UserInfo() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [showMore, setShowMore] = useState(false);
-  const ticketBooked = JSON.parse(localStorage.getItem("infoTicket"));
   const { userInfo } = useSelector((state) => state.credential);
+  const listenSelectedLstSeatChange = useSelector(
+    (state) => state.booking.selectedLstSeat
+  );
   useEffect(() => {
     dispatch(fetchInfoAccount());
-  }, []);
+  }, [userInfo.thongTinDatVe, dispatch]);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
@@ -79,18 +82,21 @@ export default function UserInfo() {
         <h1>LỊCH SỬ ĐẶT VÉ KHÁCH HÀNG</h1>
         <div className="infoUser__ticket">
           {userInfo.thongTinDatVe ? (
-            userInfo.thongTinDatVe.slice(0, 2).map((ticket, index) => (
-              <Box
-                sx={{
-                  border: "1px dashed #4a4a4a4a",
-                  padding: "30px",
-                  borderRadius: "10px",
-                  marginBottom: "25px",
-                }}
-              >
-                <Ticket ticket={ticket} key={index} />
-              </Box>
-            ))
+            userInfo.thongTinDatVe
+              .reverse()
+              .slice(0, 2)
+              .map((ticket, index) => (
+                <Box
+                  sx={{
+                    border: "1px dashed #4a4a4a4a",
+                    padding: "30px",
+                    borderRadius: "10px",
+                    marginBottom: "25px",
+                  }}
+                >
+                  <Ticket ticket={ticket} key={index} />
+                </Box>
+              ))
           ) : (
             <p>Chưa Có Vé Nào Được Đặt</p>
           )}
@@ -100,7 +106,8 @@ export default function UserInfo() {
           <div className="infoUser__ticket">
             {userInfo.thongTinDatVe &&
               userInfo.thongTinDatVe
-                .slice(2, userInfo.thongTinDatVe.length - 1)
+                // .slice(2, userInfo.thongTinDatVe.length - 1)
+                .reverse()
                 .map((ticket, index) => (
                   <Box
                     sx={{

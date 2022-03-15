@@ -1,28 +1,13 @@
 .checkout {
+  padding-top: 66px;
   .checkout__cover {
     margin: 0 auto;
     display: flex;
     .checkOutLeft {
       width: 73%;
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
       .checkOutLeft__title {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         color: #000;
-        .checkOutLeft__navbar {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin: 0;
-          padding: 13px 30px;
-          .checkOutLeft__item {
-            list-style: none;
-            &:not(:nth-child(3)) {
-              padding-top: 0px;
-            }
-          }
-        }
       }
       .checkOutLeft__infoCine {
         padding: 15px;
@@ -37,7 +22,7 @@
         margin-top: 50px;
         margin: auto 0;
         .checkOutLeft__screen {
-          width: 60%;
+          width: auto;
           margin: 0 auto;
         }
         .checkOutLeft__SeatMap--cover {
@@ -47,8 +32,19 @@
           margin: 0 auto;
           text-align: center;
           white-space: nowrap;
-          overflow-x: scroll;
-          
+          overflow: scroll hidden;
+          padding-bottom: 10px;
+          &::-webkit-scrollbar {
+            width: 12px;
+          }
+          &::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+          }
+          &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.7);
+          }
           .checkOutLeft__seatItem {
             margin: 8px;
             border-radius: 4px;
@@ -62,19 +58,14 @@
       }
     }
     .checkOutRight {
-      width: 27%;
+      width: 24%;
       position: fixed;
       z-index: 10;
       right: 0;
       background-color: #fff;
       box-shadow: 0 0 13px rgba(74, 74, 74, 0.29);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
       color: #000;
-      min-height: 100vh;
-      padding: 0 15px 20px;
+      border-radius: 10px;
       .checkOutRight__cover {
         padding: 20px;
         .title {
@@ -95,7 +86,7 @@
 
           border-radius: 10px;
           margin-bottom: 20px;
-          padding: 20px;
+          padding: 10px 0;
           display: flex;
           color: #4a4a4a4a;
           img {
@@ -138,7 +129,7 @@
         }
         .checkOutRight__infoPay {
           .input {
-            padding: 10px;
+            padding: 7px;
             border: 1px dashed #777;
             border-radius: 5px;
           }
@@ -153,10 +144,13 @@
           margin-right: 5px;
           font-size: 15px;
         }
+        .buttonStyle:not(:first-child) {
+          padding: 12px;
+          font-size: 20px;
+        }
       }
-      .buttonStyle {
-        padding: 15px;
-        font-size: 20px;
+      .buttonResponsive {
+        display: none;
       }
     }
   }
@@ -219,7 +213,6 @@
   background: linear-gradient(90deg, rgb(100, 173, 3), #fff, rgb(235, 91, 8));
   background-repeat: no-repeat;
   background-size: 80%;
-  white-space: nowrap;
   animation: animate 5s linear infinite;
   background-clip: text;
   -webkit-text-fill-color: rgba(255, 255, 255, 0);
@@ -233,18 +226,86 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .checkout{
-    .checkout__cover{
-      .checkOutLeft{
+@media screen and (max-width: 1190px) {
+  .checkout {
+    .checkout__cover {
+      .checkOutLeft {
         width: 100%;
+        margin-bottom: 100px;
+        .checkOutLeft__text {
+          font-size: 11px;
+          text-overflow: ellipsis;
+        }
+
+        .checkOutLeft__SeatMap {
+          .checkOutLeft__screen {
+            width: auto;
+          }
+          .checkOutLeft__SeatMap--cover {
+            flex-direction: column;
+            .checkOutLeft__coverSeatItem {
+              margin: 0 auto;
+              width: 80%;
+              .checkOutLeft__seatItem {
+                margin: 8px;
+                border-radius: 4px;
+                width: 24px;
+                height: 24px;
+                padding: 0;
+                color: white;
+                outline: none;
+                font-size: 10px;
+              }
+            }
+          }
+        }
       }
-      .checkOutRight{
-        width: 100%;
+      .checkOutRight {
         position: unset;
+        width: 100vh;
+        .checkOutRight__cover {
+          display: none;
+        }
+        .buttonResponsive {
+          display: block;
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          .buttonStyle {
+            width: 50%;
+            padding: 20px;
+            background: linear-gradient(
+              95deg,
+              #73e611 0%,
+              #119e00 59%
+            ) !important;
+            z-index: 9;
+            opacity: 1;
+            border-radius: 0px !important;
+            &:first-child {
+              background: #fff !important;
+              color: #000;
+              border: 1px solid #747070;
+            }
+            &:last-child {
+              background: rgb(116, 112, 112) !important;
+              color: #fff;
+              border: 1px solid #4a4a4a4a;
+              cursor: no-drop;
+              &:hover{
+                opacity: unset;
+              }
+              &.activeButton {
+                border: 1px solid #119e00;
+                background: linear-gradient(
+                  95deg,
+                  #73e611 0%,
+                  #119e00 59%
+                ) !important;              }
+            }
+          }
+        }
       }
     }
   }
 }
-
-

@@ -71,6 +71,9 @@
         height: 300px;
         overflow: hidden;
         overflow-y: scroll;
+        &.show{
+          z-index: 999;
+        }
       }
     }
   }

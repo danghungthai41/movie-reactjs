@@ -42,9 +42,14 @@ const mainRouter = [
 const loginRouter = [
   {
     path: "/info",
-    exact: "true",
+    exact: true,
     component: UserInfo,
   },
+  // {
+  //   path: "/checkout/:maLichChieu",
+  //   exact: true,
+  //   component: CheckOut,
+  // }
 
 ];
 

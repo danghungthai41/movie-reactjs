@@ -110,34 +110,8 @@ export default function CheckOutLeft({
   const renderCheckOutLeft = () => {
     return (
       <div className="checkOutLeft">
-        <div className="checkOutLeft__title">
-          <ul className="checkOutLeft__navbar">
-            <li className="checkOutLeft__item d-flex">
-              <p className="mr-5 mb-0">01 CHỌN GHẾ &amp; THANH TOÁN</p>{" "}
-              <p className="mb-0">02 KẾT QUẢ ĐẶT VÉ</p>
-            </li>
-
-            <li className="checkOutLeft__item">
-              <NavLink to="/">
-                <img src={img.logo} style={{ width: "40px" }} alt="" />
-              </NavLink>
-            </li>
-            <li className="checkOutLeft__item">
-              <img
-                src={img.catCry}
-                style={{
-                  width: "30px",
-                  borderRadius: "50%",
-                  marginRight: "7px",
-                }}
-                alt=""
-              />
-              <span>{localStorage.getItem("account")}</span>
-            </li>
-          </ul>
-        </div>
         <div className="checkOutLeft__infoCine">
-          <div className="col-12 d-flex">
+          <div className="flex">
             <img
               className="mr-4"
               src={img.bhd}
@@ -160,40 +134,40 @@ export default function CheckOutLeft({
           </div>
         </div>
         <div className="checkOutLeft__SeatMap">
-          <div className="checkOutLeft__screen">
-            <img
-              className=""
-              style={{ width: "100%", height: "70px" }}
-              src={img.screen}
-              alt=""
-            />
-          </div>
-
           <div className="checkOutLeft__SeatMap--cover">
-            {renderLstSeatMap()}
+            <div className="checkOutLeft__screen">
+              <img
+                className=""
+                // style={{ width: "100%", height: "70px" }}
+                src={img.screen}
+                alt=""
+              />
+            </div>
+            <div className="checkOutLeft__coverSeatItem">
+              {renderLstSeatMap()}
+            </div>
           </div>
         </div>
 
         <div className="text-dark mt-3">
-          <table className="d-block text-center">
-            <thead className="flex justify-center ">
-              <tr>
-                <th className=" pr-5">
-                 <span> Ghế Chưa Đặt</span>
-                  <div className="ghe"></div>
-                </th>
-                <th className=" pr-5">
-                  Ghế Đã Đặt <div className="gheDaDat"></div>{" "}
-                </th>
-                <th className=" pr-5">
-                  Ghế Đang Đặt <div className="gheDangDat"></div>{" "}
-                </th>
-                <th className=" pr-5">
-                  Ghế VIP <div className="gheVip"></div>{" "}
-                </th>
-              </tr>
-            </thead>
-          </table>
+          <div className="flex justify-evenly align-center">
+            <div className="text-center">
+              <span> Ghế Chưa Đặt</span>
+              <div className="ghe"></div>
+            </div>
+
+            <div className="text-center">
+              Ghế Đã Đặt <div className="gheDaDat"></div>
+            </div>
+
+            <div className="text-center">
+              Ghế Đang Đặt <div className="gheDangDat"></div>
+            </div>
+
+            <div className="text-center">
+              Ghế VIP <div className="gheVip"></div>
+            </div>
+          </div>
         </div>
       </div>
     );

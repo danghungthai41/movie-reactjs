@@ -12,7 +12,6 @@ const renderRoute = (condition, message) => {
         {...props}
         render={(propsComponent) => {
           if (condition) {
-            
             return (
               <Layout>
                 <ScrollToTop/>
@@ -25,7 +24,6 @@ const renderRoute = (condition, message) => {
             title: message,
             icon: "warning",
           });
-          // alert(message);
           return <Redirect to={redirectRoute} />;
         }}
       />
@@ -38,7 +36,7 @@ export const LoginRoute = renderRoute(
   "Bạn vui lòng đăng nhập"
 );
 export const AdminRoute = renderRoute(
-  localStorage.getItem("userLogin") == "QuanTri",
+  localStorage.getItem("userLogin") === "QuanTri",
   "Bạn không có quyền truy cập"
 );
 

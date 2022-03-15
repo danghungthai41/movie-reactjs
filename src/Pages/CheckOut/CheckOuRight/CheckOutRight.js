@@ -11,6 +11,7 @@ import {
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 
+import { IoArrowForwardOutline } from "react-icons/io5";
 export default function CheckOutRight(props) {
   const history = useHistory();
   const { thongTinPhim } = props;
@@ -49,40 +50,6 @@ export default function CheckOutRight(props) {
       }
     });
   };
-
-  // var totalSeconds = 15;
-  // React.useEffect(() => {
-  //   setInterval(setTime, 1000);
-
-  //   return () => {
-  //     clearInterval();
-  //   };
-  // }, []);
-
-  // function setTime() {
-  //   if (totalSeconds === 0) {
-  //     return;
-  //   }
-  //   --totalSeconds;
-  //   setSecondsLabel(pad(totalSeconds % 60));
-  //   setMinutesLabel(pad(parseInt(totalSeconds / 60)));
-  // }
-
-  // function pad(val) {
-  //   var valString = val + "";
-  //   if (valString.length < 2) {
-  //     return "0" + valString;
-  //   } else {
-  //     return valString;
-  //   }
-  // }
-  // const randomImg = useCallback(() => {
-  //   const { rap1, rap2, rap3, rap4, rap5 } = img;
-  //   const lstRap = [rap1, rap2, rap3, rap4, rap5];
-  //   const random = Math.floor(Math.random() * lstRap.length);
-  //   return lstRap[random];
-  // }, []);
-
   const renderCheckOutRight = () => {
     return (
       <div className="checkOutRight">
@@ -104,10 +71,7 @@ export default function CheckOutRight(props) {
                 <span className="buttonStyle">2D</span>
                 {thongTinPhim?.tenPhim}
               </p>
-              <p className="mb-0">
-                {/* {thongTinPhim?.gioChieu} - Cybersoft Cinema - 8.5 IMDb */}
-                Địa chỉ: {thongTinPhim?.diaChi}
-              </p>
+              <p className="mb-0">Địa chỉ: {thongTinPhim?.diaChi}</p>
             </div>
           </div>
           <div className="checkOutRight__infoCinema">
@@ -129,7 +93,7 @@ export default function CheckOutRight(props) {
             <p className="m-1">Phone</p>
             <input className="input mb-3" type="text" />
             <p className="">Hình Thức Thanh Toán</p>
-              
+
             <div style={{ color: "#4a4a4a" }}>
               <input type="radio" id="zalo" name="name" value="zalo" checked />
               <img
@@ -162,25 +126,36 @@ export default function CheckOutRight(props) {
             </div>
           </div>
 
-          {/* <div className="checkOutRight__showBill text-dark">
-            <p>
-              Tổng tiền:{" "}
-              {selectedLstSeat
-                .reduce((tong, item) => {
-                  return (tong += item.giaVe);
-                }, 0)
-                .toLocaleString()}{" "}
-              VNĐ
-            </p>
-          </div> */}
+          <button
+            className="buttonStyle w-100"
+            onClick={createInfoTicket}
+            disabled={selectedLstSeat.length === 0}
+          >
+            Đặt Ghế
+          </button>
         </div>
-        <button
-          className="buttonStyle w-100"
-          onClick={createInfoTicket}
-          disabled={selectedLstSeat.length === 0}
-        >
-          Đặt Ghế
-        </button>
+
+        <div className="buttonResponsive">
+          <button className="buttonStyle">
+            {selectedLstSeat.length > 0 ? (
+              <>
+                Nhấn Đặt Vé {" "}
+                <IoArrowForwardOutline />
+              </>
+            ) : (
+              "Vui Lòng Chọn Ghế"
+            )}
+          </button>
+          <button
+            className={`buttonStyle ${
+              selectedLstSeat.length > 0 ? "activeButton" : ""
+            } `}
+            onClick={createInfoTicket}
+            disabled={selectedLstSeat.length === 0}
+          >
+            Đặt Vé
+          </button>
+        </div>
       </div>
     );
   };

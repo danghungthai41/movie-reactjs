@@ -19,6 +19,7 @@ import ShowTimeAdmin from "./Pages/Admin/ShowTimeAdmin.jsx/ShowTimeAdmin";
 import AddNew from "./Pages/Admin/AddNew/AddNew";
 import { useDispatch } from "react-redux";
 import CheckOut from "./Pages/CheckOut/CheckOut";
+import Header from "./Component/Header";
 
 export const history = useHistory;
 const App = () => {
@@ -74,8 +75,11 @@ const App = () => {
     <Router>
       <Switch>
         {renderLoginRouter(loginRouter)}
-        <Route path="/checkout/:maLichChieu" exact component={CheckOut}/>
- 
+
+        <Route path="/checkout/:maLichChieu" exact>
+          <Header />
+          <CheckOut />
+        </Route>
         <Route path="/dashboard/users" exact>
           <AdminTemplate>
             <Users />

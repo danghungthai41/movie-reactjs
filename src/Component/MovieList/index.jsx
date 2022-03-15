@@ -9,8 +9,6 @@ import { fetchMovieListPagination } from "../../Redux/action/movie";
 import { fetchCinemaList } from "../../Redux/action/cinema";
 import Slider from "react-slick";
 import img from "../../Theme/icons";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 import { Swiper } from "swiper/react/swiper";
 import { SwiperSlide } from "swiper/react/swiper-slide";

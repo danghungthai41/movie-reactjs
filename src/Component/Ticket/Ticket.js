@@ -33,12 +33,9 @@ const Ticket = ({
   return (
     <div className="ticket">
       <div className="ticket__content">
-        <img src={hinhAnh} alt="" />{" "}
+        <img src={hinhAnh ? hinhAnh : img.dummyImgMovie} alt="" />{" "}
         <div className="ticket__info">
-          {/* <p>Ticket Code:  </p>
-          <p>Movie: {tenPhim} </p>
-          <p>Booking Date:  </p>
-          <p>Seats:</p> */}
+         
           <p className="ticket__text">
             Ticket Code: <span>{maVe} </span>{" "}
           </p>
