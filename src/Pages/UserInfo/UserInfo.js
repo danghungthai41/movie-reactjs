@@ -106,7 +106,6 @@ export default function UserInfo() {
           <div className="infoUser__ticket">
             {userInfo.thongTinDatVe &&
               userInfo.thongTinDatVe
-                // .slice(2, userInfo.thongTinDatVe.length - 1)
                 .reverse()
                 .map((ticket, index) => (
                   <Box

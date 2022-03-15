@@ -195,24 +195,18 @@ function Carousel() {
                           href="#"
                           key={item.maLichChieu}
                           onClick={() => {
-                            // setopeningDay(
-                            //   new Date(
-                            //     item.ngayChieuGioChieu
-                            //   ).toLocaleDateString()
-                            // );
+                           
                             setopeningDay(item);
                             setTimeOnScreen("");
                             setOnButton(false);
                           }}
                         >
                           {item}
-                          {/* {moment(item.ngayChieuGioChieu).format("DD/MM/YYYY")} */}
-                          {/* {new Date(item.ngayChieuGioChieu).toLocaleDateString()} */}
+                        
                         </li>
                       );
                     })
                   ) : (
-                    // <li className="dropdown-item">Vui lòng chọn phim và rạp</li>
                     <p className="dropdownItem__title">
                       Vui lòng chọn phim và rạp
                     </p>

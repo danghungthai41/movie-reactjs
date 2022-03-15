@@ -1,12 +1,4 @@
-import hinhAnh from "../../../Assets/img/dummyDataa/dummyData.jpeg"
-import hinhAnh2 from "../../../Assets/img/dummyDataa/dummyData2.jpeg"
-import lstLogo from "../../../Theme/icons/icons.js"
-[
-    {
-        "img": hinhAnh,
-        "backGround": hinhAnh2,
-        "logo": lstLogo,
-        
+      
 
     }
 ]

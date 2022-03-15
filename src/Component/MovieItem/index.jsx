@@ -10,13 +10,7 @@ import { useHistory } from "react-router-dom";
 const MovieItem = (props) => {
   const { hinhAnh, tenPhim, maPhim, trailer, moTa } = props.movie;
   const history = useHistory();
-  // const getThoiLuong = () => {
-  //   if (props.movie.lichChieu) {
-  //     const thoiLuongArr = movie.lichChieu.map((item) => item.thoiLuong);
-  //     const thoiLuong = new Set(thoiLuongArr);
-  //     return thoiLuong;
-  //   }
-  // };
+ 
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,25 +19,19 @@ const MovieItem = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const muaVe = () => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      // return <NavLink to={`/detail/${maPhim}`}></NavLink>;
-    }
-    Swal.fire({
-      title: "Bạn vui lòng đăng nhập",
-      icon: "warning",
-      text: "Bạn phải đăng nhập nha",
-    });
-    return <Redirect to="/signin" />;
-  };
   return (
     <>
       <div class="card">
         <div class="card__button">
           <div class="card__img">
-            <img src={hinhAnh} alt="" />
+            <img
+              src={hinhAnh}
+              alt=""
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null; 
+                currentTarget.src = "https://picsum.photos/200/300";
+              }}
+            />
             <div class="card__overlay"></div>
             <div class="card__play" onClick={handleClickOpen}>
               <img src={img.buttonPlay} alt="" />
@@ -59,7 +47,14 @@ const MovieItem = (props) => {
         </div>
         <div class="card__item">
           <div class="card__img">
-            <img src={hinhAnh} alt="" />
+            <img
+              src={hinhAnh}
+              alt=""
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null;
+                currentTarget.src = "https://picsum.photos/200/300";
+              }}
+            />
           </div>
           <div class="card__detail">
             <p>

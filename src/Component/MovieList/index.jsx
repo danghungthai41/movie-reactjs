@@ -62,12 +62,10 @@ const MovieList = (props) => {
           navigation={true}
           className="mySwiper"
           breakpoints={{
-            // when window width is >= 640px
             100: {
               slidesPerView: 1,
               slidesPerGroup: 1,
             },
-            // when window width is >= 768px
             700: {
               slidesPerView: 2,
               slidesPerGroup: 2,

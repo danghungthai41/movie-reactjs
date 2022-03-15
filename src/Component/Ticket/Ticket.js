@@ -1,6 +1,6 @@
 import { Box, Button, Modal } from "@material-ui/core";
 import React, { useState } from "react";
-import img from "../../Theme/icons";
+import image from "../../Theme/icons";
 
 const style = {
   position: "absolute",
@@ -33,9 +33,15 @@ const Ticket = ({
   return (
     <div className="ticket">
       <div className="ticket__content">
-        <img src={hinhAnh ? hinhAnh : img.dummyImgMovie} alt="" />{" "}
+        <img
+          src={hinhAnh}
+          alt=""
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.src = 'https://picsum.photos/200/300'
+          }}
+        />
         <div className="ticket__info">
-         
           <p className="ticket__text">
             Ticket Code: <span>{maVe} </span>{" "}
           </p>
@@ -43,7 +49,8 @@ const Ticket = ({
             Movie: <span>{tenPhim} </span>
           </p>
           <p className="ticket__text">
-            Booking Date: <span> {new Date(ngayDat).toLocaleDateString()}</span>{" "}
+            Booking Date:{" "}
+            <span> {new Date(ngayDat).toLocaleDateString("en-GB")}</span>{" "}
           </p>
           <p className="ticket__text">
             Reserved Seats: <button onClick={handleOpen}>Read Detail</button>
