@@ -12,6 +12,8 @@ import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 
 import { IoArrowForwardOutline } from "react-icons/io5";
+import createAction from "../../../Redux/action";
+import { BOOKING_SUCCESS } from "../../../Redux/constants";
 export default function CheckOutRight(props) {
   const history = useHistory();
   const { thongTinPhim } = props;
@@ -44,9 +46,10 @@ export default function CheckOutRight(props) {
           confirmButtonText: "Tiếp tục đặt vé",
           cancelButtonText: "Thông tin vé",
         }).then((response) => {
-          if (response.isConfirmed) return;
-          history.push("/info");
+          if (response.isConfirmed) return history.push("/info");
         });
+      } else{
+        dispatch(createAction(BOOKING_SUCCESS, []))
       }
     });
   };
@@ -139,8 +142,7 @@ export default function CheckOutRight(props) {
           <button className="buttonStyle">
             {selectedLstSeat.length > 0 ? (
               <>
-                Nhấn Đặt Vé {" "}
-                <IoArrowForwardOutline />
+                Nhấn Đặt Vé <IoArrowForwardOutline />
               </>
             ) : (
               "Vui Lòng Chọn Ghế"

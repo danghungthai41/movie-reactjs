@@ -59,7 +59,7 @@ const Ticket = ({
           <Modal open={open} onClose={handleClose}>
             <Box sx={{ ...style, width: 400 }}>
               {danhSachGhe.map((gheDaDat) => (
-                <div>
+                <div key={gheDaDat.tenGhe}>
                   <p>
                     <span>
                       {gheDaDat.tenHeThongRap} || {gheDaDat.tenGhe}{" "}

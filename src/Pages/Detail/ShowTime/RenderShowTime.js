@@ -126,10 +126,10 @@ export default function RenderShowTime() {
     return (
       <div className="movieDetailRight__content">
         {lstNavDay ? (
-          lstNavDay.cumRapChieu.map((lichChieu) => {
+          lstNavDay.cumRapChieu.map((lichChieu,index) => {
             return (
               lichChieu && (
-                <div className="movieDetailRight__item">
+                <div className="movieDetailRight__item" key={index}>
                   <div className="movieDetailRight__top">
                     <p>{lichChieu.tenCumRap}</p>
                     <p>

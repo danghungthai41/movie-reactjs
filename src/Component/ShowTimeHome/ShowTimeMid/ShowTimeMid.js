@@ -14,17 +14,16 @@ export default function ShowTimeMid(props) {
   };
 
   const renderLstCinema = () => {
-    return infoShowTime.map((item) => {
+    return infoShowTime.map((item, index) => {
       return (
         item.maHeThongRap === view &&
         item.lstCumRap.map((cine) => {
 
           return (
             <div
-              key={item.maHeThongRap}
+              key={index}
               onClick={() => {
                 handleClickLstCinema(cine);
-                // setActive(selectedMovie?.maCumRap)
               }}
               className={
                 cine.maCumRap === active

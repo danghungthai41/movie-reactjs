@@ -11,6 +11,7 @@ import {
   IoReorderFour,
   IoPlayCircleSharp,
 } from "react-icons/io5";
+import { HashLink } from "react-router-hash-link";
 
 const getThoiLuong = (arrLichChieu) => {
   if (arrLichChieu) {
@@ -48,6 +49,9 @@ export default function MovieDetail(props) {
     return arrStar;
   };
   return (
+
+   
+  
     <div
       className="movieDetail__top"
       // style={{ backgroundImage: `url(${movieDetail.hinhAnh})` }}
@@ -55,10 +59,7 @@ export default function MovieDetail(props) {
       <div className="movieDetail__overlay"></div>
 
       <div className="movieDetail__cover row">
-        <div
-          className="col-12 col-xl-6"
-     
-        >
+        <div className="col-12 col-xl-6">
           <div className="movieDetail__img">
             <img
               src={img.xoay}
@@ -141,7 +142,15 @@ export default function MovieDetail(props) {
             </div>
 
             <button className="buttonStyle mr-3">
-              <a href="#lichChieuChiTiet">Mua Vé</a>
+              <HashLink
+                to={`/detail/${movieDetail?.maPhim}#lichChieuChiTiet`}
+                className="nav-link"
+                scroll={(el) =>
+                  el.scrollIntoView({ behavior: "auto", block: "end" })
+                }
+              >
+                Mua Vé
+              </HashLink>
             </button>
           </div>
         </div>
@@ -162,5 +171,6 @@ export default function MovieDetail(props) {
         ></iframe>{" "}
       </Dialog>
     </div>
+ 
   );
 }

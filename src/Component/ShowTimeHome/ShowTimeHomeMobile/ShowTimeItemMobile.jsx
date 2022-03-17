@@ -5,7 +5,6 @@ import moment from "moment";
 import { calEndTimeMove } from "../../../Pages/Detail/ShowTime/RenderShowTime";
 
 const ShowTimeItemMobile = ({ item }) => {
-  console.log(item);
   return (
     <>
       <div className="showTimeRight__item ">
@@ -28,6 +27,7 @@ const ShowTimeItemMobile = ({ item }) => {
                 <NavLink
                   to={`/checkout/${cal.maLichChieu}`}
                   className="buttonTime"
+                  key={cal.maLichChieu}
                 >
                   <span>{moment(cal.ngayChieuGioChieu).format("hh:mm")}</span> ~{" "}
                   {calEndTimeMove(cal.ngayChieuGioChieu)}

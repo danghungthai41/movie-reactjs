@@ -5,7 +5,7 @@
 //   margin-bottom:15px;
   border-radius: 10px;
   background: linear-gradient(90deg, #eed475, #f1820b);
-  width: 80%;
+  width: 100%;
   margin: auto;
   .ticket__content {
     display: flex;
@@ -22,6 +22,8 @@
       font-size: 14px;
       padding: 15px;
       height: 200px;
+      overflow: auto;
+    white-space: nowrap;
       .ticket__text {
         button{
             background: #eed475;

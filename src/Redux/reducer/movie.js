@@ -3,6 +3,7 @@ import {
   FETCH_MOVIE_LIST,
   FETCH_DETAIL_MOVIE,
   PUSH_SELECTED_MOVIE,
+  FETCH_MOVIE_LIST_COMING_SOON,
 } from "../constants";
 
 let initialState = {
@@ -10,6 +11,7 @@ let initialState = {
   movieList: [],
   movieDetail: {},
   selectedMovie: null,
+  movieListComingSoon: [],
 };
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -24,10 +26,9 @@ const reducer = (state = initialState, { type, payload }) => {
       return { ...state };
     case PUSH_SELECTED_MOVIE:
       state.selectedMovie = payload;
-      return {...state};
-
-    
-
+      return { ...state };
+    case FETCH_MOVIE_LIST_COMING_SOON:
+      return { ...state, movieListComingSoon: payload };
     default:
       return state;
   }

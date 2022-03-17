@@ -6,9 +6,12 @@ import {
   TICKET_BOOKED,
   BOOKING_SUCCESS,
   PUSH_SELECTED_SEAT,
+  DISPLAY_LOADING,
+  HIDDEN_LOADING,
 } from "../constants";
 
 export const fetchTicketRoom = (maLichChieu) => async (dispatch) => {
+  dispatch(createAction(DISPLAY_LOADING))
   try {
     const { data } = await request({
       url: `https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`,
@@ -16,13 +19,19 @@ export const fetchTicketRoom = (maLichChieu) => async (dispatch) => {
     });
 
     dispatch(createAction(FETCH_TICKET_ROOM, data));
+    dispatch(createAction(HIDDEN_LOADING))
+
   } catch (err) {
+    dispatch(createAction(HIDDEN_LOADING))
+
     console.log(err.reponse?.data);
   }
 };
 export const bookingTicketAction =
   (infoTicket = new InfoBookingTicket()) =>
   async (dispatch) => {
+    dispatch(createAction(DISPLAY_LOADING))
+
     try {
       request({
         url: "http://movieapi.cyberlearn.vn//api/QuanLyDatVe/DatVe",
@@ -35,7 +44,11 @@ export const bookingTicketAction =
 
       dispatch(createAction(BOOKING_SUCCESS, []));
       await dispatch(fetchTicketRoom(infoTicket.maLichChieu));
+      dispatch(createAction(HIDDEN_LOADING))
+
     } catch (err) {
+      dispatch(createAction(HIDDEN_LOADING))
+
       console.log(err.reponse?.data);
     }
   };

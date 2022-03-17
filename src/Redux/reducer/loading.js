@@ -6,14 +6,11 @@ const initialState = {
 const reducer = (state = initialState, { type }) => {
   switch (type) {
     case DISPLAY_LOADING:
-      state.isLoading = true;
-      return { ...state };
+      return { ...state, isLoading: true };
     case HIDDEN_LOADING:
-      state.isLoading = false;
-
-      return { ...state };
+      return { ...state, isLoading: false };
     default:
-      return {...state}
+      return state;
   }
 };
 

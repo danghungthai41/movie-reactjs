@@ -4,9 +4,9 @@ import ShowComment from "./ShowComment";
 export default function RenderRate() {
   const [showComment, setShowComment] = useState(false);
   const renderComment = () => {
-    return cmt.map((comment) => {
+    return cmt.map((comment, index) => {
       return (
-        <div className="rate">
+        <div className="rate" key={index}>
           <div className="rate__top">
             <div className="rate__avatar">
               <div className="row">

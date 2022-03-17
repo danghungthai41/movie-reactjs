@@ -41,6 +41,7 @@ export default function ShowTimeRightItem(props) {
                 <NavLink
                   to={`/checkout/${cal.maLichChieu}`}
                   className="buttonTime"
+                  key={cal.maLichChieu}
                 >
                   <span>{moment(cal.ngayChieuGioChieu).format("hh:mm")}</span> ~{" "}
                   {calEndTimeMove(cal.ngayChieuGioChieu)}

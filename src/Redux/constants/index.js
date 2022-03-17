@@ -2,6 +2,7 @@ export const SET_TOKEN = "SET_TOKEN";
 export const ADD_USER = "ADD_USER";
 export const FETCH_MOVIE_LIST_PAGINATION = "FETCH_MOVIE_LIST_PAGINATION";
 export const FETCH_MOVIE_LIST = "FETCH_MOVIE_LIST";
+export const FETCH_MOVIE_LIST_COMING_SOON = "FETCH_MOVIE_LIST_COMING_SOON";
 export const FETCH_BOOKING_MOVIE = "FETCH_BOOKING_MOVIE";
 export const FETCH_DETAIL_MOVIE = "FETCH_DETAIL_MOVIE";
 export const FETCH_CINEMA_LIST = "FETCH_CINEMA_LIST";
@@ -18,3 +19,4 @@ export const URL = "http://movieapi.cyberlearn.vn/api/QuanLyRap";
 export const HIDDEN_LOADING = "HIDDEN_LOADING";
 export const DISPLAY_LOADING = "DISPLAY_LOADING";
 export const BOOKING_SUCCESS = "BOOKING_SUCCESS";
+

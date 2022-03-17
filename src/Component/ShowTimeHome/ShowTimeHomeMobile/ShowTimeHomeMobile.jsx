@@ -28,6 +28,7 @@ const ShowTimeHomeMobile = ({ infoShowTime, dsPhim }) => {
       <div className="showTimeLeft__logo">
         {infoShowTime.map((item) => (
           <div
+            key={item.maHeThongRap}
             onClick={() => setView(item.maHeThongRap)}
             className={`showTimeLeft__logo-item ${
               view === item.maHeThongRap ? "active" : ""
@@ -39,12 +40,12 @@ const ShowTimeHomeMobile = ({ infoShowTime, dsPhim }) => {
         ))}
       </div>
       <div className="showTimeHome-accordian">
-        {infoShowTime.map((cumRap) => {
+        {infoShowTime.map((cumRap,index) => {
           return (
             cumRap.maHeThongRap === view &&
             cumRap.lstCumRap.map((cine) => (
               <div
-                key={cine.maHeThongRap}
+                key={index}
                 onClick={() => {
                   console.log(cine);
                   setSelectedMovie(cine);

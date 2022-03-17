@@ -24,12 +24,10 @@ export default function Films() {
     const filterData = movieList.filter((movie) =>
       movie.tenPhim.toLowerCase().includes(searchMovie.toLowerCase())
     );
-    setNewMovieList(filterData);
+    setNewMovieList(filterData.reverse());
   }, [searchMovie, movieList]);
 
-  const onChange = (pagination, filters, sorter, extra) => {
-  };
-
+ 
   const columns = [
     {
       title: "Mã Phim",
@@ -109,7 +107,7 @@ export default function Films() {
         enterButton
         onChange={(e) => setSearchMovie(e.target.value)}
       />
-      <Table columns={columns} dataSource={data} onChange={onChange} />
+      <Table columns={columns} dataSource={data}  />
     </div>
   );
 }

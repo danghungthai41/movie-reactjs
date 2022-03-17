@@ -1,53 +1,64 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { fetchMovieList } from "../../../Redux/action/movie";
-import { withStyles } from "@material-ui/core";
-import styles from "./style";
 import MovieItem from "../MovieItem";
-import { fetchMovieListPagination } from "../../Redux/action/movie";
-// import Pagination from "@material-ui/lab/Pagination";
 import { fetchCinemaList } from "../../Redux/action/cinema";
-import Slider from "react-slick";
-import img from "../../Theme/icons";
 
 import { Swiper } from "swiper/react/swiper";
 import { SwiperSlide } from "swiper/react/swiper-slide";
-// Import Swiper styles
 import "swiper/swiper.scss";
 import "swiper/modules/grid/grid.scss";
 import "swiper/modules/pagination/pagination.scss";
 
-// import "./style.css";
-
-// import required modules
-import { Grid, Navigation, Pagination } from "swiper";
-const MovieList = (props) => {
+import { Grid, Navigation } from "swiper";
+import { fetchMovieListComingSoon } from "../../Redux/action/movie";
+const MovieList = () => {
   const dispatch = useDispatch();
 
   const movieListNow = useSelector((state) => state.movie.movieList);
-  const [typeOfTitle, setTypeOfTitle] = useState("now");
+  const movieListComingSoon = useSelector(
+    (state) => state.movie.movieListComingSoon
+  );
+  const [typeOfTitle, setTypeOfTitle] = useState("Lịch Chiếu");
   useEffect(() => {
     dispatch(fetchCinemaList);
+    dispatch(fetchMovieListComingSoon("GP06"));
   }, []);
+
+  const renderMovieListByNav = (nav) => {
+    switch (nav) {
+      case "Lịch Chiếu":
+        return movieListNow?.map((item,index) => (
+          <SwiperSlide key={index}>
+            <MovieItem movie={item} />
+          </SwiperSlide>
+        ));
+
+      case "Sắp Chiếu":
+        return movieListComingSoon?.map((item, index) => (
+          <SwiperSlide key={index}>
+            <MovieItem movie={item} />
+          </SwiperSlide>
+        ));
+
+      default:
+        break;
+    }
+  };
 
   return (
     <div className="movieList" id="lichChieu">
       <div class="movieList__cover">
         <ul className="nav nav-tabs " role="tablist">
-          <li
-            className="nav-item active"
-            onClick={() => setTypeOfTitle("now")}
-            role="presentation"
-          >
-            Lịch Chiếu
-          </li>
-          <li
-            className="nav-item"
-            onClick={() => setTypeOfTitle("future")}
-            role="presentation"
-          >
-            Sắp Chiếu
-          </li>
+          {["Lịch Chiếu", "Sắp Chiếu"].map((item) => (
+            <li
+              className={`nav-item ${typeOfTitle === item ? "active" : ""} `}
+              onClick={() => setTypeOfTitle(item)}
+              role="presentation"
+              key={item}
+            >
+              {item}
+            </li>
+          ))}
         </ul>
 
         <Swiper
@@ -80,11 +91,8 @@ const MovieList = (props) => {
             },
           }}
         >
-          {movieListNow?.map((item) => (
-            <SwiperSlide key={item.maPhim}>
-              <MovieItem movie={item} />
-            </SwiperSlide>
-          ))}
+          {/* Render MovieList By State (NOW/ COMING SOON) */}
+          {renderMovieListByNav(typeOfTitle)}
         </Swiper>
       </div>
     </div>

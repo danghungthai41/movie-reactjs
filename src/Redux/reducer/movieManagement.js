@@ -1,0 +1,4 @@
+const inititalState = {
+    isLoading: false,
+    
+}

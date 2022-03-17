@@ -87,6 +87,7 @@ export default function CheckOutLeft({
       return (
         <React.Fragment>
           <button
+            key={ghe.stt}
             onClick={() => {
               dispatch(createAction(PUSH_SELECTED_SEAT, ghe));
             }}

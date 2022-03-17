@@ -84,6 +84,7 @@ import cover from "../Assets/img/img_inforuser/cover.jpeg";
 import ticket from "../Assets/img/ticket.png";
 import defaultFilm from "../Assets/img/dummyDataa/defaultFilm.jpeg";
 import dummyImgMovie from "../Assets/img/img_movie/bi-mat-cua-gio.png"
+import spin from "../Assets/img/spin.jpeg"
 export default {
   logo,
   bhd,
@@ -170,5 +171,6 @@ export default {
   cover,
   ticket,
   defaultFilm,
-  dummyImgMovie
+  dummyImgMovie,
+  spin
 };

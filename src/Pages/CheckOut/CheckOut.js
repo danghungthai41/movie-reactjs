@@ -14,9 +14,10 @@ import Header from "../../Component/Header";
 
 function CheckOut() {
   // const maLichChieu = props.match.params.maLichChieu;
-  const {maLichChieu} = useParams();
+  const { maLichChieu } = useParams();
   const dispatch = useDispatch();
-  const history = useHistory();
+  const { isLoading } = useSelector((state) => state.loading);
+
   useEffect(() => {
     dispatch(fetchTicketRoom(maLichChieu));
   }, [maLichChieu]);
@@ -42,15 +43,22 @@ function CheckOut() {
   const ticketRoomList = useSelector((state) => state.booking.ticketRoomList);
   const { thongTinPhim } = ticketRoomList;
   return localStorage.getItem("token") ? (
-    <div className="checkout text-white">
-      <div className="checkout__cover row">
-        <CheckOutLeft ticketRoomList={ticketRoomList} />
-        <CheckOutRight thongTinPhim={thongTinPhim} />
-
-        
+    <>
+      {isLoading && (
+        <div className="loader">
+          <img src={img.spin} alt="" className="loading rotating" />
+        </div>
+      )}
+      <div className="checkout text-white">
+        <div className="checkout__cover row">
+          <CheckOutLeft ticketRoomList={ticketRoomList} />
+          <CheckOutRight thongTinPhim={thongTinPhim} />
+        </div>
       </div>
-    </div> 
-  ) : <Home/>
+    </>
+  ) : (
+    <Home />
+  );
 }
 
 export default React.memo(CheckOut);

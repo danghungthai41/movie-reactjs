@@ -30,7 +30,7 @@ const AppDowload = () => {
   return (
     <div
       className="app__download"
-      id="section4"
+      id="ungDung"
       style={{ backgroundImage: `url(${img.poster})` }}
     >
       <div className="app__download__container container">
