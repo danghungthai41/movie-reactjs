@@ -18,8 +18,9 @@ import createAction from "../../Redux/action";
 import { withStyles } from "@material-ui/core";
 import Header from "../../Component/Header";
 import { ADD_USER } from "../../Redux/constants";
-import Layout from "../../HOCS/layout";
+import img from "../../Theme/icons";
 import Swal from "sweetalert2";
+import { NavLink } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -103,92 +104,91 @@ class SignUp extends Component {
   };
   render() {
     return (
-      <React.Fragment>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <div>
-            <Typography component="h1" variant="h4" align="center">
-              Đăng Ký
-            </Typography>
-            <form onSubmit={this.handleOnSubmit}>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    name="taiKhoan"
-                    label="Tài khoản"
-                    onChange={this.handleOnChange}
-                  />
+      <div style={{ backgroundImage: `url(${img.banner})` }} className="signin">
+        <div>
+          <Container
+            component="div"
+            maxWidth="sm"
+            style={{ transform: "translateY(110px)" }}
+          >
+            <div
+              style={{ background: "#fff", padding: 35, borderRadius: "10px" }}
+            >
+              <Typography className="pr-0 mb-4" component="h1" variant="h4">
+                ĐĂNG KÝ
+              </Typography>
+              <form onSubmit={this.handleOnSubmit} autoComplete="off">
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      name="taiKhoan"
+                      label="Tài khoản"
+                      onChange={this.handleOnChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      name="matKhau"
+                      label="Mật khẩu"
+                      type="password"
+                      onChange={this.handleOnChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      label="Họ và tên"
+                      name="hoTen"
+                      onChange={this.handleOnChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      label="Email"
+                      name="email"
+                      onChange={this.handleOnChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      label="Số điện thoại"
+                      className="mb-3"
+                      name="soDt"
+                      onChange={this.handleOnChange}
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    name="matKhau"
-                    label="Mật khẩu"
-                    type="password"
-                    onChange={this.handleOnChange}
-                  />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className="mb-3"
+
+                >
+                  ĐĂNG KÝ
+                </Button>
+                <Grid container justify="flex-end">
+                  <Grid item>
+                    <NavLink to="/signin">
+                      Bạn đã có tài khoản? Đăng Nhập
+                    </NavLink>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    label="Họ và tên"
-                    name="hoTen"
-                    onChange={this.handleOnChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    label="Email"
-                    name="email"
-                    onChange={this.handleOnChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    label="Số điện thoại"
-                    name="soDt"
-                    onChange={this.handleOnChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox value="allowExtraEmails" color="primary" />
-                    }
-                    label="I want to receive inspiration, marketing promotions and updates via email."
-                  />
-                </Grid>
-              </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
-                Sign Up
-              </Button>
-              <Grid container justify="flex-end">
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    Already have an account? Sign in
-                  </Link>
-                </Grid>
-              </Grid>
-            </form>
-          </div>
-          <Box mt={5}>
-            <Copyright />
-          </Box>
-        </Container>
-      </React.Fragment>
+              </form>
+            </div>
+          </Container>
+        </div>
+      </div>
     );
   }
 }

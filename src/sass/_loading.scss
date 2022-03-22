@@ -1,16 +1,14 @@
-.loader{
+.loader {
   position: fixed;
   height: 100%;
   width: 100%;
   background-color: #3130304a;
   z-index: 5000;
-  .loading{
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 50%;
-    left: 47%;
-    border-radius: 50%;
+  .loading {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     // transform: translateX(-50%);
   }
 }

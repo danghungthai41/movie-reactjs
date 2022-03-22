@@ -32,6 +32,7 @@
     left: 0;
     z-index: 10;
     position: fixed;
+    
     &.display-menu{
       animation: open 0.5s;
     }
@@ -46,30 +47,31 @@
         margin-left: 4px;
       }
     }
-    .MuiPaper-root{
-      height: 100%;
-      background-color: #001529 !important;
-      color: #fff !important;
-      font-size: 20px;
-      .MuiListItem-button{
-        border-radius: 4px !important;
-        .nav-link{
-          color: #fff;
-        }
-        &:hover{
-          color: #001529 !important;
-          transition: 0.5s all;
-          background-color: #6A5AF9 !important;
-          .nav-link{
-            color: #001529;
-            transition: 0.5s all;
-          }
-        }
+    
+  }
+}
+.MuiList-root{
+  height: 100%;
+  background-color: #001529 !important;
+  color: #fff !important;
+  font-size: 20px;
+  .MuiListItem-button{
+    border-radius: 4px !important;
+    .nav-link{
+      display: inline-block;
+      color: #fff;
+    }
+    &:hover{
+      color: #001529 !important;
+      transition: 0.5s all;
+      background-color: #6A5AF9 !important;
+      .nav-link{
+        color: #001529;
+        transition: 0.5s all;
       }
     }
   }
 }
-
 
 @keyframes open {
   from {

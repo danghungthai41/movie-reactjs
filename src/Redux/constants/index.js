@@ -19,4 +19,6 @@ export const URL = "http://movieapi.cyberlearn.vn/api/QuanLyRap";
 export const HIDDEN_LOADING = "HIDDEN_LOADING";
 export const DISPLAY_LOADING = "DISPLAY_LOADING";
 export const BOOKING_SUCCESS = "BOOKING_SUCCESS";
+export const FETCH_MOVIE_INFO = "FETCH_MOVIE_INFO";
+export const FETCH_USERS_LIST = "FETCH_USERS_LIST";
 

@@ -57,7 +57,6 @@ class SignIn extends Component {
         title: "Đăng Nhập Thành Công",
         icon: "success",
       });
-      // localStorage.setItem("taiKhoan", this.state.account.taiKhoan);
 
       this.props.history.goBack();
     } catch (err) {
@@ -72,69 +71,63 @@ class SignIn extends Component {
   };
   render() {
     return (
-      <div
-        style={{
-          background: `url(${img.banner})`,
-          padding: "100px 0px",
-          backgroundPosition: "center",
-          backgroundSize: "contain",
-          backgroundRepeat: "no-repeat",
-          width: "100%",
-        }}
-      >
-        <Container
-          component="main"
-          maxWidth="xs"
-          style={{ background: "#fff", padding: 50 }}
-        >
-          <CssBaseline />
-          <div>
-            <Avatar></Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <form onSubmit={this.handleOnSubmit}>
-              <TextField
-                variant="outlined"
-                fullWidth
-                label="Username"
-                name="taiKhoan"
-                onChange={this.handleOnChange}
-                style={{ marginTop: 10 }}
-              />
-              <TextField
-                style={{ marginTop: 10 }}
-                variant="outlined"
-                fullWidth
-                name="matKhau"
-                label="Password"
-                type="password"
-                onChange={this.handleOnChange}
-              />
-              <Typography>
-                Đăng nhập để được nhiều ưu đãi, mua vé và bảo mật thông tin!
+      <div style={{ backgroundImage: `url(${img.banner})` }} className="signin">
+        <div>
+          <Container
+            component="div"
+            maxWidth="sm"
+            style={{ transform: "translateY(110px)" }}
+          >
+            <div
+              style={{ background: "#fff", padding: 35, borderRadius: "10px" }}
+            >
+              <Typography className="pr-0" component="h1" variant="h4">
+                ĐĂNG NHẬP
               </Typography>
+              <form onSubmit={this.handleOnSubmit}>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  label="Tài Khoản"
+                  name="taiKhoan"
+                  onChange={this.handleOnChange}
+                  style={{ marginTop: "20px"}}
+                />
+                <TextField
+                  style={{ marginTop: "20px"}}
+                  variant="outlined"
+                  fullWidth
+                  name="matKhau"
+                  label="Mật Khẩu"
+                  type="password"
+                  onChange={this.handleOnChange}
+                />
+                <Typography    style={{ margin: "20px 0px"}}>
+                  Đăng nhập để được nhiều ưu đãi, mua vé và bảo mật thông tin!
+                </Typography>
 
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
-                Sign In
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  Nếu bạn chưa có tài khoản,
-                  <NavLink to="/signup" variant="body2">
-                    hãy đăng kí tài khoản tại đây
-                  </NavLink>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  style={{ marginBottom: "20px"}}
+
+                >
+                  Sign In
+                </Button>
+                <Grid container >
+                  <Grid item xs>
+                    Nếu bạn chưa có tài khoản,
+                    <NavLink to="/signup" variant="body2">
+                      {" "}hãy đăng kí tài khoản tại đây.
+                    </NavLink>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </form>
-          </div>
-        
-        </Container>
+              </form>
+            </div>
+          </Container>
+        </div>
       </div>
     );
   }

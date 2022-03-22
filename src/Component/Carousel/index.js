@@ -14,6 +14,7 @@ import "swiper/swiper.scss";
 import "swiper/modules/navigation/navigation.scss";
 
 import { Navigation } from "swiper";
+import Loader from "../Loading";
 
 function Carousel() {
   const dispatch = useDispatch();
@@ -69,15 +70,7 @@ function Carousel() {
   ];
   return (
     <>
-      {isLoading && (
-        <div className="loader">
-           <img
-              src={img.spin}
-              alt=""
-              className="loading rotating"
-            />
-        </div>
-      )}
+      {isLoading && <Loader />}
 
       <section className="carousel">
         <Swiper

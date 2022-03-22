@@ -161,7 +161,7 @@ export default function RenderShowTime() {
             );
           })
         ) : (
-          <div>
+          <div className="noShowTime">
             <p>Không có lịch chiếu phim</p>
           </div>
         )}

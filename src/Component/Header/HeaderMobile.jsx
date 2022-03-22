@@ -40,13 +40,6 @@ const HeaderMobile = ({ dispatch, token }) => {
         <div
           className={`header-nav ${openMenu ? "display-menu" : "hidden-menu"}`}
         >
-          <Paper
-            sx={{
-              height: "100%",
-            }}
-            className=""
-            variant="outlined"
-          >
             <MenuList>
               <h4>
                 <IoPersonCircleSharp size={45} />
@@ -125,7 +118,7 @@ const HeaderMobile = ({ dispatch, token }) => {
                 <>
                   <MenuItem>
                     <IoRibbonSharp />
-                    <HashLink to="/dashboard" className="nav-link">
+                    <HashLink to="/dashboard/users" className="nav-link">
                       TRANG QUẢN TRỊ
                     </HashLink>
                   </MenuItem>
@@ -165,7 +158,6 @@ const HeaderMobile = ({ dispatch, token }) => {
                 </MenuItem>
               )}
             </MenuList>
-          </Paper>
         </div>
       )}
     </nav>

@@ -20,9 +20,10 @@ import AddNew from "./Pages/Admin/AddNew/AddNew";
 import { useDispatch } from "react-redux";
 import CheckOut from "./Pages/CheckOut/CheckOut";
 import Header from "./Component/Header";
+import Edit from "./Pages/Admin/Edit/Edit";
 
-export const history = useHistory;
 const App = () => {
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -98,7 +99,13 @@ const App = () => {
           </AdminTemplate>
         </Route>
 
-        <Route path="/dashboard/showtimeadmin" exact>
+        <Route path="/dashboard/edit/:maPhim" exact>
+          <AdminTemplate>
+            <Edit />
+          </AdminTemplate>
+        </Route>
+
+        <Route path="/dashboard/showtime/:maPhim/:tenPhim" exact>
           <AdminTemplate>
             <ShowTimeAdmin />
           </AdminTemplate>

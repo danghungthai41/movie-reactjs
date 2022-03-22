@@ -90,11 +90,9 @@ export default function Header() {
   return (
     <>
       {isMobile.width < 768 ? (
-        <HeaderMobile dispatch={dispatch} token={token}/>
+        <HeaderMobile dispatch={dispatch} token={token} />
       ) : (
-        <nav
-          className="myNavBar navbar navbar-expand-md"
-        >
+        <nav className="myNavBar navbar navbar-expand-md">
           <div className="col-md-10 col-lg-8">
             <div className="myNavBar__left navbar">
               <NavLink to="/">
@@ -159,13 +157,14 @@ export default function Header() {
               <div className="myNavBar__login">
                 {token ? (
                   <div className="myNavBar__login--cover">
-                    <IconButton
-                      onClick={handleMenu}
-                      color="inherit"
-                    >
+                    <IconButton onClick={handleMenu} color="inherit">
                       <img
-                        style={{ width: 30, borderRadius: "50%" }}
-                        src={img.catCry}
+                        style={{ width: 30, height: 30, borderRadius: "50%" }}
+                        src={
+                          localStorage.getItem("avatar")
+                            ? JSON.parse(localStorage.getItem("avatar"))
+                            : img.catCry
+                        }
                         className=""
                         alt=""
                       />
@@ -192,7 +191,9 @@ export default function Header() {
                       </MenuItem>
                       {localStorage.getItem("userLogin") === "QuanTri" && (
                         <MenuItem>
-                          <NavLink to="/dashboard">Trang Quản Trị</NavLink>
+                          <NavLink className="text-white" to="/dashboard/users">
+                            Trang Quản Trị
+                          </NavLink>
                         </MenuItem>
                       )}
                       <MenuItem
@@ -231,8 +232,11 @@ export default function Header() {
                       src={img.imgNotToken}
                       alt=""
                     />{" "}
-                    <NavLink to="/signin" style={{ marginRight: 10 }}>
-                      <span className="abc">Đăng Nhập</span>
+                    <NavLink
+                      to="/signin"
+                      style={{ marginRight: 10, color: "#000" }}
+                    >
+                      Đăng Nhập
                     </NavLink>
                   </>
                 )}

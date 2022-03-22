@@ -30,7 +30,6 @@ const renderRoute = (condition, message) => {
     );
   };
 };
-
 export const LoginRoute = renderRoute(
   localStorage.getItem("token"),
   "Bạn vui lòng đăng nhập"

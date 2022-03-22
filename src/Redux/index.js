@@ -7,6 +7,8 @@ import cinema from "./reducer/cinema";
 import booking from "./reducer/booking";
 import myref from "./reducer/myref";
 import loading from "./reducer/loading";
+import movieManagement from "./reducer/movieManagement";
+import usersManagement from "./reducer/usersManagement";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
   movie,
@@ -16,7 +18,8 @@ const rootReducer = combineReducers({
   booking,
   myref,
   loading,
-
+  movieManagement,
+  usersManagement
 
 });
 const store = createStore(

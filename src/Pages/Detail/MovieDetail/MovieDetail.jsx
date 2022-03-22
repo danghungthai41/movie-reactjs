@@ -1,16 +1,11 @@
 import { Star } from "@material-ui/icons";
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
 import img from "../../../Theme/icons";
 import Dialog from "@material-ui/core/Dialog";
-import { IoPlay } from "react-icons/io5";
 
-import {
-  IoEyeSharp,
-  IoStar,
-  IoReorderFour,
-  IoPlayCircleSharp,
-} from "react-icons/io5";
+import { IoEyeSharp, IoStar, IoReorderFour } from "react-icons/io5";
+import { useSelector } from "react-redux";
+import Loader from "../../../Component/Loading";
 import { HashLink } from "react-router-hash-link";
 
 const getThoiLuong = (arrLichChieu) => {
@@ -38,9 +33,8 @@ const countingStar = (danhGia) => {
 
 export default function MovieDetail(props) {
   const { movieDetail } = props;
-
-  const [open, setOpen] = React.useState(false);
-
+  const { isLoading } = useSelector((state) => state.loading);
+  const [isOpen, setIsOpen] = useState(false);
   const RenderStar = (countingStar) => {
     const arrStar = [];
     for (let index = 0; index < countingStar; index++) {
@@ -49,128 +43,120 @@ export default function MovieDetail(props) {
     return arrStar;
   };
   return (
+    <>
+      {isLoading && <Loader />}
 
-   
-  
-    <div
-      className="movieDetail__top"
-      // style={{ backgroundImage: `url(${movieDetail.hinhAnh})` }}
-    >
-      <div className="movieDetail__overlay"></div>
+      <div className="movieDetail__top">
+        <div className="movieDetail__overlay"></div>
 
-      <div className="movieDetail__cover row">
-        <div className="col-12 col-xl-6">
-          <div className="movieDetail__img">
-            <img
-              src={img.xoay}
-              alt=""
-              className="movieDeatail__imgRotate rotating"
-            />
-            <img
-              src={movieDetail?.hinhAnh}
-              alt=""
-              className="movieDeatail__imgMovie"
-            />
-            <div className="overlay"></div>
+        <div className="movieDetail__cover row">
+          <div className="col-12 col-xl-6">
+            <div className="movieDetail__img">
+              <img
+                src={img.xoay}
+                alt=""
+                className="movieDeatail__imgRotate rotating"
+              />
+              <img
+                src={movieDetail?.hinhAnh}
+                alt=""
+                className="movieDeatail__imgMovie"
+              />
+              <div className="overlay"></div>
 
-            <img
-              src={img.buttonPlay}
-              className="button__play"
-              onClick={() => setOpen(true)}
-              alt=""
-            />
-          </div>
-        </div>
-
-        <div className="col-12 col-xl-6">
-          <div
-            className="movieDetail__infoMovie" // style={{ backgroundImage: `url(${movieDetail.hinhAnh})` }}
-          >
-            {/* <p>
-    {new Date(movieDetail.ngayKhoiChieu).toLocaleDateString("en-GB")}
-  </p> */}
-            <p className="movieDetail__title">{movieDetail.tenPhim}</p>
-            <p>
-              Thời Lương: {getThoiLuong(movieDetail.lichChieu)} phút -{" "}
-              {movieDetail.danhGia} IMDb - 2D/Digital
-            </p>
-            <div className="movieDetail__typography">
-              <div className="col-4">
-                <IoEyeSharp />
-                <p>3005</p>
-              </div>
-              <div className="col-4">
-                <IoStar />
-                <p>269</p>
-              </div>
-              <div className="col-4">
-                <IoReorderFour />
-                <p>269</p>
-              </div>
+              <img
+                src={img.buttonPlay}
+                className="button__play"
+                onClick={() => setIsOpen(true)}
+                alt=""
+              />
             </div>
-            <div className="flex align-center justify-between">
-              <div className="movieDetail__content">
-                <p className="m-0">Nhà sản xuất: Mike Tyson</p>
-                <p className="m-0">Quốc gia: Mỹ</p>
-                <p className="mb-2">Thể loại: Hành động</p>
-                <p>Nội Dung: {movieDetail.moTa}</p>
+          </div>
+
+          <div className="col-12 col-xl-6">
+            <div className="movieDetail__infoMovie">
+              <p className="movieDetail__title">{movieDetail.tenPhim}</p>
+              <p>
+                Thời Lương: {getThoiLuong(movieDetail.lichChieu)} phút -{" "}
+                {movieDetail.danhGia} IMDb - 2D/Digital
+              </p>
+              <div className="movieDetail__typography">
+                <div className="col-4">
+                  <IoEyeSharp />
+                  <p>3005</p>
+                </div>
+                <div className="col-4">
+                  <IoStar />
+                  <p>269</p>
+                </div>
+                <div className="col-4">
+                  <IoReorderFour />
+                  <p>269</p>
+                </div>
               </div>
+              <div className="flex align-center justify-between">
+                <div className="movieDetail__content">
+                  <p className="m-0">Nhà sản xuất: Mike Tyson</p>
+                  <p className="m-0">Quốc gia: Mỹ</p>
+                  <p className="mb-2">Thể loại: Hành động</p>
+                  <p>Nội Dung: {movieDetail.moTa}</p>
+                </div>
 
-              <div className="movieDetail__rate">
-                <div className="movieDetail__percent ">
-                  <svg className="w-100">
-                    <circle cx={57} cy={57} r={57} />
-                    <circle
-                      cx={57}
-                      cy={57}
-                      r={57}
-                      style={{
-                        strokeDashoffset: `calc(358 - (358 * ${movieDetail?.danhGia})/10)`,
-                      }}
-                    />
-                  </svg>
+                <div className="movieDetail__rate">
+                  <div className="movieDetail__percent ">
+                    <svg className="w-100">
+                      <circle cx={57} cy={57} r={57} />
+                      <circle
+                        cx={57}
+                        cy={57}
+                        r={57}
+                        style={{
+                          strokeDashoffset: `calc(358 - (358 * ${movieDetail?.danhGia})/10)`,
+                        }}
+                      />
+                    </svg>
 
-                  <div className="number">
-                    <h2 className="mb-0 mr-1">{movieDetail?.danhGia}</h2>
+                    <div className="number">
+                      <h2 className="mb-0 mr-1">{movieDetail?.danhGia}</h2>
+                    </div>
+                  </div>
+                  <div className="star">
+                    {RenderStar(countingStar(movieDetail?.danhGia))}
+                    <p>115 người đánh giá</p>
                   </div>
                 </div>
-                <div className="star">
-                  {RenderStar(countingStar(movieDetail?.danhGia))}
-                  <p>115 người đánh giá</p>
-                </div>
               </div>
-            </div>
 
-            <button className="buttonStyle mr-3">
-              <HashLink
-                to={`/detail/${movieDetail?.maPhim}#lichChieuChiTiet`}
-                className="nav-link"
-                scroll={(el) =>
-                  el.scrollIntoView({ behavior: "auto", block: "end" })
-                }
-              >
-                Mua Vé
-              </HashLink>
-            </button>
+              <button className="buttonStyle mr-3">
+                <HashLink
+                  to={`/detail/${movieDetail?.maPhim}#lichChieuChiTiet`}
+                  className="nav-link"
+                  scroll={(el) =>
+                    el.scrollIntoView({ behavior: "auto", block: "end" })
+                  }
+                >
+                  Mua Vé
+                </HashLink>
+              </button>
+            </div>
           </div>
         </div>
+        <Dialog
+          onClose={() => setIsOpen(false)}
+          aria-labelledby="customized-dialog-title"
+          open={isOpen}
+        >
+          <iframe
+            width="900"
+            height="600"
+            src={movieDetail?.trailer}
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>{" "}
+        </Dialog>
       </div>
-      <Dialog
-        onClose={() => setOpen(false)}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <iframe
-          width="900"
-          height="600"
-          src={movieDetail?.trailer}
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>{" "}
-      </Dialog>
-    </div>
- 
+    </>
   );
 }

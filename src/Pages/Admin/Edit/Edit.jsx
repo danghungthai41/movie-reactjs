@@ -11,42 +11,54 @@ import {
   TreeSelect,
   Switch,
 } from "antd";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, set } from "react-hook-form";
 import moment from "moment";
-import { useDispatch } from "react-redux";
-import { addNewMovie } from "../../../Redux/action/movieManagement";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+// import { fetchMovieInfo } from "../../../Redux/action/movieManagement";
+import img from "../../../Theme/icons";
+import request from "../../../configs/axios";
+import {
+  fetchMovieInfo,
+  handleUpdateMovieUpload,
+} from "../../../Redux/action/movieManagement";
+import { Watch } from "@material-ui/icons";
 
-export default function AddNew() {
+const Edit = () => {
+  const { movieInfo } = useSelector((state) => state.movieManagement);
   const dispatch = useDispatch();
-  const [imgPreview, setImgPreview] = useState("");
+  const [imgPreview, setImgPreview] = useState();
+
   const {
     handleSubmit,
-    watch,
     register,
     formState: { errors },
     control,
+    watch,
     setValue,
     getValues,
-    value,
   } = useForm({
     defaultValues: {
-      tenPhim: "",
-      trailer: "",
-      moTa: "",
-      ngayKhoiChieu: "",
-      dangChieu: false,
-      sapChieu: false,
-      hot: false,
-      danhGia: 0,
+      biDanh: movieInfo.biDanh,
+      maPhim: movieInfo.maPhim,
+      tenPhim: movieInfo.tenPhim,
+      trailer: movieInfo.trailer,
+      moTa: movieInfo.moTa,
+      ngayKhoiChieu: moment(movieInfo.ngayKhoiChieu),
+      dangChieu: movieInfo.dangChieu,
+      sapChieu: movieInfo.sapChieu,
+      hot: movieInfo.hot,
+      danhGia: movieInfo.danhGia,
       maNhom: "GP09",
-      hinhAnh: null,
+      hinhAnh: [],
     },
   });
 
   const watchImg = watch("hinhAnh", []);
 
   useEffect(() => {
-    if (!watchImg[0]) return;
+    console.log("watchImg",watchImg)
+    if (watchImg.length < 1) return;
     const fileReader = new FileReader();
 
     fileReader.readAsDataURL(watchImg[0]);
@@ -57,24 +69,39 @@ export default function AddNew() {
 
   const onSubmit = (values) => {
     const formData = new FormData();
-    for (const key in values) {
-      if (key !== "hinhAnh"){
-        formData.append(key, values[key]);
-      } else {
-        formData.append('hinhAnh', values.hinhAnh[0]);
-      }
+    // for (const key in values) {
+    //   if(key !== "hinhAnh"){
+    //     formData.append(key, values[key]);
+    //   } else if(values.hinhAnh) {
+    //     formData.append('hinhAnh', imgPreview);
+    //   }
+    // }
+
+    formData.append("maPhim", values.maPhim);
+    formData.append("tenPhim", values.tenPhim);
+    formData.append("trailer", values.trailer);
+    formData.append("moTa", values.moTa);
+    formData.append("ngayKhoiChieu", values.ngayKhoiChieu.format("DD/MM/YYYY"));
+    formData.append("dangChieu", values.dangChieu);
+    formData.append("sapChieu", values.sapChieu);
+    formData.append("hot", values.hot);
+    formData.append("danhGia", values.danhGia);
+    if (values.hinhAnh >= 1) {
+      formData.append("hinhAnh", imgPreview);
     }
-   
-    console.log(values);
-    dispatch(addNewMovie(formData));
-  };
-  const handleChangeDatePicker = (values) => {
-    setValue("ngayKhoiChieu", moment(values).format("DD/MM/YYYY"));
+    formData.append("maNhom", values.maNhom);
+    formData.append("biDanh", values.biDanh);
+    dispatch(handleUpdateMovieUpload(formData));
   };
 
-  return (
+  const handleChangeDatePicker = (values) => {
+    const ngayKhoiChieu = moment(values);
+    setValue("ngayKhoiChieu", ngayKhoiChieu);
+  };
+
+  return movieInfo ? (
     <>
-      <h1 style={{ fontSize: 24 }}>THÊM PHIM MỚI</h1>
+      <h1 style={{ fontSize: 24 }}>CẬP NHẬT PHIM</h1>
       <Form
         onSubmitCapture={handleSubmit(onSubmit)}
         labelCol={{
@@ -114,7 +141,10 @@ export default function AddNew() {
           control={control}
           render={({ field }) => (
             <Form.Item label="Mô Tả">
-              <Input {...field} />
+              <Input
+                {...field}
+                // value={movieInfo.moTa}
+              />
             </Form.Item>
           )}
         />
@@ -128,7 +158,6 @@ export default function AddNew() {
                 format={"DD/MM/YYYY"}
                 {...field}
                 onChange={handleChangeDatePicker}
-                value={value}
               />
             </Form.Item>
           )}
@@ -170,7 +199,7 @@ export default function AddNew() {
           rules={{ required: true }}
           render={({ field }) => (
             <Form.Item label="Đánh Giá">
-              <InputNumber {...field} min={1} max={10} defaultValues={1} />
+              <InputNumber {...field} min={1} max={10} />
             </Form.Item>
           )}
         />
@@ -182,18 +211,28 @@ export default function AddNew() {
             accept="image/png, image/jpeg, image/jpg, image/gif"
           />
           <img
-            src={imgPreview}
+            src={imgPreview ? imgPreview : movieInfo.hinhAnh}
             style={{ width: 200, height: 200, position: "relative" }}
             alt=""
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null;
+              currentTarget.src = "https://picsum.photos/200/300";
+            }}
           />
         </Form.Item>
 
         <Form.Item label="Button">
           <button className="buttonStyle" type="submit">
-            Thêm Phim
+            Cập Nhật
           </button>
         </Form.Item>
       </Form>
     </>
+  ) : (
+    <div className="loader">
+      <img src={img.spin} alt="" className="loading rotating" />
+    </div>
   );
-}
+};
+
+export default Edit;

@@ -16,6 +16,7 @@ import { fetchBookingMovie } from "../../Redux/action/cinema";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import img from "../../Theme/icons";
+import Loader from "../Loading";
 
 const BookingMobile = () => {
   const [currency, setCurrency] = React.useState("EUR");
@@ -63,11 +64,7 @@ const BookingMobile = () => {
 
   return (
     <>
-      {isLoading && (
-        <div className="loader">
-          <img src={img.spin} alt="" className="loading rotating" />
-        </div>
-      )}
+      {isLoading && <Loader />}
 
       <div className="booking-mobile">
         <div className="booking-mobile-container">

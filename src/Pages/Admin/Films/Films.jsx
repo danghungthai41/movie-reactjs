@@ -1,21 +1,28 @@
 import { Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { Input } from "antd";
-import { AudioOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovieList } from "../../../Redux/action/movie";
 import img from "../../../Theme/icons";
 import { NavLink } from "react-router-dom";
-import { IoTrashOutline, IoPencilOutline } from "react-icons/io5";
-const { Search } = Input;
+import {
+  IoTrashOutline,
+  IoPencilOutline,
+  IoCalendarNumberSharp,
+} from "react-icons/io5";
+import { deleteMovie } from "../../../Redux/action/movieManagement";
+import Swal from "sweetalert2";
+import request from "../../../configs/axios";
+import createAction from "../../../Redux/action";
+import { FETCH_MOVIE_INFO, HIDDEN_LOADING } from "../../../Redux/constants";
+import { useHistory } from "react-router-dom";
 
 export default function Films() {
   const dispatch = useDispatch();
-  const onSearch = (value) => console.log(value);
+  const history = useHistory();
   const { movieList } = useSelector((state) => state.movie);
   const [searchMovie, setSearchMovie] = useState("");
   const [newMovieList, setNewMovieList] = useState();
-
   useEffect(() => {
     dispatch(fetchMovieList("GP09"));
   }, []);
@@ -27,7 +34,35 @@ export default function Films() {
     setNewMovieList(filterData.reverse());
   }, [searchMovie, movieList]);
 
- 
+  const handleSwitchRoute = async (maPhim) => {
+    try {
+      const res = await request({
+        url: `http://movieapi.cyberlearn.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`,
+        method: "GET",
+      });
+      await dispatch(createAction(FETCH_MOVIE_INFO, res.data.content));
+      history.push(`/dashboard/edit/${maPhim}`);
+      dispatch(createAction(HIDDEN_LOADING));
+    } catch (error) {
+      dispatch(createAction(HIDDEN_LOADING));
+      console.log(error.response?.data);
+    }
+  };
+
+  const handleDeleteMovie = (maPhim) => {
+    Swal.fire({
+      icon: "warning",
+      title: "Bạn Chắc Chắn Muốn Xóa Phim",
+      showCancelButton: true,
+      confirmButtonText: "Đồng Ý",
+      cancelButtonText: "Hủy Bỏ",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        dispatch(deleteMovie(maPhim));
+      }
+    });
+  };
+
   const columns = [
     {
       title: "Mã Phim",
@@ -84,30 +119,37 @@ export default function Films() {
       title: "Hành Động",
       dataIndex: "hanhDong",
       render: (text, desc) => (
-        <>
-          <NavLink to="" style={{ color: "#fb4226" }}>
+        <p style={{ cursor: "pointer", fontSize: "20px" }}>
+          <span
+            onClick={() => handleDeleteMovie(desc.maPhim)}
+            style={{ color: "#fb4226" }}
+          >
             <IoTrashOutline />
-          </NavLink>
-          <NavLink to="">
+          </span>
+          <span onClick={() => handleSwitchRoute(desc.maPhim)}>
             <IoPencilOutline />
-          </NavLink>
-        </>
+          </span>
+          <span style={{ color: "#3b963b" }} onClick={()=> history.push(`/dashboard/showtime/${desc.maPhim}/${desc.tenPhim}`)}>
+            <IoCalendarNumberSharp />
+          </span>
+        </p>
       ),
     },
   ];
   const data = newMovieList;
 
   return (
-    <div>
+    <div className="p-4">
       <h2>Quản Lý Phim</h2>
-      <Search
+      <Input
         className="mb-3"
-        placeholder="Search Films"
-        // onSearch={onSearch}
-        enterButton
+        placeholder="Tìm Kiếm Phim"
         onChange={(e) => setSearchMovie(e.target.value)}
       />
-      <Table columns={columns} dataSource={data}  />
+      <NavLink to="/dashboard/addnew">
+        <button className="buttonStyle mb-2">Thêm Phim</button>
+      </NavLink>
+      <Table columns={columns} dataSource={data} />
     </div>
   );
 }

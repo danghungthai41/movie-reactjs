@@ -34,7 +34,7 @@ export const fetchCinemaList = async (dispatch) => {
       url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap`,
       method: "GET",
     });
-    await dispatch(createAction(FETCH_CINEMA_LIST, data));
+    dispatch(createAction(FETCH_CINEMA_LIST, data));
     dispatch(createAction(HIDDEN_LOADING));
   } catch (err) {
     dispatch(createAction(HIDDEN_LOADING));
@@ -47,7 +47,7 @@ export const fetchCinemaByCode = (maHeThongRap) => async (dispatch) => {
 
   try {
     const res = await request({
-      url: `https://movie0706.cybersoft.edu.vn/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP09`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${maHeThongRap}`,
       method: "GET",
     });
 

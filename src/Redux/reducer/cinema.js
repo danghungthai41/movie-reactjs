@@ -3,12 +3,15 @@ import {
   FETCH_CINEMA_LIST,
   FETCH_INFO_SHOWTIME,
   FETCH_SHOWTIME_BY_MOVIE,
+  FETCH_CINEMA_BY_CODE
 } from "../constants";
 let initialState = {
   infoBookingMovie: {},
   cinemaList: [],
   showTimeByMovieList: [],
   infoShowTime: [],
+  theaterList: []
+
   // filterLstDay: [],
 };
 const reducer = (state = initialState, { type, payload }) => {
@@ -18,6 +21,10 @@ const reducer = (state = initialState, { type, payload }) => {
       return { ...state };
     case FETCH_CINEMA_LIST:
       state.cinemaList = payload;
+      return { ...state };
+    case FETCH_CINEMA_BY_CODE:
+      state.theaterList = payload;
+      console.log("theaterList", state.theaterList)
       return { ...state };
     case FETCH_SHOWTIME_BY_MOVIE:
       state.showTimeByMovieList = payload;

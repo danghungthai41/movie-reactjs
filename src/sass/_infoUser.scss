@@ -12,9 +12,12 @@
       height: 320px;
       margin-bottom: 120px;
       .infoUser__item {
-        position: absolute;
-        bottom: -90px;
-        left: 40%;
+        transform: translateY(140px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
         // transform: translate(240%,50%);
         h3 {
           color: #000;

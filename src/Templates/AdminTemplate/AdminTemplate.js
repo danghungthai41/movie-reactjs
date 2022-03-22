@@ -13,15 +13,16 @@ import {
   useLocation,
   useParams,
 } from "react-router-dom";
-import { Box, Typography } from "@material-ui/core";
+import { Box, MenuItem, MenuList, Typography } from "@material-ui/core";
 import img from "../../Theme/icons";
 import Swal from "sweetalert2";
-import { IoChevronDownOutline } from "react-icons/io5";
+import { IoChevronDownOutline, IoHome } from "react-icons/io5";
 import { FaBoxes } from "react-icons/fa";
+import { HashLink } from "react-router-hash-link";
 
 export default function AdminTemplate(props) {
   const location = useLocation();
-  const [openSubMenu, setOpenSubMenu] = useState(false);
+  const [openSubMenu, setOpenSubMenu] = useState(true);
 
   const handleOpenSubMenu = () => {
     setOpenSubMenu(!openSubMenu);
@@ -45,72 +46,80 @@ export default function AdminTemplate(props) {
             color: "rgba(255, 255, 255, 0.65)",
           }}
         >
-          <NavLink to="/dashboard">
+          <NavLink to="/dashboard/users">
             <Typography>
               <img style={{ width: "50px" }} src={img.logo} alt="" />
-              <span>ADMIN</span>
+              <span className="ml-3">ADMIN</span>
             </Typography>
           </NavLink>
-          <List component="nav" aria-label="main mailbox folders">
-            <NavLink to="/dashboard">
-              <ListItem button>
-                <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon>
-                Dashboard
-              </ListItem>
-            </NavLink>
-            <NavLink to="/dashboard/users">
-              <ListItem button>
-                <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon>
-                Users
-              </ListItem>
-            </NavLink>
-            <ListItem button onClick={handleOpenSubMenu}>
+
+          <MenuList>
+            <MenuItem>
+              <IoHome />
+              <HashLink
+                to="/dashboard/users"
+                className="nav-link"
+                scroll={(el) =>
+                  el.scrollIntoView({ behavior: "auto", block: "end" })
+                }
+              >
+                Khách Hàng
+              </HashLink>
+            </MenuItem>
+
+            <MenuItem onClick={handleOpenSubMenu}>
+              <IoHome />
+              <div className="nav-link">
+                Films
+                <span className="text-right">
+                  <IoChevronDownOutline />
+                </span>
+              </div>
+            </MenuItem>
+            {/* <ListItem button>
               <ListItemIcon>
                 <DraftsIcon />
               </ListItemIcon>
-              Films
-              <span>
-                <IoChevronDownOutline />
-              </span>
-            </ListItem>
-            {openSubMenu && (
-              <Fragment>
-                <NavLink to="/dashboard/films">
-                  <ListItem button className="ml-4">
-                    <ListItemIcon>
-                      <DraftsIcon />
-                    </ListItemIcon>
-                    Films
-                  </ListItem>
-                </NavLink>
-                <NavLink to="/dashboard/addnew">
-                  <ListItem button className="ml-4">
-                    <ListItemIcon>
-                      <DraftsIcon />
-                    </ListItemIcon>
-                    Add New
-                  </ListItem>
-                </NavLink>
-              </Fragment>
-            )}
 
-            <NavLink to="/dashboard/showtimeadmin">
-              <ListItem button>
-                <ListItemIcon>
-                  <DraftsIcon />
-                </ListItemIcon>
-                ShowTimeAdmin
-              </ListItem>
-            </NavLink>
+            
+            </ListItem> */}
+            {openSubMenu && (
+              <>
+                <MenuItem>
+                  <div className="ml-4">
+                    <IoHome />
+                    <HashLink
+                      to="/dashboard/films"
+                      className="nav-link"
+                      scroll={(el) =>
+                        el.scrollIntoView({ behavior: "auto", block: "end" })
+                      }
+                    >
+                      Film
+                    </HashLink>
+                  </div>
+                </MenuItem>
+                <MenuItem>
+                  <div className="ml-4">
+                    <IoHome />
+                    <HashLink
+                      to="/dashboard/addnew"
+                      className="nav-link"
+                      scroll={(el) =>
+                        el.scrollIntoView({ behavior: "auto", block: "end" })
+                      }
+                    >
+                      Add New
+                    </HashLink>
+                  </div>
+                </MenuItem>
+              </>
+            )}
 
             <NavLink button to="/home" sx={{}}>
               <ListItemText primary="Trở lại trang chủ" />
             </NavLink>
-          </List>
+          </MenuList>
         </Box>
       </Box>
       <Box

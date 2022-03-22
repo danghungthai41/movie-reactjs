@@ -23,7 +23,7 @@ export const fetchMovieListPagination = (params) => async (dispatch) => {
     console.log(err.response?.data);
   }
 };
-export const fetchMovieList = (maNhom) => async (dispatch) => {
+export const fetchMovieList = (maNhom="GP09") => async (dispatch) => {
   try {
     const result = await request({
       url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=${maNhom}`,
