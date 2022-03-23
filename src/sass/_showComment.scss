@@ -1,0 +1,37 @@
+.tabDanhGia {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  .iconContainer {
+    text-align: center;
+    img {
+      display: block;
+      height: 70px;
+      width: 70px;
+      margin: auto;
+      border-radius: 50%;
+    }
+  }
+  .imgContainer {
+    text-align: center;
+    margin: 0.5rem 0;
+    button {
+      background: transparent;
+      border: transparent;
+      opacity: 0.3;
+      outline: none;
+    }
+    button.active,
+    button:hover {
+      opacity: 1;
+    }
+  }
+  textarea {
+    border: 1px solid #00000033;
+    width: 100%;
+    resize: none;
+    padding: 0.5rem;
+    outline: none;
+    border-radius: inherit;
+  }
+}

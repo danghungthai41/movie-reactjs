@@ -13,8 +13,9 @@ export const fetchInfoAccount = () => async (dispatch) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    await dispatch(createAction(USER_INFO, data.content));
     dispatch(createAction(HIDDEN_LOADING));
+
+    await dispatch(createAction(USER_INFO, data.content));
   } catch (err) {
     dispatch(createAction(HIDDEN_LOADING));
 

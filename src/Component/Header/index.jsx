@@ -82,11 +82,8 @@ export default function Header() {
   const handleMenu = (e) => {
     setAnchorEl(e.currentTarget);
   };
-  // const [isMobile, setIsMobile] = useState();
   const isMobile = useWindowSize();
-
   const [viewLocation, setViewLocation] = useState("Hồ Chí Minh");
-
   return (
     <>
       {isMobile.width < 768 ? (
@@ -95,7 +92,11 @@ export default function Header() {
         <nav className="myNavBar navbar navbar-expand-md">
           <div className="col-md-10 col-lg-8">
             <div className="myNavBar__left navbar">
-              <NavLink to="/">
+              <NavLink
+                exact={true}
+                to="/"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              >
                 <img className="myNavBar__logo" src={img.logo} alt="LOGO" />
               </NavLink>
               <ul className="nav myNavBar__title" id="myTab" role="tablist">
@@ -111,10 +112,6 @@ export default function Header() {
                   </HashLink>
                 </li>
                 <li className="nav-item" role="presentation">
-                  {/* <a href="#cumRap" className="nav-link">
-              Cụm Rạp
-            </a> */}
-
                   <HashLink
                     to="/#cumRap"
                     className="nav-link"
@@ -125,7 +122,6 @@ export default function Header() {
                     Cụm Rạp
                   </HashLink>
                 </li>
-
                 <li className="nav-item" role="presentation">
                   <HashLink
                     to="/#tinTuc"
@@ -137,7 +133,6 @@ export default function Header() {
                     Tin Tức
                   </HashLink>
                 </li>
-
                 <li className="nav-item" role="presentation">
                   <HashLink
                     to="/#ungDung"
@@ -210,6 +205,10 @@ export default function Header() {
                               localStorage.removeItem("userLogin");
                               dispatch(createAction(SET_TOKEN, ""));
                               dispatch(createAction(ADD_USER, ""));
+                              Swal.fire({
+                                title: "Đăng Xuất Thành Công",
+                                icon: "success",
+                              });
                             }
                           });
                         }}

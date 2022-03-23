@@ -20,7 +20,6 @@ export default function RenderShowTime() {
     (state) => state.cinema
   );
 
-  console.log({ showTimeByMovieList });
   const lstNavDay = showTimeByMovieList?.find(
     (item) => item.maHeThongRap === view
   );
@@ -98,7 +97,6 @@ export default function RenderShowTime() {
     if (filterLstDay) {
       return filterLstDay?.map((item, index) => {
         const date = new Date(item);
-        console.log({ date });
         return (
           index < 12 && (
             <li

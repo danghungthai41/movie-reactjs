@@ -1,4 +1,4 @@
-import logo from "../Assets/icons/binance.png";
+import logo from "../Assets/icons/logo_tix.png";
 import bhd from "../Assets/img/img_showtime/bhd.png";
 import cinestar from "../Assets/img/img_showtime/cinestar.png";
 import lotte from "../Assets/img/img_showtime/lotte.png";
@@ -32,7 +32,7 @@ import rap2 from "../Assets/img/img_showtime/rap2.jpg";
 import rap3 from "../Assets/img/img_showtime/rap3.jpg";
 import rap4 from "../Assets/img/img_showtime/rap4.jpg";
 import rap5 from "../Assets/img/img_showtime/rap5.jpg";
-import star from "../Assets/img/dummyDataa/star.png";
+import star from "../Assets/img/star.png";
 import dummyImg from "../Assets/img/dummyDataa/dummyData.jpeg";
 import bgImg from "../Assets/img/img__moviedetail/list_bg.jpg";
 import bgImg1 from "../Assets/img/img__moviedetail/bgImg.jpeg";
@@ -84,7 +84,7 @@ import cover from "../Assets/img/img_inforuser/cover.jpeg";
 import ticket from "../Assets/img/ticket.png";
 import defaultFilm from "../Assets/img/dummyDataa/defaultFilm.jpeg";
 import dummyImgMovie from "../Assets/img/img_movie/bi-mat-cua-gio.png"
-import spin from "../Assets/img/spin.jpeg"
+import star1 from "../Assets/img/star1.png";
 export default {
   logo,
   bhd,
@@ -172,5 +172,5 @@ export default {
   ticket,
   defaultFilm,
   dummyImgMovie,
-  spin
+  star1,
 };

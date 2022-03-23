@@ -1,24 +1,13 @@
 import React, { Component } from "react";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-// import styles from './style';
-import theme from "../../Theme";
 import request from "../../configs/axios";
 import createAction from "../../Redux/action";
 import { connect } from "react-redux";
 import { ADD_USER, SET_TOKEN, USER_INFO } from "../../Redux/constants";
-import Header from "../../Component/Header";
-import Layout from "../../HOCS/layout";
 import { NavLink } from "react-router-dom";
 import img from "../../Theme/icons";
 import Swal from "sweetalert2";
@@ -42,14 +31,10 @@ class SignIn extends Component {
         method: "POST",
         data: this.state.account,
       });
-
-      // data.
       localStorage.setItem("token", data.accessToken);
       localStorage.setItem("userLogin", data.maLoaiNguoiDung);
       localStorage.setItem("account", data.hoTen);
-
       localStorage.setItem("user", JSON.stringify(data));
-
       this.props.dispatch(createAction(USER_INFO, data));
       this.props.dispatch(createAction(SET_TOKEN, data.accessToken));
       this.props.dispatch(createAction(ADD_USER, data.maLoaiNguoiDung));
@@ -91,10 +76,10 @@ class SignIn extends Component {
                   label="Tài Khoản"
                   name="taiKhoan"
                   onChange={this.handleOnChange}
-                  style={{ marginTop: "20px"}}
+                  style={{ marginTop: "20px" }}
                 />
                 <TextField
-                  style={{ marginTop: "20px"}}
+                  style={{ marginTop: "20px" }}
                   variant="outlined"
                   fullWidth
                   name="matKhau"
@@ -102,7 +87,7 @@ class SignIn extends Component {
                   type="password"
                   onChange={this.handleOnChange}
                 />
-                <Typography    style={{ margin: "20px 0px"}}>
+                <Typography style={{ margin: "20px 0px" }}>
                   Đăng nhập để được nhiều ưu đãi, mua vé và bảo mật thông tin!
                 </Typography>
 
@@ -111,16 +96,16 @@ class SignIn extends Component {
                   fullWidth
                   variant="contained"
                   color="primary"
-                  style={{ marginBottom: "20px"}}
-
+                  style={{ marginBottom: "20px" }}
                 >
                   Sign In
                 </Button>
-                <Grid container >
+                <Grid container>
                   <Grid item xs>
                     Nếu bạn chưa có tài khoản,
                     <NavLink to="/signup" variant="body2">
-                      {" "}hãy đăng kí tài khoản tại đây.
+                      {" "}
+                      hãy đăng kí tài khoản tại đây.
                     </NavLink>
                   </Grid>
                 </Grid>

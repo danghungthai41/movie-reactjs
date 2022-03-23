@@ -2,8 +2,6 @@ export class InfoRoomTicket {
   thongTinPhim = new InfoMovie();
   danhSachGhe = [];
 }
-
-
 export class InfoMovie {
   maLichChieu = "";
   tenCumRap = "";
@@ -14,7 +12,6 @@ export class InfoMovie {
   ngayChieu = "";
   gioChieu = "";
 }
-
 export class Seet {
   maGhe = "";
   tenGhe = "";

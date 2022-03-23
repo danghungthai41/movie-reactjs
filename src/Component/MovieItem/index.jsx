@@ -1,16 +1,10 @@
 import React from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import img from "../../Theme/icons";
 import Dialog from "@material-ui/core/Dialog";
-import LoginRoute from "../../HOCS/route";
-import CheckOut from "../../Pages/CheckOut/CheckOut";
-import Swal from "sweetalert2";
-import { IoPlay } from "react-icons/io5";
-import { useHistory } from "react-router-dom";
 const MovieItem = (props) => {
   const { hinhAnh, tenPhim, maPhim, trailer, moTa } = props.movie;
-  const history = useHistory();
- 
+
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -28,7 +22,7 @@ const MovieItem = (props) => {
               src={hinhAnh}
               alt=""
               onError={({ currentTarget }) => {
-                currentTarget.onerror = null; 
+                currentTarget.onerror = null;
                 currentTarget.src = "https://picsum.photos/200/300";
               }}
             />

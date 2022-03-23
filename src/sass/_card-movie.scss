@@ -1,5 +1,4 @@
 .card {
-  // max-width: 210px;
   .mySwiper {
     width: inherit !important;
   }
@@ -15,6 +14,7 @@
       width: 210px;
       height: 300px;
       border-radius: 4px;
+      object-fit: cover;
     }
   }
   .card__item {
@@ -88,6 +88,7 @@
         img {
           transform: scale(1.05);
           transition: 1s all;
+          object-fit: cover;
         }
         .card__play {
           &:hover {

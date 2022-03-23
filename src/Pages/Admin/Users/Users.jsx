@@ -45,7 +45,6 @@ export default function Users() {
         });
       });
   };
-  console.log({ usersList });
   const columns = [
     {
       title: "Tài Khoản",

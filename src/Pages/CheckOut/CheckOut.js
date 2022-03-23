@@ -11,44 +11,35 @@ import Swal from "sweetalert2";
 import { useHistory, useParams } from "react-router-dom";
 import Home from "../Home";
 import Header from "../../Component/Header";
+import Loader from "../../Component/Loading";
 
 function CheckOut() {
-  // const maLichChieu = props.match.params.maLichChieu;
-  const { maLichChieu } = useParams();
+  const history = useHistory();
   const dispatch = useDispatch();
+  const { maLichChieu } = useParams();
   const { isLoading } = useSelector((state) => state.loading);
 
   useEffect(() => {
     dispatch(fetchTicketRoom(maLichChieu));
   }, [maLichChieu]);
-
-  // useEffect(() => {
-  //   if (!localStorage.getItem("token")) {
-  //     Swal.fire({
-  //       icon: "warning",
-  //       title: "Bạn vui lòng đăng nhập",
-  //       showCancelButton: true,
-  //       confirmButtonText: "Tới trang đăng nhập",
-  //       cancelButtonText: "Hủy Bỏ",
-  //     }).then((res) => {
-  //       if (res.isConfirmed) {
-  //         history.push("/signin");
-  //       } else {
-  //         history.replace("/");
-  //       }
-  //     });
-  //   }
-  // }, []);
-
   const ticketRoomList = useSelector((state) => state.booking.ticketRoomList);
   const { thongTinPhim } = ticketRoomList;
-  return localStorage.getItem("token") ? (
+  if (!localStorage.getItem("token")) {
+    Swal.fire({
+      title: "Bạn Vui Lòng Đăng Nhập",
+      icon: "warning",
+      showCancelButton: true,
+    }).then(({ isConfirmed }) => {
+      if (isConfirmed) {
+        history.push("/signin");
+      } else {
+        history.push("/");
+      }
+    });
+  }
+  return (
     <>
-      {isLoading && (
-        <div className="loader">
-          <img src={img.spin} alt="" className="loading rotating" />
-        </div>
-      )}
+      {isLoading && <Loader />}
       <div className="checkout text-white">
         <div className="checkout__cover row">
           <CheckOutLeft ticketRoomList={ticketRoomList} />
@@ -56,8 +47,6 @@ function CheckOut() {
         </div>
       </div>
     </>
-  ) : (
-    <Home />
   );
 }
 

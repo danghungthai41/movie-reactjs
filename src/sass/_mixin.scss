@@ -69,7 +69,6 @@
   }
 }
 
-// @include styleTextTitle(#000, 24px,500 , 27px, red, 27px, 500)
 @mixin hoverButton(
   $color-hover,
   $bg-color-hover,
@@ -128,7 +127,7 @@
     $color-gray-0,
     $color-gray-6,
     $color-gray-7,
-    $fs-2 ,
+    $fs-2,
     $fw-2,
     $pd-0,
     $pd-0,
@@ -152,16 +151,15 @@
 .flex {
   display: flex;
 }
-.justify-center{
+.justify-center {
   justify-content: center;
 }
-.justify-between{
+.justify-between {
   justify-content: space-between;
 }
-.justify-evenly{
+.justify-evenly {
   justify-content: space-evenly;
 }
-.align-center{
+.align-center {
   align-items: center;
 }
-

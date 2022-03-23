@@ -17,23 +17,17 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        
-        // transform: translate(240%,50%);
         h3 {
           color: #000;
           text-align: center;
         }
       }
     }
-    hr{
-     border: 1px dashed #4a4a4a4a;
+    hr {
+      border: 1px dashed #4a4a4a4a;
     }
-    .infoUser__bottom{
-      // padding-top: 120px;
+    .infoUser__bottom {
       padding: 15px 0;
-      
-
-    
     }
   }
 }

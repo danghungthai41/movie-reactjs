@@ -1,24 +1,19 @@
 import React, { Fragment, useState } from "react";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/Inbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import {
-  Link,
-  NavLink,
-  Redirect,
-  Route,
-  useLocation,
-  useParams,
-} from "react-router-dom";
+import { NavLink, Redirect, useLocation } from "react-router-dom";
 import { Box, MenuItem, MenuList, Typography } from "@material-ui/core";
 import img from "../../Theme/icons";
 import Swal from "sweetalert2";
-import { IoChevronDownOutline, IoHome } from "react-icons/io5";
-import { FaBoxes } from "react-icons/fa";
+import {
+  IoChevronDownOutline,
+  IoHome,
+  IoPeopleSharp,
+  IoPodium,
+  IoVideocam,
+  IoPushOutline,
+} from "react-icons/io5";
 import { HashLink } from "react-router-hash-link";
+import useWindowSize from "../../HOCS/useWindowSize";
 
 export default function AdminTemplate(props) {
   const location = useLocation();
@@ -42,23 +37,23 @@ export default function AdminTemplate(props) {
             position: "fixed",
             backgroundColor: "rgb(0, 21, 41)",
             height: "100vh",
-            minWidth: "300px",
+            minWidth: "250px",
             color: "rgba(255, 255, 255, 0.65)",
           }}
         >
           <NavLink to="/dashboard/users">
-            <Typography>
+            <Typography className="p-2">
               <img style={{ width: "50px" }} src={img.logo} alt="" />
-              <span className="ml-3">ADMIN</span>
+              <span className="ml-3 text-white">ADMIN</span>
             </Typography>
           </NavLink>
 
           <MenuList>
             <MenuItem>
-              <IoHome />
+              <IoPeopleSharp />
               <HashLink
                 to="/dashboard/users"
-                className="nav-link"
+                className="nav-link w-100"
                 scroll={(el) =>
                   el.scrollIntoView({ behavior: "auto", block: "end" })
                 }
@@ -68,48 +63,42 @@ export default function AdminTemplate(props) {
             </MenuItem>
 
             <MenuItem onClick={handleOpenSubMenu}>
-              <IoHome />
+              <IoPodium />
               <div className="nav-link">
-                Films
-                <span className="text-right">
+                Thư Mục Phim
+                <span style={{ marginLeft: 100 }}>
                   <IoChevronDownOutline />
                 </span>
               </div>
             </MenuItem>
-            {/* <ListItem button>
-              <ListItemIcon>
-                <DraftsIcon />
-              </ListItemIcon>
 
-            
-            </ListItem> */}
             {openSubMenu && (
               <>
                 <MenuItem>
-                  <div className="ml-4">
-                    <IoHome />
+                  <div className="ml-4 w-100">
+                    <IoVideocam />
                     <HashLink
                       to="/dashboard/films"
-                      className="nav-link"
+                      className="nav-link w-100"
                       scroll={(el) =>
                         el.scrollIntoView({ behavior: "auto", block: "end" })
                       }
                     >
-                      Film
+                      Phim
                     </HashLink>
                   </div>
                 </MenuItem>
                 <MenuItem>
-                  <div className="ml-4">
-                    <IoHome />
+                  <div className="ml-4 w-100">
+                    <IoPushOutline />
                     <HashLink
                       to="/dashboard/addnew"
-                      className="nav-link"
+                      className="nav-link w-100"
                       scroll={(el) =>
                         el.scrollIntoView({ behavior: "auto", block: "end" })
                       }
                     >
-                      Add New
+                      Thêm Mới Phim
                     </HashLink>
                   </div>
                 </MenuItem>
@@ -117,7 +106,7 @@ export default function AdminTemplate(props) {
             )}
 
             <NavLink button to="/home" sx={{}}>
-              <ListItemText primary="Trở lại trang chủ" />
+              <ListItemText className="ml-2" primary="Trở lại trang chủ" />
             </NavLink>
           </MenuList>
         </Box>
@@ -133,12 +122,12 @@ export default function AdminTemplate(props) {
             backgroundColor: "rgb(0, 21, 41)",
           }}
         >
-          <Typography variant="button">
+          <Typography color="#fff" variant="button">
             {location.pathname.slice(1).toLocaleUpperCase()}
           </Typography>
         </Box>
 
-        <Box>{props.children}</Box>
+        <Box >{props.children}</Box>
       </Box>
     </Box>
   );

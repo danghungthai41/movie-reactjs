@@ -60,7 +60,6 @@ export const fetchMovieInfo = (maPhim) => async (dispatch) => {
 };
 
 export const handleUpdateMovieUpload = (movieEdited) => async (dispatch) => {
-  console.log({ movieEdited });
   try {
     await request({
       url: "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhimUpload",

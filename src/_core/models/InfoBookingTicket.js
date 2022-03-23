@@ -6,6 +6,5 @@ export class InfoBookingTicket {
     tenCumRap = "";
     diaChi = "";
     timeBooking= null
-    constructor(){
-    }
+   
 }

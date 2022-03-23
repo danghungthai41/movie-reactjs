@@ -64,8 +64,6 @@ export default function AddNew() {
         formData.append('hinhAnh', values.hinhAnh[0]);
       }
     }
-   
-    console.log(values);
     dispatch(addNewMovie(formData));
   };
   const handleChangeDatePicker = (values) => {

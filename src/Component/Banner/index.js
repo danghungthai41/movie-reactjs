@@ -3,30 +3,28 @@ import Slider from "react-slick";
 import img from "../../Theme/icons.js";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+const settings = {
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 1500,
+};
+const slider = [
+  img.slider_1,
+  img.slider_2,
+  img.slider_3,
+  img.slider_4,
+  img.slider_5,
+  img.slider_6,
+  img.slider_7,
+  img.slider_8,
+  img.slider_9,
+  img.slider_10,
+  img.slider_11,
+  img.slider_12,
+  img.slider_13,
+];
 const AppDowload = () => {
-  const settings = {
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 1500,
-  };
-
-  const slider = [
-    img.slider_1,
-    img.slider_2,
-    img.slider_3,
-    img.slider_4,
-    img.slider_5,
-    img.slider_6,
-    img.slider_7,
-    img.slider_8,
-    img.slider_9,
-    img.slider_10,
-    img.slider_11,
-    img.slider_12,
-    img.slider_13,
-  ];
   return (
     <div
       className="app__download"
@@ -46,7 +44,6 @@ const AppDowload = () => {
             <br />
             <div className="btn_container">
               <button className="btn">
-                
                 <a
                   className="btn__link"
                   target="_blank"
@@ -91,10 +88,7 @@ const AppDowload = () => {
               id="sliderScreen"
               className="wrapSlick slick-initialized slick-slider"
             >
-              <div
-                className="carousel slide pt-0"
-                data-ride="carousel"
-              >
+              <div className="carousel slide pt-0" data-ride="carousel">
                 <div className="carousel-inner">
                   <Slider {...settings}>
                     {slider.map((item, index) => {

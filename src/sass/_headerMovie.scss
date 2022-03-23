@@ -17,7 +17,6 @@
       font-size: 40px;
       z-index: 100;
       cursor: pointer;
-      // position: absolute;
       right: 10px;
     }
     img {
@@ -32,40 +31,38 @@
     left: 0;
     z-index: 10;
     position: fixed;
-    
-    &.display-menu{
+
+    &.display-menu {
       animation: open 0.5s;
     }
-    &.hidden-menu{
+    &.hidden-menu {
       animation: close 0.5s;
-
     }
-    h4{
-      color: #fff ;
+    h4 {
+      color: #fff;
       padding: 0px 0 15px 15px;
-      span{
+      span {
         margin-left: 4px;
       }
     }
-    
   }
 }
-.MuiList-root{
+.MuiList-root {
   height: 100%;
   background-color: #001529 !important;
   color: #fff !important;
   font-size: 20px;
-  .MuiListItem-button{
+  .MuiListItem-button {
     border-radius: 4px !important;
-    .nav-link{
+    .nav-link {
       display: inline-block;
       color: #fff;
     }
-    &:hover{
+    &:hover {
       color: #001529 !important;
       transition: 0.5s all;
-      background-color: #6A5AF9 !important;
-      .nav-link{
+      background-color: #6a5af9 !important;
+      .nav-link {
         color: #001529;
         transition: 0.5s all;
       }

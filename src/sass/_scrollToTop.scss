@@ -1,43 +1,42 @@
 .scrollToTop {
-    position: fixed;
-    width: 50px;
-    height:50px;
-    border-radius: 10px;
-    z-index: 99999;
-    background-color: #ffa400;
-    border: 1px solid #fff;
-    bottom:15px;
-    right:15px;
-    &.display-scroll{
-        display: block;
-        animation: fade-in 0.5s;
-    }
-    &.hidden-scroll{
-        display: none;
-        animation: fade-out 0.5s;
-    }
-    &:hover{
-        background-color: rgb(43, 41, 41);
-        color:#fff;
-        opacity: 0.8;
-        transition: all 0.5s;
-    }
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  z-index: 99999;
+  background-color: #ffa400;
+  border: 1px solid #fff;
+  bottom: 15px;
+  right: 15px;
+  &.display-scroll {
+    display: block;
+    animation: fade-in 0.5s;
+  }
+  &.hidden-scroll {
+    display: none;
+    animation: fade-out 0.5s;
+  }
+  &:hover {
+    background-color: rgb(43, 41, 41);
+    color: #fff;
+    opacity: 0.8;
+    transition: all 0.5s;
+  }
 }
 
 @keyframes fade-in {
-    from {
-      transform: translateY(-1000px);
-    }
-    to {
-      bottom: 15px;
-    }
+  from {
+    transform: translateY(-1000px);
   }
-  @keyframes fade-out {
-    from {
-      bottom: 15px;
-    }
-    to {
-      transform: translateY(-1000px);
-    }
+  to {
+    bottom: 15px;
   }
-  
+}
+@keyframes fade-out {
+  from {
+    bottom: 15px;
+  }
+  to {
+    transform: translateY(-1000px);
+  }
+}

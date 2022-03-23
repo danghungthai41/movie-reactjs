@@ -1,59 +1,19 @@
 import React, { Component } from "react";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import theme from "../../Theme";
-// import Header from "../../Component/Header";
 import request from "../../configs/axios";
 import { connect } from "react-redux";
 import createAction from "../../Redux/action";
 import { withStyles } from "@material-ui/core";
-import Header from "../../Component/Header";
 import { ADD_USER } from "../../Redux/constants";
 import img from "../../Theme/icons";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
-const styles = {
-  paper: {
-    marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-};
 
 class SignUp extends Component {
   constructor(props) {
@@ -70,14 +30,6 @@ class SignUp extends Component {
       },
     };
   }
-
-  // "taiKhoan": "string",
-  // "matKhau": "string",
-  // "email": "string",
-  // "soDt": "string",
-  // "maNhom": "string",
-  // "hoTen": "string"
-
   handleOnSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -193,9 +145,4 @@ class SignUp extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     form : state.user.form,
-//   }
-// }
-export default connect()(withStyles(styles)(SignUp));
+export default connect()(SignUp);

@@ -1,28 +1,24 @@
-@import './variable';
+@import "./variable";
 
-@import './mixin';
+@import "./mixin";
 
-
-@import './button';
-@import './header';
-@import './carousel';
-@import './movieList';
-@import './card-movie';
-@import './footer';
-@import './banner';
-@import './movieDetail';
-@import './showTimeHome';
-@import './news';
-@import './checkout';
-@import './title';
-@import './infoUser';
-@import './headerMovie';
-@import './ticket';
-@import './scrollToTop';
-@import './booking-mobile';
-@import './showTimeHome-mobile';
-@import './loading';
-@import './signin';
-
-// @import './loading';
-// @import './showTime';
+@import "./button";
+@import "./header";
+@import "./carousel";
+@import "./movieList";
+@import "./card-movie";
+@import "./footer";
+@import "./banner";
+@import "./movieDetail";
+@import "./showTimeHome";
+@import "./news";
+@import "./checkout";
+@import "./infoUser";
+@import "./headerMovie";
+@import "./ticket";
+@import "./scrollToTop";
+@import "./booking-mobile";
+@import "./loading";
+@import "./signin";
+@import "./comment";
+@import "./showComment";

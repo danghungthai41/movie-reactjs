@@ -1,26 +1,14 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import img from "../../../Theme/icons";
-import ShowTimeLeft from "../ShowTimeLeft/ShowTimeLeft";
 import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Typography,
 } from "@material-ui/core";
-import { useDispatch } from "react-redux";
-import createAction from "../../../Redux/action";
-
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import { PUSH_SELECTED_MOVIE } from "../../../Redux/constants";
 import { changeColor, changeImgByCinema } from "../ShowTimeLeft/ShowTimeLeft";
-import ShowTimeRightItem from "../ShowTimeRight/ShowTimeRightItem";
 import ShowTimeItemMobile from "./ShowTimeItemMobile";
 
 const ShowTimeHomeMobile = ({ infoShowTime, dsPhim }) => {
-  const dispatch = useDispatch();
-
   let [selectedMovie, setSelectedMovie] = useState();
   const [view, setView] = useState("BHDStar");
   return (
@@ -40,14 +28,13 @@ const ShowTimeHomeMobile = ({ infoShowTime, dsPhim }) => {
         ))}
       </div>
       <div className="showTimeHome-accordian">
-        {infoShowTime.map((cumRap,index) => {
+        {infoShowTime.map((cumRap, index) => {
           return (
             cumRap.maHeThongRap === view &&
             cumRap.lstCumRap.map((cine) => (
               <div
                 key={index}
                 onClick={() => {
-                  console.log(cine);
                   setSelectedMovie(cine);
                 }}
               >
@@ -79,7 +66,9 @@ const ShowTimeHomeMobile = ({ infoShowTime, dsPhim }) => {
                             <ShowTimeItemMobile item={item} key={item.maPhim} />
                           ))
                       ) : (
-                        <p>Không Có Lịch Chiếu Phim</p>
+                        <div className="noShowing">
+                          <p>Không Có Lịch Chiếu Phim</p>
+                        </div>
                       )
                     ) : (
                       dsPhim[0]?.danhSachPhim

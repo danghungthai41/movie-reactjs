@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ShowTime from "./ShowTime/ShowTime";
 import { fetchMovieDetail } from "../../Redux/action/movie";
-import { IconName } from "react-icons/fa";
 import MovieDetail from "./MovieDetail/MovieDetail";
 import Loader from "../../Component/Loading";
 import img from "../../Theme/icons";
@@ -14,11 +13,11 @@ export default function Detail(props) {
 
   const id = props.match.params.movieCode;
   useEffect(() => {
+    //Lấy chi tiết phim
     dispatch(fetchMovieDetail(id));
-
-    //Dispatch để lấy data
+    //Lấy lịch chiếu theo phim
     dispatch(fetchShowTimeByMovie(id));
-  }, [id, dispatch]);
+  }, [id]);
 
   return (
     <>

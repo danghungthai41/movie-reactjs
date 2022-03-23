@@ -1,25 +1,31 @@
-import React, { Fragment, useCallback, useState } from "react";
-import moment from "moment";
+import React, { useCallback } from "react";
 import img from "../../../Theme/icons";
 import { useDispatch, useSelector } from "react-redux";
-import SeatItem from "../CheckOutLeft/SeatItem";
 import { InfoBookingTicket } from "../../../_core/models/InfoBookingTicket";
-import {
-  bookingTicketAction,
-  fetchTicketRoom,
-} from "../../../Redux/action/booking";
+import { bookingTicketAction } from "../../../Redux/action/booking";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 
 import { IoArrowForwardOutline } from "react-icons/io5";
 import createAction from "../../../Redux/action";
 import { BOOKING_SUCCESS } from "../../../Redux/constants";
-export default function CheckOutRight(props) {
+export default function CheckOutRight({ thongTinPhim }) {
   const history = useHistory();
-  const { thongTinPhim } = props;
   const dispatch = useDispatch();
   let selectedLstSeat = useSelector((state) => state.booking.selectedLstSeat);
   const createInfoTicket = () => {
+    if (!localStorage.getItem("token"))
+      return Swal.fire({
+        title: "Bạn Vui Lòng Đăng Nhập",
+        icon: "warning",
+        showCancelButton: true,
+      }).then(({ isConfirmed }) => {
+        if (isConfirmed) {
+          history.push("/signin");
+        } else {
+          history.push("/");
+        }
+      });
     const infoBookingTicket = new InfoBookingTicket();
     infoBookingTicket.maLichChieu = thongTinPhim?.maLichChieu;
     infoBookingTicket.danhSachVe = selectedLstSeat;
@@ -43,17 +49,17 @@ export default function CheckOutRight(props) {
           title: "Đặt Vé Thành Công",
           buttons: true,
           showCancelButton: true,
-          confirmButtonText: "Tiếp tục đặt vé",
-          cancelButtonText: "Thông tin vé",
+          confirmButtonText: "Thông tin vé",
+          cancelButtonText: "Tiếp tục đặt vé",
         }).then((response) => {
           if (response.isConfirmed) return history.push("/info");
         });
-      } else{
-        dispatch(createAction(BOOKING_SUCCESS, []))
+      } else {
+        dispatch(createAction(BOOKING_SUCCESS, []));
       }
     });
   };
-  const renderCheckOutRight = () => {
+  const renderCheckOutRight = useCallback(() => {
     return (
       <div className="checkOutRight">
         <div className="checkOutRight__cover">
@@ -160,6 +166,7 @@ export default function CheckOutRight(props) {
         </div>
       </div>
     );
-  };
+  }, [selectedLstSeat?.length, thongTinPhim]);
+
   return <React.Fragment>{renderCheckOutRight()}</React.Fragment>;
 }

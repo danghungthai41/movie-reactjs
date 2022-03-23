@@ -1,8 +1,6 @@
 .ticket {
   border: 1px solid #4a4a4a4a;
-  // padding: 50px;
   padding: 10px 10px 10px 10px;
-//   margin-bottom:15px;
   border-radius: 10px;
   background: linear-gradient(90deg, #eed475, #f1820b);
   width: 100%;
@@ -23,24 +21,24 @@
       padding: 15px;
       height: 200px;
       overflow: auto;
-    white-space: nowrap;
+      white-space: nowrap;
       .ticket__text {
-        button{
-            background: #eed475;
-            border-radius: 8px;
-            color: #000;
-            border: 1px dashed #000;
+        button {
+          background: #eed475;
+          border-radius: 8px;
+          color: #000;
+          border: 1px dashed #000;
         }
       }
     }
   }
 }
 .ticket__text {
-    font-weight: 600;
-    font-size: 16px;
-    color: #4a4a4a73; 
-    span {
-      font-style: italic;
-      color: #000;
-    }
+  font-weight: 600;
+  font-size: 16px;
+  color: #4a4a4a73;
+  span {
+    font-style: italic;
+    color: #000;
   }
+}

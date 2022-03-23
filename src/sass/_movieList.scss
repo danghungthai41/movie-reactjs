@@ -2,7 +2,6 @@
   padding-top: 30px;
   .swiper-slide {
     display: inline-block !important;
-
   }
   .slick-arrow {
     position: absolute;
@@ -28,12 +27,10 @@
       color: #000;
       font-size: 37px;
       line-height: 0 !important;
-     
     }
   }
   .movieList__cover {
     padding-top: 50px;
-    // padding-left: 16px;
     width: 80%;
     margin: 0 auto;
     @include styleTextTitle();

@@ -3,33 +3,47 @@ import { useEffect } from "react";
 import img from "../../Theme/icons";
 import { useDispatch, useSelector } from "react-redux";
 import File from "./upload";
-import { InfoBookingTicket } from "../../_core/models/InfoBookingTicket";
 import Ticket from "../../Component/Ticket/Ticket";
 import { fetchInfoAccount } from "../../Redux/action/credential";
-import { Box, Button, Grid, Modal } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import ModalUpdate from "../../Component/Modal/ModalUpdate";
-import { NavLink } from "react-router-dom";
-import { IoHome } from "react-icons/io5";
+import Loader from "../../Component/Loading";
+import { Warning } from "@material-ui/icons";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 export default function UserInfo() {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const [open, setOpen] = useState(false);
   const [showMore, setShowMore] = useState(false);
   const { userInfo } = useSelector((state) => state.credential);
   const { isLoading } = useSelector((state) => state.loading);
-  console.log({ isLoading });
 
-  const listenSelectedLstSeatChange = useSelector(
-    (state) => state.booking.selectedLstSeat
-  );
   useEffect(() => {
     dispatch(fetchInfoAccount());
-  }, [userInfo.thongTinDatVe.length]);
+  }, [userInfo.thongTinDatVe?.length]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  if (!localStorage.getItem("token")) {
+    Swal.fire({
+      title: "Bạn Vui Lòng Đăng Nhập",
+      icon: "warning",
+      showCancelButton: true,
+    }).then(({ isConfirmed }) => {
+      if (isConfirmed) {
+        history.push("/signin");
+      } else {
+        history.push("/");
+      }
+    });
+  }
+
   return (
     <>
+      {isLoading && <Loader />}
       <div className="infoUser">
         <div className="infoUser__cover">
           <div
@@ -46,13 +60,13 @@ export default function UserInfo() {
             <div className="infoUser__table">
               <div className="infoUser__user">
                 <p className="ticket__text">
-                  Your Name:{" "}
+                  Họ & Tên:{" "}
                   <span>
                     {userInfo.hoTen ? userInfo.hoTen : "Không có thông tin"}
                   </span>
                 </p>
                 <p className="ticket__text">
-                  Your Username:{" "}
+                  Tài Khoản:{" "}
                   <span>
                     {userInfo.taiKhoan
                       ? userInfo.taiKhoan
@@ -60,19 +74,18 @@ export default function UserInfo() {
                   </span>
                 </p>
                 <p className="ticket__text">
-                  Your Email:{" "}
+                  Email:{" "}
                   <span>
                     {userInfo.email ? userInfo.email : "Không có thông tin"}
                   </span>
                 </p>
                 <p className="ticket__text">
-                  Your Phone Number:{" "}
+                  Số Điện Thoại:{" "}
                   <span>
                     {userInfo.soDT ? userInfo.soDT : "Không có thông tin"}
                   </span>
                 </p>
               </div>
-              {/* <button className="buttonStyle">Cập Nhật</button> */}
               <Button className="buttonStyle" onClick={handleOpen}>
                 Cập Nhật
               </Button>
@@ -100,9 +113,7 @@ export default function UserInfo() {
                   .reverse()
                   .slice(0, 4)
                   .map((ticket, index) => (
-                 
-
-                    <Grid item sm={12} md={6} key={index} >
+                    <Grid item sm={12} md={6} key={index}>
                       <Ticket ticket={ticket} />
                     </Grid>
                   ))
@@ -125,7 +136,7 @@ export default function UserInfo() {
                 {userInfo.thongTinDatVe &&
                   userInfo.thongTinDatVe.reverse().map((ticket, index) => (
                     <Grid item sm={12} md={6} key={index}>
-                      <Ticket ticket={ticket}  />
+                      <Ticket ticket={ticket} />
                     </Grid>
                   ))}
               </Grid>
@@ -137,7 +148,7 @@ export default function UserInfo() {
             className="buttonStyle m-auto d-block"
             onClick={() => setShowMore(!showMore)}
           >
-            Show More
+            Chi Tiết
           </Button>
         </div>
       </div>

@@ -1,25 +1,20 @@
 import {
-  FormHelperText,
   Grid,
-  Input,
   InputLabel,
-  Menu,
   MenuItem,
   TextField,
   Typography,
 } from "@material-ui/core";
 import { IoHome } from "react-icons/io5";
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import { fetchBookingMovie } from "../../Redux/action/cinema";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import img from "../../Theme/icons";
 import Loader from "../Loading";
 
 const BookingMobile = () => {
-  const [currency, setCurrency] = React.useState("EUR");
   const dispatch = useDispatch();
 
   const movieList = useSelector((state) => state.movie.movieList);
@@ -41,6 +36,7 @@ const BookingMobile = () => {
   const filterData = codeCinemaList?.filter((item) => {
     return item.thongTinRap.tenCumRap === cinema && item;
   });
+
   const ngayChieu = [
     ...new Set(
       filterData?.map((item) =>
@@ -48,24 +44,33 @@ const BookingMobile = () => {
       )
     ),
   ];
-  const mergeArr = filterData?.filter(
-    (item) =>
-      moment(item.ngayChieuGioChieu).format("DD/MM/YYYY") === openingDay && item
+
+
+  const mergeArr = useMemo(
+    () =>
+      filterData?.filter(
+        (item) =>
+          moment(item.ngayChieuGioChieu).format("DD/MM/YYYY") === openingDay &&
+          item
+      ),
+    [filterData]
   );
+
   const gioChieu = filterData?.map((item) =>
     moment(item.ngayChieuGioChieu).format("HH:MM:SS")
   );
-  const selectedItem = mergeArr?.filter(
-    (item) => moment(item.ngayChieuGioChieu).format("HH:MM:SS") === timeOnScreen
+
+  const selectedItem = useMemo(
+    () =>
+      mergeArr?.filter(
+        (item) =>
+          moment(item.ngayChieuGioChieu).format("HH:MM:SS") === timeOnScreen
+      ),
+    [mergeArr]
   );
-  const handleChange = (event) => {
-    setCurrency(event.target.value);
-  };
 
   return (
     <>
-      {isLoading && <Loader />}
-
       <div className="booking-mobile">
         <div className="booking-mobile-container">
           {/* <div className="booking-mobile-item"> */}
@@ -88,7 +93,6 @@ const BookingMobile = () => {
                 select
                 defaultValue="Phim"
                 autoComplete="current-password"
-                onChange={handleChange}
               >
                 {movieList.map((movie) => (
                   <MenuItem
@@ -118,7 +122,6 @@ const BookingMobile = () => {
                 select
                 defaultValue="Phim"
                 autoComplete="current-password"
-                onChange={handleChange}
               >
                 {movieName ? (
                   lstCumRap.map((rap, index) => (
@@ -148,7 +151,6 @@ const BookingMobile = () => {
                 select
                 defaultValue="Phim"
                 autoComplete="current-password"
-                onChange={handleChange}
               >
                 {cinema ? (
                   ngayChieu.map((item) => (
@@ -179,7 +181,6 @@ const BookingMobile = () => {
                 select
                 defaultValue="Phim"
                 autoComplete="current-password"
-                onChange={handleChange}
               >
                 {openingDay ? (
                   gioChieu.map((item, index) => (

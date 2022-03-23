@@ -24,7 +24,6 @@ const reducer = (state = initialState, { type, payload }) => {
       return { ...state };
     case FETCH_CINEMA_BY_CODE:
       state.theaterList = payload;
-      console.log("theaterList", state.theaterList)
       return { ...state };
     case FETCH_SHOWTIME_BY_MOVIE:
       state.showTimeByMovieList = payload;

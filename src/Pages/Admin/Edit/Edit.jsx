@@ -57,7 +57,6 @@ const Edit = () => {
   const watchImg = watch("hinhAnh", []);
 
   useEffect(() => {
-    console.log("watchImg",watchImg)
     if (watchImg.length < 1) return;
     const fileReader = new FileReader();
 

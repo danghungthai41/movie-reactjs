@@ -1,7 +1,6 @@
 import React from "react";
 import img from "../../Theme/icons";
 export default function News() {
-  const [choseComponent, setChoseComponent] = React.useState("dienAnh");
 
   return (
     <>
